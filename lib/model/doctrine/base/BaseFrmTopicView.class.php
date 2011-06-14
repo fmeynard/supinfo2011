@@ -28,7 +28,7 @@ abstract class BaseFrmTopicView extends sfDoctrineRecord
 {
     public function setTableDefinition()
     {
-        $this->setTableName('frm_topic_view');
+        $this->setTableName('frm_TopicView');
         $this->hasColumn('user_id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,

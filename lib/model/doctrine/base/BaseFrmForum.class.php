@@ -49,7 +49,7 @@ abstract class BaseFrmForum extends sfDoctrineRecord
 {
     public function setTableDefinition()
     {
-        $this->setTableName('frm_forum');
+        $this->setTableName('frm_Forum');
         $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,

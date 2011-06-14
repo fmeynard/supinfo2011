@@ -122,6 +122,7 @@ abstract class BaseFrmTopic extends sfDoctrineRecord
              array(
               0 => 'title',
              ),
+             'tableName' => 'frm_Topic',
              ));
         $this->actAs($timestampable0);
         $this->actAs($sluggable0);

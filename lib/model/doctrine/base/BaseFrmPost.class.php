@@ -46,7 +46,7 @@ abstract class BaseFrmPost extends sfDoctrineRecord
 {
     public function setTableDefinition()
     {
-        $this->setTableName('frm_post');
+        $this->setTableName('frm_Post');
         $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,

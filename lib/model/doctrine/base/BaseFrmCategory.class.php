@@ -31,7 +31,7 @@ abstract class BaseFrmCategory extends sfDoctrineRecord
 {
     public function setTableDefinition()
     {
-        $this->setTableName('frm_category');
+        $this->setTableName('frm_Category');
         $this->hasColumn('id', 'integer', null, array(
              'type' => 'integer',
              'primary' => true,
