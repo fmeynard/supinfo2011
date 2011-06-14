@@ -207,12 +207,13 @@ CommunityPost:
 
 
     ### Forum ###
-    Frm_Category:
+Frm_Category:
   actAs:
     Timestampable:
     Sluggable:
       fields:         [name]
   columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
     name:             string(255)
     description:      clob
     rank:             integer
@@ -223,6 +224,7 @@ Frm_Forum:
     Sluggable:
       fields:         [name]
   columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
     name:             string(255)
     description:      clob
     rank:             integer
@@ -230,7 +232,6 @@ Frm_Forum:
     latest_post_id:   integer
     nb_posts:         integer
     nb_topics:        integer
-    phpbb_id:         integer
   relations:
     Frm_Category:
       local:          category_id
@@ -249,6 +250,7 @@ Frm_Topic:
     Sluggable:
       fields:         [title]
   columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
     title:            string(255)
     is_sticked:
       type:           boolean
@@ -265,10 +267,6 @@ Frm_Topic:
     nb_views:
       type:           integer
       default:        0
-    nb_recommandations:
-      type:           integer
-      default:        0
-    phpbb_id:         integer
   relations:
     Frm_Forum:
       local:          forum_id
@@ -290,13 +288,13 @@ Frm_Post:
   actAs:
     Timestampable:
   columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
     title:            string(255)
     content:          clob
     topic_id:         integer
     user_id:          integer
     forum_id:         integer
     author_name:      string(255)
-    phpbb_id:         integer
   relations:
     Frm_Forum:
       local:          forum_id
@@ -310,50 +308,6 @@ Frm_Post:
       onDelete:       CASCADE
     sfGuardUser:
       local:          user_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-
-Frm_AbuseLog:
-  actAs:
-    Timestampable:
-  columns:
-    user_id:
-      type: integer
-      primary: true
-    topic_id:
-      type: integer
-      primary: true
-  relations:
-    sfGuardUser:
-      local:          user_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-    Frm_Topic:
-      local:          topic_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-
-Frm_RecommandationLog:
-  actAs:
-    Timestampable:
-  columns:
-    user_id:
-      type: integer
-      primary: true
-    topic_id:
-      type: integer
-      primary: true
-  relations:
-    sfGuardUser:
-      local:          user_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-    Frm_Topic:
-      local:          topic_id
       foreign:        id
       type:           one
       onDelete:       CASCADE
@@ -396,4 +350,4 @@ Frm_TopicView:
       onDelete:       CASCADE
 
 
-    ### End Fortum ###
+    ### End Forum ###
