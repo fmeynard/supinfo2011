@@ -174,3 +174,196 @@ sfGuardUserProfile:
   relations:
     sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id, type: one , foreignType: one, foreignAlias: Profile }
     Agency:             { class: Agency, local: agency_id, foreign: id }
+
+
+    ### Forum ###
+    Frm_Category:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [name]
+  columns:
+    name:             string(255)
+    description:      clob
+    rank:             integer
+
+Frm_Forum:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [name]
+  columns:
+    name:             string(255)
+    description:      clob
+    rank:             integer
+    category_id:      integer
+    latest_post_id:   integer
+    nb_posts:         integer
+    nb_topics:        integer
+    phpbb_id:         integer
+  relations:
+    Frm_Category:
+      local:          category_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Post:
+      local:          latest_post_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+
+Frm_Topic:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [title]
+  columns:
+    title:            string(255)
+    is_sticked:
+      type:           boolean
+      default:        0
+    is_locked:
+      type:           boolean
+      default:        0
+    forum_id:         integer
+    latest_post_id:   integer
+    user_id:          integer
+    nb_posts:
+      type:           integer
+      default:        0
+    nb_views:
+      type:           integer
+      default:        0
+    nb_recommandations:
+      type:           integer
+      default:        0
+    phpbb_id:         integer
+  relations:
+    Frm_Forum:
+      local:          forum_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Post:
+      local:          latest_post_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+
+Frm_Post:
+  actAs:
+    Timestampable:
+  columns:
+    title:            string(255)
+    content:          clob
+    topic_id:         integer
+    user_id:          integer
+    forum_id:         integer
+    author_name:      string(255)
+    phpbb_id:         integer
+  relations:
+    Frm_Forum:
+      local:          forum_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Topic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+Frm_AbuseLog:
+  actAs:
+    Timestampable:
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    topic_id:
+      type: integer
+      primary: true
+  relations:
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Topic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+Frm_RecommandationLog:
+  actAs:
+    Timestampable:
+  columns:
+    user_id:
+      type: integer
+      primary: true
+    topic_id:
+      type: integer
+      primary: true
+  relations:
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Topic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+
+Frm_Rank:
+  actAs:
+    Sluggable:
+      fields:         [title]
+  columns:
+    nb_posts:
+      type: integer
+      notnull: true
+    image:
+      type: varchar(255)
+    title:
+      type: string(30)
+      notnull: true
+
+Frm_TopicView:
+  actAs:
+    Timestampable:
+  columns:
+    user_id:
+      type:           integer
+      primary:        true
+    topic_id:
+      type:           integer
+      primary:        true
+  relations:
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    Frm_Topic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+
+    ### End Fortum ###
