@@ -15,7 +15,6 @@
  * @property Category $Category
  * @property Doctrine_Collection $Package
  * @property Doctrine_Collection $SingleOffer
- * @property Doctrine_Collection $Packagetest
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getName()              Returns the current record's "name" value
@@ -27,7 +26,6 @@
  * @method Category            getCategory()          Returns the current record's "Category" value
  * @method Doctrine_Collection getPackage()           Returns the current record's "Package" collection
  * @method Doctrine_Collection getSingleOffer()       Returns the current record's "SingleOffer" collection
- * @method Doctrine_Collection getPackagetest()       Returns the current record's "Packagetest" collection
  * @method Category            setId()                Sets the current record's "id" value
  * @method Category            setName()              Sets the current record's "name" value
  * @method Category            setShortDescription()  Sets the current record's "short_description" value
@@ -38,7 +36,6 @@
  * @method Category            setCategory()          Sets the current record's "Category" value
  * @method Category            setPackage()           Sets the current record's "Package" collection
  * @method Category            setSingleOffer()       Sets the current record's "SingleOffer" collection
- * @method Category            setPackagetest()       Sets the current record's "Packagetest" collection
  * 
  * @package    d
  * @subpackage model
@@ -93,10 +90,6 @@ abstract class BaseCategory extends sfDoctrineRecord
              'foreign' => 'category_id'));
 
         $this->hasMany('SingleOffer', array(
-             'local' => 'id',
-             'foreign' => 'category_id'));
-
-        $this->hasMany('Packagetest', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 
