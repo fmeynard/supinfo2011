@@ -3,7 +3,7 @@ CommunityCategory:
   cat1:
     id:           1
     name:         Sécurité Routière
-    description:  Toutes les règles de sécurités
+    description:  Toutes les règles de sécurité
     is_active:    1
   cat2:
     id:           2
