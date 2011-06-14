@@ -19,4 +19,11 @@ class userActions extends sfActions
   {
     $this->lastUsers = sfGuardUserProfileTable::getInstance()->getLastUser();
   }
+  
+  public function executeNewCustomer(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+    
+    $this->form = new CustomerForm(array(), array('agency'=>$this->agency));
+  }
 }

@@ -16,7 +16,7 @@ class sfGuardUserProfile extends BasesfGuardUserProfile
   const TYPE_CUSTOMER  = 2;
   const TYPE_TEACHER   = 3;
   
-  public function __toString() { return $this->getFirstName() . $this->getLastName(); }
+  public function __toString() { return $this->getFirstName() . ' ' . $this->getLastName(); }
   
   public function getFullname() { return $this->getFirstName() . ' ' .  $this->getLastName(); }
 }

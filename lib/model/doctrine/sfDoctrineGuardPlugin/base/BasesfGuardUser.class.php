@@ -18,7 +18,7 @@
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
- * @property Doctrine_Collection $sfGuardUserProfile
+ * @property sfGuardUserProfile $Profile
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getUsername()              Returns the current record's "username" value
@@ -33,7 +33,7 @@
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
- * @method Doctrine_Collection getSfGuardUserProfile()    Returns the current record's "sfGuardUserProfile" collection
+ * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
  * @method sfGuardUser         setUsername()              Sets the current record's "username" value
  * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
@@ -47,7 +47,7 @@
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
- * @method sfGuardUser         setSfGuardUserProfile()    Sets the current record's "sfGuardUserProfile" collection
+ * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
  * 
  * @package    d
  * @subpackage model
@@ -131,7 +131,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
-        $this->hasMany('sfGuardUserProfile', array(
+        $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));
 

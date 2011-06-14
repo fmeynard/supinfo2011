@@ -110,6 +110,16 @@ agency_create_vehicle:
   requirements:
     sf_method:  [POST]
     
+agency_customers:
+  url:      /agency/:slug/customers
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: listCustomers }
+
+agency_load_customers:
+ url:      /agency-load-customers/*
+ param:    { module: agency, action: loadCustomers }
+    
 agency_view_vehicle:
   url:      /agency/:agency/vehicle/:slug
   class:    sfDoctrineRoute
@@ -120,6 +130,12 @@ agency_view_vehicle:
 user:
   url:      /user
   param:    { module: user, action: index }
+
+new_customer: 
+  url:      /agency/:slug/newCustomer
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: user, action: newCustomer }
   
 #Employee
 employee:

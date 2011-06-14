@@ -127,5 +127,36 @@ class agencyActions extends autoAgencyActions
       $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
     }
   }
+  
+  public function executeListCustomers(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+  }
+  
+  public function executeLoadCustomers(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = Doctrine::getTable('Agency')->find($request->getParameter('id')));
+     //$query = Doctrine_Query::create()->from('Vehicle v')->where('v.agency_id = ?',$this->agency->getId());
+
+     $pager = new FlexigridPager($request, sfGuardUserProfileTable::getAgencyCustomersQuery($this->agency));
+     $response = $pager->getDefaultStd();
+     $pager = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item){
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getFullname(),
+                $item->getMail(),
+                $item->getMobile(),
+                $item->getPhone(),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
 
 }

@@ -55,4 +55,20 @@ class sfGuardUserProfileTable extends Doctrine_Table
       return $q->leftJoin($q->getRootAlias().'.Agency a')
                 ->addWhere($q->getRootAlias().'.type = ?',sfGuardUserProfile::TYPE_EMPLOYEE);
     }
+    
+    /**
+     * Get Agency Customers Query
+     *
+     * @param Agency $agency
+     *
+     * @return Doctrine_Query
+     */
+    static public function getAgencyCustomersQuery(Agency $agency)
+    {
+      return Doctrine_Query::create()
+              ->from('sfGuardUserProfile p')
+              ->leftJoin('p.Agency a')
+              ->leftJoin('p.sfGuardUser u')
+              ->where('p.type = ? AND a.id = ?', array(sfGuardUserProfile::TYPE_CUSTOMER, $agency->getId()));
+    }
 }

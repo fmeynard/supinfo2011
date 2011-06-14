@@ -172,5 +172,5 @@ sfGuardUserProfile:
     phone:              { type: string(15) }
     mobile:             { type: string(15) }
   relations:
-    sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id }
+    sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id, type: one , foreignType: one, foreignAlias: Profile }
     Agency:             { class: Agency, local: agency_id, foreign: id }
