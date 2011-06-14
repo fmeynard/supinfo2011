@@ -1,0 +1,138 @@
+sf_guard_user_profile_employee:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUserProfile
+    module:               employee
+    prefix_path:          /employee
+    column:               id
+    with_wildcard_routes: true
+
+sf_guard_user_profile:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardUserProfile
+    module:               Employee
+    prefix_path:          /Employee
+    column:               id
+    with_wildcard_routes: true
+
+category:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Category
+    module:               category
+    prefix_path:          /category
+    column:               id
+    with_wildcard_routes: true
+
+agency:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Agency
+    module:               agency
+    prefix_path:          /agency
+    column:               id
+    with_wildcard_routes: true
+
+vehicle:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Vehicle
+    module:               vehicle
+    prefix_path:          /vehicle
+    column:               id
+    with_wildcard_routes: true
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: dashboard, action: index }
+
+
+# Vehicles
+vehicles:
+  url:    /vehicles
+  param:  { module: vehicle, action: index }
+  
+new_vehicle:
+  url:    /vehicles/new
+  param:  { module: vehicle, action: new }
+  
+vehicle_create:
+  url:    /vehicles/create
+  param:  { module: vehicle, action: create }
+
+vehicle_update:
+  url:    /vehicles/update
+  param:  { module: vehicle, action: update }
+  
+# Agencies
+agencies:
+  url:    /agencies
+  param:  { module: agency, action: index }
+  
+#Categories
+categories:
+  url:    /categories
+  param:  { module: category, action: index }
+  
+#Agencies
+dashboard_agency:
+  url:      /agency/:slug/dashboard
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: view }
+
+dashboard_vehicles:
+  url:      /agency/:slug/vehicles
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: vehicles }
+
+agency_new_vehicle:
+  url:      /agency/:slug/new-vehicle
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: newVehicle }
+  
+agency_load_vehicles:
+  url:      /agency-load-vehicles/*
+  param:    { module: agency, action: loadVehicles }
+
+agency_create_vehicle:
+  url:      /agency/:slug/create-vehicle
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: createVehicle }
+  requirements:
+    sf_method:  [POST]
+    
+agency_view_vehicle:
+  url:      /agency/:agency/vehicle/:slug
+  class:    sfDoctrineRoute
+  options:  { model: Vehicle, type: object }
+  param:    { module: agency, action: viewVehicle }
+
+# User
+user:
+  url:      /user
+  param:    { module: user, action: index }
+  
+#Employee
+employee:
+  url:      /user/employees
+  param:    { module: employee, action: index }
+  
+employee_view:
+  url:      /user/employee/dashboard/:slug
+  class:    sfDoctrineRoute
+  options:  { model: sfGuardUserProfile, type: object }
+  param:    { module: employee, action: view }
+
+#Settings
+settings:
+  url:      /settings
+  param:    { module: settings, action: index }

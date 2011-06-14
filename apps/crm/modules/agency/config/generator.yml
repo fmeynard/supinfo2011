@@ -1,0 +1,23 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Agency
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          agency
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        hide:   [id, address_bis, phone, mail, fax, slug]
+      filter:  
+        display: [name, address, mail, fax, phone]
+      form:    ~
+      edit:    ~
+      new:     ~

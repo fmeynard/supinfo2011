@@ -1,0 +1,176 @@
+options:
+  type: MySIAM
+  
+Package:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            package
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    short_description:  { type: string(255) }
+    description:        { type: clob }
+    price:              { type: float(7), scale: 2, notnull: true }
+    is_active:          { type: boolean, default: 0 }
+    image:              { type: string(255) }
+    category_id:        { type: integer, notnull: true }
+  relations:
+    Category:           { class: Category, local: category_id, foreign: id, onDelete: SET NULL }
+
+PackageLine:
+  tableName:            package_line
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    image:              { type: string(255) }
+    package_id:         { type: integer }
+  relations:
+    Package:            { class: Package, local: package_id, foreign: id, onDelete: SET NULL }
+
+SingleOffer:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            single_offer
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    short_description:  { type: string(255) }
+    description:        { type: clob }
+    price:              { type: float(7), scale: 2 }
+    category_id:        { type: integer, notnull: true }
+    is_active:          { type: boolean }
+  relations:
+    Category:           { class: Category, local: category_id, foreign: id, onDelete: SET NULL }
+
+Category:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            category
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    short_description:  { type: string(255) }
+    description:        { type: clob }
+    image:              { type: string(255) }
+    category_id:        { type: integer }
+    is_active:          { type: boolean }
+  relations:
+    Category:           { class: Category, local: category_id, foreign: id }
+
+Agency:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            agency
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    address:            { type: string(255), notnull: true }
+    address_bis:        { type: string(255) }
+    phone:              { type: string(15) }
+    mail:               { type: string(100) }
+    fax:                { type: string(15) }
+
+AgencyRoom:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            agency_room
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    agency_id:          { type: integer }
+    capacity:           { type: integer }
+  relations:
+    Agency:             { type: Agency, local: agency_id, foreign: id, onDelete: SET NULL }
+
+FormationCenter:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            formation_center
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    image:              { type: string(255) }
+    address:            { type: string(255) }
+    address_bis:        { type: string(255) }
+    capacity:           { type: integer }
+
+FormationType:
+  tableName:            formation_type
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+
+FormationSession:
+  tableName:            formation_session
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64) }
+    formation_type_id:  { type: integer }
+    capacity:           { type: integer }
+    date_start:         { type: timestamp }
+    date_end:           { type: timestamp }
+  relations:
+    FormationType:      { class: FormationType, foreign: id, local: formation_type_id, onDelete: SET NULL }
+
+VehicleType:
+  tableName:            vehicle_type
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    name:               { type: string(64), notnull: true }
+
+Vehicle:
+  actAs:
+      Sluggable:
+        fields: [name]
+  tableName:            vehicle
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    name:               { type: string(64), notnull: true }
+    brand:              { type: string(64) }
+    model:              { type: string(64) }
+    year:               { type: timestamp }
+    purchase_date:      { type: timestamp }
+    next_verif_start:   { type: timestamp }
+    next_verif_end:     { type: timestamp }
+    agency_id:          { type: integer, notnull: true }
+    vehicle_type_id:    { type: integer, notnull: true }
+  relations: 
+    Agency:             { class: Agency, foreign: id, local: agency_id }
+    VehicleType:        { class: VehicleType, foreign: id, local: vehicle_type_id }
+
+VehicleVerification:
+  tableName:            vehicle_verification
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    vehicle_id:         { type: integer }
+    date_start:         { type: timestamp }
+    date_end:           { type: timestamp }
+  relations:
+    Vehicle:            { class: Vehicle, foreign: id, local: vehicle_id, onDelete: NULL }
+    
+    
+sfGuardUserProfile:
+  actAs: 
+    Sluggable:
+      fields:           [first_name, last_name]
+  tableName:            sf_guard_user_profile
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    sf_guard_user_id:   { type: integer, notnull: true }
+    agency_id:          { type: integer }
+    first_name:         { type: string(64) }
+    last_name:          { type: string(64) }
+    birthday:           { type: timestamp }
+    type:               { type: integer }
+    mail:               { type: string(64) }
+    phone:              { type: string(15) }
+    mobile:             { type: string(15) }
+  relations:
+    sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id }
+    Agency:             { class: Agency, local: agency_id, foreign: id }

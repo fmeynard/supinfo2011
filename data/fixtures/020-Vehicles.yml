@@ -1,0 +1,53 @@
+VehicleType:
+  vt1:
+    id:               1
+    name:             Car
+  vt2:
+    id:               2
+    name:             Moto
+  vt3:
+    id:               3
+    name:             Truck
+
+Vehicle:
+  v1:
+    id:               1
+    name:             5554 MK 33
+    brand:            Renault
+    model:            Megane
+    year:             2011-15-03 02:17:15
+    purchase_date:    2010-15-02 02:17:15
+    next_verif_start: 2011-15-04 02:17:15
+    next_verif_end:   2011-22-03 02:17:15
+    agency_id:        2
+  v2:
+    id:               2
+    name:             6925 YW 33
+    brand:            Peugeot
+    model:            206
+    year:             '2011-03-15'
+    purchase_date:    '2010-02-15'
+    next_verif_start: 2011-15-04 02:17:15
+    next_verif_end:   2011-22-03 02:17:15
+    agency_id:        1
+  v3:
+    id:               3
+    name:             3851 DJ 01
+    brand:            Renault
+    model:            Megane
+    year:             2011-15-03 02:17:15
+    purchase_date:    2010-15-02 02:17:15
+    next_verif_start: 2011-15-04 02:17:15
+    next_verif_end:   2011-22-03 02:17:15
+    agency_id:        2
+  v4:
+    id:               4
+    name:             6251 PL 78
+    brand:            Renault
+    model:            Megane
+    year:             2011-15-03 02:17:15
+    purchase_date:    2010-15-02 02:17:15
+    next_verif_start: 2011-15-04 02:17:15
+    next_verif_end:   2011-22-03 02:17:15
+    agency_id:        2
+

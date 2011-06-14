@@ -1,0 +1,7 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=pwnedbox.fr;dbname=projet2k11;port:3306'
+      username: projet2k11
+      password: supinfoprojet2k11password

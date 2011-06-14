@@ -1,0 +1,11 @@
+Agency: 
+  agency1:
+    id:       1
+    name:     London
+    address:  32 Lombard Street
+    mail:     james.guest@supinfo.com
+  agency2:
+    id:       2
+    name:     Bordeaux  
+    address:  14 cours saint louis
+    mail:     domitille.thebaud@supinfo.com
