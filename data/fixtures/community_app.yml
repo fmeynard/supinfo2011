@@ -3,7 +3,7 @@ CommunityCategory:
   cat1:
     id:           1
     name:         Sécurité Routière
-    description:  Toutes les règles de sécurités
+    description:  Toutes les règles de sécurité
     is_active:    1
   cat2:
     id:           2
@@ -30,3 +30,10 @@ CommunityPost:
     content:            Voici notre premier article, à modifier par la suite
     category_id:        2
     is_active:          1
+
+CommunityComment:
+  comment1:
+    id:                 1
+    user_id:            2
+    post_id:            1
+    content:            très beau premier article sur la sécurité routière !

@@ -175,7 +175,7 @@ sfGuardUserProfile:
     sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id, type: one , foreignType: one, foreignAlias: Profile }
     Agency:             { class: Agency, local: agency_id, foreign: id }
 
-#D�but community
+#Début community
 CommunityCategory:
   actAs:
     Sluggable:
@@ -201,4 +201,16 @@ CommunityPost:
     is_active:          { type: boolean }
   relations:
     CommunityCategory:  { class: CommunityCategory, local: category_id, foreign: id }
+
+CommunityComment:
+  tableName:            community_comment
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    user_id:            { type: integer, notnull: true }
+    post_id:            { type: integer, notnull: true }
+    content:            { type: clob, notnull: true }
+    date:               { type: timestamp }
+  relations:
+    CommunityPost:      { class: CommunityPost, local: post_id, foreign: id }
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
 #Fin community
