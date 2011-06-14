@@ -207,7 +207,7 @@ CommunityPost:
 
 
     ### Forum ###
-Frm_Category:
+FrmCategory:
   actAs:
     Timestampable:
     Sluggable:
@@ -218,7 +218,7 @@ Frm_Category:
     description:      clob
     rank:             integer
 
-Frm_Forum:
+FrmForum:
   actAs:
     Timestampable:
     Sluggable:
@@ -233,18 +233,18 @@ Frm_Forum:
     nb_posts:         integer
     nb_topics:        integer
   relations:
-    Frm_Category:
+    FrmCategory:
       local:          category_id
       foreign:        id
       type:           one
       onDelete:       CASCADE
-    Frm_Post:
+    FrmPost:
       local:          latest_post_id
       foreign:        id
       type:           one
       onDelete:       SET NULL
 
-Frm_Topic:
+FrmTopic:
   actAs:
     Timestampable:
     Sluggable:
@@ -268,12 +268,12 @@ Frm_Topic:
       type:           integer
       default:        0
   relations:
-    Frm_Forum:
+    FrmForum:
       local:          forum_id
       foreign:        id
       type:           one
       onDelete:       CASCADE
-    Frm_Post:
+    FrmPost:
       local:          latest_post_id
       foreign:        id
       type:           one
@@ -284,7 +284,7 @@ Frm_Topic:
       type:           one
       onDelete:       SET NULL
 
-Frm_Post:
+FrmPost:
   actAs:
     Timestampable:
   columns:
@@ -296,12 +296,12 @@ Frm_Post:
     forum_id:         integer
     author_name:      string(255)
   relations:
-    Frm_Forum:
+    FrmForum:
       local:          forum_id
       foreign:        id
       type:           one
       onDelete:       CASCADE
-    Frm_Topic:
+    FrmTopic:
       local:          topic_id
       foreign:        id
       type:           one
@@ -313,7 +313,7 @@ Frm_Post:
       onDelete:       CASCADE
 
 
-Frm_Rank:
+FrmRank:
   actAs:
     Sluggable:
       fields:         [title]
@@ -327,7 +327,7 @@ Frm_Rank:
       type: string(30)
       notnull: true
 
-Frm_TopicView:
+FrmTopicView:
   actAs:
     Timestampable:
   columns:
@@ -343,7 +343,7 @@ Frm_TopicView:
       foreign:        id
       type:           one
       onDelete:       CASCADE
-    Frm_Topic:
+    FrmTopic:
       local:          topic_id
       foreign:        id
       type:           one
