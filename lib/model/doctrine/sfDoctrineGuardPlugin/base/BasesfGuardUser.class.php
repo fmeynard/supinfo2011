@@ -19,6 +19,9 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardUserProfile $Profile
+ * @property Doctrine_Collection $Frm_Topic
+ * @property Doctrine_Collection $Frm_Post
+ * @property Doctrine_Collection $Frm_TopicView
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getUsername()              Returns the current record's "username" value
@@ -34,6 +37,9 @@
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
+ * @method Doctrine_Collection getFrmTopic()              Returns the current record's "Frm_Topic" collection
+ * @method Doctrine_Collection getFrmPost()               Returns the current record's "Frm_Post" collection
+ * @method Doctrine_Collection getFrmTopicView()          Returns the current record's "Frm_TopicView" collection
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
  * @method sfGuardUser         setUsername()              Sets the current record's "username" value
  * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
@@ -48,6 +54,9 @@
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
+ * @method sfGuardUser         setFrmTopic()              Sets the current record's "Frm_Topic" collection
+ * @method sfGuardUser         setFrmPost()               Sets the current record's "Frm_Post" collection
+ * @method sfGuardUser         setFrmTopicView()          Sets the current record's "Frm_TopicView" collection
  * 
  * @package    d
  * @subpackage model
@@ -134,6 +143,18 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));
+
+        $this->hasMany('Frm_Topic', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Frm_Post', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('Frm_TopicView', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
