@@ -1,0 +1,58 @@
+FrmCategory:
+  c1:
+    name:        Public Boards
+    description: We talk about stuff here.
+    rank:        1
+  c2:
+    name:        Miscellaneous
+    description: Secret matters
+    rank:        2
+
+FrmTopic:
+  topic_1:
+    title:              Installing foo
+    FrmForum: forum_1
+    user_id:        1
+    nb_posts:           1
+  topic_2:
+    title:              Stick Moo
+    FrmForum: forum_2
+    user_id:        1
+    is_sticked:         true
+    nb_posts:           2
+
+FrmForum:
+  forum_1:
+    name:                   Foo discussion
+    description:            Everybody is foo here
+    FrmCategory:  c1
+    rank:                   1
+    nb_posts:               2
+    nb_topics:              1
+  forum_2:
+    name:                   Bar discussion
+    description:            If you want a bar, this is where you will find it
+    FrmCategory:  c2
+    rank:                   2
+    nb_posts:               1
+    nb_topics:              1
+
+FrmPost:
+  post_1:
+    title:                  Foo discussion
+    content:                Everybody is foo here
+    user_id:            1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
+  post_2:
+    title:                  Foo discussion2
+    content:                Everybody is foo here2
+    user_id:            1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
+  post_3:
+    title:                  Bar discussion
+    content:                If you want a bar, this is where you will find it
+    user_id:            1
+    FrmTopic:     topic_2
+    FrmForum:     forum_2
