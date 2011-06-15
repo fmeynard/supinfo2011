@@ -43,7 +43,7 @@
 				<p class="topicdetails"><a href="" title=""></a></p>
 
 
-					<p class="topicdetails"><?php echo $frm_forum->getFrmPost()->getDate() ?></p>
+					<p class="topicdetails"><?php echo $frm_forum->getFrmPost()->getUpdatedAt() ?> pd va</p>
 
 					<p class="topicdetails"><a href="" style="color: #AA0000;" class="username-coloured">admin</a>
 						<a href=""><img src="/images/forum/icon_topic_latest.gif" width="18" height="9" alt="View the latest post" title="View the latest post" /></a>
