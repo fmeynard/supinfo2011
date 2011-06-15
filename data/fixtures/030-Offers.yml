@@ -40,4 +40,32 @@ Offer:
         is_active:          1
         is_package_only:    0
         
-        
+Package:
+    p01:
+        id:                 1
+        name:               Package01
+        short_description:  package01desc
+        price:              1000
+        is_active:          1
+        category_id:        1
+    p01:
+        id:                 2
+        name:               Package02
+        short_description:  package02desc
+        price:              2000
+        is_active:          1
+        category_id:        1
+    
+PackageHasOffer:
+    pho01:
+        id:             1
+        package_id:     1
+        offer_id:       1
+    pho02:
+        id:             2
+        package_id:     1
+        offer_id:       2
+    pho02:
+        id:             3
+        package_id:     2
+        offer_id:       2

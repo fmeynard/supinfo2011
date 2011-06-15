@@ -107,7 +107,7 @@ class offersActions extends sfActions
   
   public function executeLoadOffer(sfWebRequest $request)
   {
-    $pager     = new FlexigridPager($request, OffersTable::getInstance()->findAll());
+    $pager     = new FlexigridPager($request, OfferTable::getAllQuery());
     $response  = $pager->getDefaultStd();
     $pager     = $pager->init();
 
@@ -121,7 +121,7 @@ class offersActions extends sfActions
               $item->getShortDescription(),
               $item->getPrice(),
               $item->getCategory()->getName(),
-              $this->getPartial('rowCategoryActions', array('item'=>$item)),
+              $this->getPartial('rowOfferActions', array('item'=>$item)),
           );
           $i++;
     }
@@ -166,7 +166,7 @@ class offersActions extends sfActions
     $this->redirect('offers/listOffer');
   }
   
-  protected function processCategoryForm(sfRequest $request, sfForm $form)
+  protected function processOfferForm(sfRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
@@ -174,6 +174,87 @@ class offersActions extends sfActions
       $form->save();
       
       $this->redirect('offers/editOffer?id='.$form->getObject()->getId());
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    } 
+  }
+  
+  public function executeListPackage(sfWebRequest $request)
+  {
+    
+  }
+  
+  public function executeLoadPackage(sfWebRequest $request)
+  {
+    $pager     = new FlexigridPager($request, PackageTable::getAllQuery());
+    $response  = $pager->getDefaultStd();
+    $pager     = $pager->init();
+
+    $i=0;
+
+    foreach($pager->getResults() as $item){
+          $response->rows[$i]['id'] = $item->getId();
+          $response->rows[$i]['cell'] = array(
+              $item->getId(),
+              $item->getName(),
+              $item->getShortDescription(),
+              $item->getPrice(),
+              $item->getCategory()->getName(),
+              $this->getPartial('rowPackageActions', array('item'=>$item)),
+          );
+          $i++;
+    }
+
+    return $this->renderText(json_encode($response)); 
+  }
+  
+  public function executeNewPackage(sfWebRequest $request)
+  {
+    $this->form = new PackageForm();
+  }
+  
+  public function executeCreatePackage(sfWebRequest $request)
+  {
+    $this->form = new PackageForm();
+    $this->processPackageForm($request, $this->form);
+    $this->setTemplate('newPackage');
+  }
+  
+  public function executeEditPackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->package = PackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new PackageForm($this->package);
+  }
+  
+  public function executeUpdatePackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->package = PackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new PackageForm($this->package);
+    $this->processPackageForm($request, $this->form);
+    $this->setTemplate('editPackage');
+  }
+  
+  public function executeDeletePackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->package = PackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->package->delete();
+    
+    $this->redirect('offers/listPackage');
+  }
+  
+  protected function processPackageForm(sfRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      
+      $this->redirect('offers/editPackage?id='.$form->getObject()->getId());
     }
     else
     {
