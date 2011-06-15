@@ -1,0 +1,138 @@
+options:
+  type: MySIAM
+  
+    ### Forum ###
+FrmCategory:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [name]
+  tableName:          frm_Category
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    name:             string(255)
+    description:      clob
+    rank:             integer
+
+FrmForum:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [name]
+  tableName:          frm_Forum
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    name:             string(255)
+    description:      clob
+    rank:             integer
+    category_id:      integer
+    latest_post_id:   integer
+    nb_posts:         integer
+    nb_topics:        integer
+  relations:
+    FrmCategory:
+      local:          category_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    FrmPost:
+      local:          latest_post_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+
+FrmTopic:
+  actAs:
+    Timestampable:
+    Sluggable:
+      fields:         [title]
+      tableName:          frm_Topic
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    title:            string(255)
+    is_sticked:
+      type:           boolean
+      default:        0
+    is_locked:
+      type:           boolean
+      default:        0
+    forum_id:         integer
+    latest_post_id:   integer
+    user_id:          integer
+    nb_posts:
+      type:           integer
+      default:        0
+    nb_views:
+      type:           integer
+      default:        0
+  relations:
+    FrmForum:
+      local:          forum_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    FrmPost:
+      local:          latest_post_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       SET NULL
+
+FrmPost:
+  actAs:
+    Timestampable:
+  tableName:          frm_Post
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    title:            string(255)
+    content:          clob
+    topic_id:         integer
+    user_id:          integer
+    forum_id:         integer
+    author_name:      string(255)
+  relations:
+    FrmForum:
+      local:          forum_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    FrmTopic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+FrmTopicView:
+  actAs:
+    Timestampable:
+  tableName:          frm_TopicView
+  columns:
+    user_id:
+      type:           integer
+      primary:        true
+    topic_id:
+      type:           integer
+      primary:        true
+  relations:
+    sfGuardUser:
+      local:          user_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+    FrmTopic:
+      local:          topic_id
+      foreign:        id
+      type:           one
+      onDelete:       CASCADE
+
+
+    ### End Forum ###

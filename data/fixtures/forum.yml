@@ -1,0 +1,58 @@
+FrmCategory:
+  c1:
+    name:        Sécurité routière
+    description: Tout sur la sécurité routière
+    rank:        1
+  c2:
+    name:        Notre auto-école
+    description: Afin de discuter et d'entrer en contact avec notre auto-école
+    rank:        2
+
+FrmTopic:
+  topic_1:
+    title:              Attacher votre ceinture.
+    FrmForum: forum_1
+    user_id:        1
+    nb_posts:           1
+  topic_2:
+    title:              Liste de nos professeurs.
+    FrmForum: forum_2
+    user_id:        1
+    is_sticked:         true
+    nb_posts:           2
+
+FrmForum:
+  forum_1:
+    name:                   Conseils pratiques
+    description:            Tout ce qu'il faut savoir avant de monter en voiture
+    FrmCategory:  c1
+    rank:                   1
+    nb_posts:               2
+    nb_topics:              1
+  forum_2:
+    name:                   Nos professeurs
+    description:            Etre en contact avec nos professeurs
+    FrmCategory:  c2
+    rank:                   2
+    nb_posts:               1
+    nb_topics:              1
+
+FrmPost:
+  post_1:
+    title:                  Foo discussion
+    content:                Everybody is foo here
+    user_id:            1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
+  post_2:
+    title:                  Foo discussion2
+    content:                Everybody is foo here2
+    user_id:            1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
+  post_3:
+    title:                  Bar discussion
+    content:                If you want a bar, this is where you will find it
+    user_id:            1
+    FrmTopic:     topic_2
+    FrmForum:     forum_2

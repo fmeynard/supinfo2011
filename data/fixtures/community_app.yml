@@ -1,0 +1,39 @@
+## YAML Template.
+CommunityCategory:
+  cat1:
+    id:           1
+    name:         Sécurité Routière
+    description:  Toutes les règles de sécurité
+    is_active:    1
+  cat2:
+    id:           2
+    name:         Le permis
+    description:  Tout ce qu'il faut savoir sur le permis
+    is_active:    1
+
+CommunityPost:
+  post1:
+    id:                 1
+    title:              Premier article sur la sécurité routière
+    content:            Voici notre premier article, à modifier par la suite
+    category_id:        1
+    is_active:          1
+  post2:
+    id:                 2
+    title:              Deuxieme article sur la sécurité routière
+    content:            Voici notre deuxieme article, à modifier par la suite
+    category_id:        1
+    is_active:          1
+  post3:
+    id:                 3
+    title:              Premier article sur le permis
+    content:            Voici notre premier article, à modifier par la suite
+    category_id:        2
+    is_active:          1
+
+CommunityComment:
+  comment1:
+    id:                 1
+    user_id:            2
+    post_id:            1
+    content:            très beau premier article sur la sécurité routière !
