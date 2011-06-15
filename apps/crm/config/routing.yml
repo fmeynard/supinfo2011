@@ -196,3 +196,10 @@ employee_view:
 settings:
   url:      /settings
   param:    { module: settings, action: index }
+  
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

@@ -55,7 +55,7 @@ function test(com, grid){
   }
 );
 
-}			
+}
 
 </script>
 

@@ -17,18 +17,19 @@ Package:
     category_id:        { type: integer, notnull: true }
   relations:
     Category:           { class: Category, local: category_id, foreign: id, onDelete: SET NULL }
-
-PackageLine:
-  tableName:            package_line
-  columns:
-    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
-    name:               { type: string(64), notnull: true }
-    image:              { type: string(255) }
-    package_id:         { type: integer }
-  relations:
-    Package:            { class: Package, local: package_id, foreign: id, onDelete: SET NULL }
-
-SingleOffer:
+    Offers:             { class: Offer, foreignAlias: Packages, refClass: PackageHasOffer, local: package_id, foreign: offer_id}
+    
+PackageHasOffer:
+    tableName:          package_has_offer
+    columns:
+        id:             { type: integer, notnull: true, primary: true, autoincrement: true}
+        package_id:     { type: integer, primary: true }
+        offer_id:       { type: integer, primary: true }
+    relations:
+        Package:        { local: package_id, foreign: id, foreignAlias: PackagesOffers }
+        Offer:          { local: offer_id,   foreign: id, foreignAlias: PackagesOffers }
+    
+Offer:
   actAs:
       Sluggable:
         fields: [name]
@@ -41,6 +42,7 @@ SingleOffer:
     price:              { type: float(7), scale: 2 }
     category_id:        { type: integer, notnull: true }
     is_active:          { type: boolean }
+    is_package_only:    { type: boolean }
   relations:
     Category:           { class: Category, local: category_id, foreign: id, onDelete: SET NULL }
 
