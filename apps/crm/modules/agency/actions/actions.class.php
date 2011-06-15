@@ -158,5 +158,77 @@ class agencyActions extends autoAgencyActions
      
      return $this->renderText(json_encode($response));
   }
+  
+  public function executeListEmployees(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+  }
+  
+  public function executeLoadEmployees(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->agency = Doctrine::getTable('Agency')->find($request->getParameter('id')));
+     $pager = new FlexigridPager($request, sfGuardUserProfileTable::getAgencyEmployeesQuery($this->agency));
+     $response = $pager->getDefaultStd();
+     $pager = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item){
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getFullname(),
+                $item->getMail(),
+                $item->getMobile(),
+                $item->getPhone(),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
+  
+  public function executeNewEmployee(sfWebRequest $request)
+  { 
+    $this->agency = $this->getRoute()->getObject();
+    $this->form = new EmployeeForm(array(), array('agency'=>$this->agency));
+  }
+  
+  public function executeCreateEmployee(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+    $this->form = new EmployeeForm(array(), array('agency'=>$this->agency));
+    $this->processEmployeeForm($request, $this->form);
+    
+    $this->setTemplate('newEmployee');
+  }
+  
+  /**
+   * Process vehicle form
+   *
+   * @param sfWebRequest $request
+   * @param sfForm $form
+   */
+  protected function processEmployeeForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      $this->redirect($this->generateUrl('view_employee',array(
+                                      'agency'=> $form->getObject()->getProfile()->getAgency()->getSlug(),
+                                      'slug'  => $form->getObject()->getProfile()->getSlug())
+                                      ));
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+  }
+  
+  public function executeViewEmployee(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+  }
 
 }

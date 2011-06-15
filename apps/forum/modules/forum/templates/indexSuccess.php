@@ -1,4 +1,4 @@
-<h1>Frm categorys List</h1>
+<h1>Bienvenue sur le forum de l'auto école</h1>
 
 <table>
   <thead>

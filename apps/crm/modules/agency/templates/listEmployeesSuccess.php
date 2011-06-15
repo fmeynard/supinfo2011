@@ -2,23 +2,19 @@
   <ul>
     <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
     <li><?php echo link_to(__($agency),'dashboard_agency', $agency); ?></li>
-    <li><?php echo __('Customers'); ?></li>
+    <li><?php echo __('Employees'); ?></li>
   </ul>
 </div>
 
 
-<h1 class="afterSub"><?php echo __('Customers'); ?></h1>
-<ul id="dashLinks">
-  <li><?php echo link_to(__('New Customer'),'new_customer',$agency); ?></li>
-</ul>
-<div style="clear: both;"></div>
+<h1 class="afterSub"><?php echo __('Employees'); ?></h1>
 <div id="sfGrid" style="bottom: 0"></div>
 <script language="javascript" type="text/javascript">
 var testg;
 $("#sfGrid").flexigrid
 (
   {
-    url: "<?php echo url_for('@agency_load_customers?id='.$agency->getId()); /*url_for('agency_load_vehicles', $agency)*/?>",
+    url: "<?php echo url_for('@agency_load_employees?id='.$agency->getId()); ?>",
     dataType: 'json',
     colModel : [
     {display: '<?php echo __('Id'); ?>', name : 'id', width: 30, sortable : true, align: 'left'},
@@ -38,7 +34,7 @@ $("#sfGrid").flexigrid
     sortname : "id",
     sortorder : "asc",
     usepager : true,
-    title : '<?php echo __('Customers list'); ?>',
+    title : '<?php echo __('Employees list'); ?>',
     useRp : true,
     rp : 10,
     showTableToggleBtn : false,
@@ -50,7 +46,7 @@ $("#sfGrid").flexigrid
 
 function addFct(com)
 {
- window.location.replace("<?php echo url_for('new_customer', $agency); ?>"); 
+ window.location.replace("<?php echo url_for('new_employee', $agency); ?>"); 
 }
 
 </script>

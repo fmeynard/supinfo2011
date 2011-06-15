@@ -95,10 +95,13 @@ FormationCenter:
   columns:
     id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
     name:               { type: string(64), notnull: true }
+    agency_id:          { type: integer }
     image:              { type: string(255) }
     address:            { type: string(255) }
     address_bis:        { type: string(255) }
     capacity:           { type: integer }
+  relations:
+    Agency:             { class: Agency,        foreign: id, local: agency_id,          onDelete: SET NULL }
 
 FormationType:
   tableName:            formation_type
@@ -112,11 +115,13 @@ FormationSession:
     id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
     name:               { type: string(64) }
     formation_type_id:  { type: integer }
+    agency_id:          { type: integer }
     capacity:           { type: integer }
     date_start:         { type: timestamp }
     date_end:           { type: timestamp }
   relations:
-    FormationType:      { class: FormationType, foreign: id, local: formation_type_id, onDelete: SET NULL }
+    FormationType:      { class: FormationType, foreign: id, local: formation_type_id,  onDelete: SET NULL }
+    Agency:             { class: Agency,        foreign: id, local: agency_id,          onDelete: SET NULL }
 
 VehicleType:
   tableName:            vehicle_type
