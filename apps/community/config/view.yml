@@ -12,9 +12,9 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:    [community.css]
 
-  javascripts:    []
+  javascripts:    [script.js,jquery/jquery.js,jquery/jquery-ui.js]
 
   has_layout:     true
   layout:         layout
