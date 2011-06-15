@@ -4,41 +4,23 @@
             <tbody>
                 <?php foreach ($community_posts as $community_post): ?>
 
-                <?php if($community_post->getIsActive()): ?>
-                <div class="post">
-                    <div>
-                        <h2><?php echo link_to($community_post->getTitle(), 'show_post', $community_post) ?></h2>
-                        <h6>Catégorie : <?php echo link_to($community_post->getCommunityCategory()->getName(),'show_category', $community_post->getCommunityCategory()) ?></h6>
-                        <p><?php echo $community_post->getContent() ?></p>
-                        <span class="post_data"><small class="trans"><?php echo $community_post->getDate() ?></small></span>
-                        <p class="comment_left fr"><?php echo ($community_post->getCommunityComment()->count() > 0) ? link_to($community_post->getCommunityComment()->count() . " Comments", 'show_post', $community_post) : "No comments"; ?></p>
+                <?php if ($community_post->getIsActive()): ?>
+                    <div class="post">
+                        <div>
+                            <h2><?php echo link_to($community_post->getTitle(), 'show_post', $community_post) ?></h2>
+                            <h6>Category : <?php echo link_to($community_post->getCommunityCategory()->getName(), 'show_category', $community_post->getCommunityCategory()) ?></h6>
+                            <p><?php echo $community_post->getContent() ?></p>
+                            <span class="post_data"><small class="trans"><?php echo $community_post->getCreatedAt() ?></small></span>
+                            <p class="comment_left fr"><?php echo ($community_post->getCommunityComment()->count() > 0) ? link_to($community_post->getCommunityComment()->count() . " Comments", 'show_post', $community_post) : "No comments"; ?></p>
+                        </div>
+                        <div class="cl"></div>
                     </div>
-                    <div class="cl"></div>
-                </div>
-                <?php endif; ?>
-
-                <tr>
-                    <td><a href="<?php echo url_for('post/show?id=' . $community_post->getId()) ?>"><?php echo $community_post->getId() ?></a></td>
-                    <td><?php echo $community_post->getTitle() ?></td>
-                    <td><?php echo $community_post->getContent() ?></td>
-                    <td><?php echo $community_post->getDateTimeObject('date')->format("d/m/Y H:i") ?></td>
-                    <td><?php echo $community_post->getCategory_id() ?></td>
-                    <td><?php echo $community_post->getIsActive() ?></td>
-                    <td><?php echo $community_post->getSlug() ?></td>
-                </tr>
+            <?php endif; ?>
             <?php endforeach; ?>
-                    </tbody>
-                </table>
-
-                <div class="navigation">
-                    <div class="wp-pagenavi">
-                        <span class="pages">Page 1 of 2</span>
-                        <span class="current">1</span>
-                        <a title="2" class="page" href="http://clockstone-html.cmsmasters.net/news.php#"><span>2</span></a>
-                        <a href="http://clockstone-html.cmsmasters.net/news.php#"><span>&gt;</span></a>
-                    </div>
-                </div>
-
-                <a href="<?php echo url_for('post/new') ?>">New</a>
+                        </tbody>
+                    </table>
+        <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getIsSuperAdmin()): ?>
+                            <a href="<?php echo url_for('post/new') ?>">New Post</a> - <a href="<?php echo url_for('category/new') ?>">New Category</a>
+        <?php endif; ?>
     </div>
 </div>

@@ -35,13 +35,6 @@
         </td>
       </tr>
       <tr>
-        <th><?php echo $form['date']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['date']->renderError() ?>
-          <?php echo $form['date'] ?>
-        </td>
-      </tr>
-      <tr>
         <th><?php echo $form['category_id']->renderLabel() ?></th>
         <td>
           <?php echo $form['category_id']->renderError() ?>
@@ -53,13 +46,6 @@
         <td>
           <?php echo $form['is_active']->renderError() ?>
           <?php echo $form['is_active'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['slug']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['slug']->renderError() ?>
-          <?php echo $form['slug'] ?>
         </td>
       </tr>
     </tbody>

@@ -13,9 +13,10 @@ class CommunityCommentForm extends BaseCommunityCommentForm
   public function configure()
   {
     unset(
-      $this['date'],
       $this['user_id'],
-      $this['post_id']
+      $this['post_id'],
+      $this['created_at'],
+      $this['updated_at']
     );
   }
   
