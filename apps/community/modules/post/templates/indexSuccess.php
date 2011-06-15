@@ -8,7 +8,7 @@
                 <div class="post">
                     <div>
                         <h2><?php echo link_to($community_post->getTitle(), 'show_post', $community_post) ?></h2>
-                        <h6>Catégorie : <a href="<?php echo url_for('category/show?id=' . $community_post->getCategory_id()) ?>"><?php echo $community_post->getCommunityCategory() ?></a></h6>
+                        <h6>Catégorie : <?php echo link_to($community_post->getCommunityCategory()->getName(),'show_category', $community_post->getCommunityCategory()) ?></h6>
                         <p><?php echo $community_post->getContent() ?></p>
                         <span class="post_data"><small class="trans"><?php echo $community_post->getDate() ?></small></span>
                         <p class="comment_left fr"><?php echo ($community_post->getCommunityComment()->count() > 0) ? link_to($community_post->getCommunityComment()->count() . " Comments", 'show_post', $community_post) : "No comments"; ?></p>
