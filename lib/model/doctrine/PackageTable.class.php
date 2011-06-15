@@ -16,4 +16,9 @@ class PackageTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Package');
     }
+    
+    static public function getAllQuery()
+    {
+      return Doctrine_Query::create()->from('Package');
+    }
 }

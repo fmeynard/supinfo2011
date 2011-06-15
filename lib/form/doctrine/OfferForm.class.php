@@ -12,5 +12,8 @@ class OfferForm extends BaseOfferForm
 {
   public function configure()
   {
+    unset($this['slug']);
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
   }
 }

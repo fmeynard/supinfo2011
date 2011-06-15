@@ -44,12 +44,14 @@ FrmPost:
     user_id:            1
     FrmTopic:     topic_1
     FrmForum:     forum_1
+
   post_2:
     title:                  Foo discussion2
     content:                Everybody is foo here2
     user_id:            1
     FrmTopic:     topic_1
     FrmForum:     forum_1
+
   post_3:
     title:                  Bar discussion
     content:                If you want a bar, this is where you will find it
