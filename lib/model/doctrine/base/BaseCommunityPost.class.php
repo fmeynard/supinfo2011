@@ -8,7 +8,6 @@
  * @property integer $id
  * @property string $title
  * @property clob $content
- * @property timestamp $date
  * @property integer $category_id
  * @property boolean $is_active
  * @property integer $user_id
@@ -19,7 +18,6 @@
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getTitle()             Returns the current record's "title" value
  * @method clob                getContent()           Returns the current record's "content" value
- * @method timestamp           getDate()              Returns the current record's "date" value
  * @method integer             getCategoryId()        Returns the current record's "category_id" value
  * @method boolean             getIsActive()          Returns the current record's "is_active" value
  * @method integer             getUserId()            Returns the current record's "user_id" value
@@ -29,7 +27,6 @@
  * @method CommunityPost       setId()                Sets the current record's "id" value
  * @method CommunityPost       setTitle()             Sets the current record's "title" value
  * @method CommunityPost       setContent()           Sets the current record's "content" value
- * @method CommunityPost       setDate()              Sets the current record's "date" value
  * @method CommunityPost       setCategoryId()        Sets the current record's "category_id" value
  * @method CommunityPost       setIsActive()          Sets the current record's "is_active" value
  * @method CommunityPost       setUserId()            Sets the current record's "user_id" value
@@ -61,9 +58,6 @@ abstract class BaseCommunityPost extends sfDoctrineRecord
              'type' => 'clob',
              'notnull' => true,
              ));
-        $this->hasColumn('date', 'timestamp', null, array(
-             'type' => 'timestamp',
-             ));
         $this->hasColumn('category_id', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -92,12 +86,14 @@ abstract class BaseCommunityPost extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'post_id'));
 
+        $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 
              array(
               0 => 'title',
              ),
              ));
+        $this->actAs($timestampable0);
         $this->actAs($sluggable0);
     }
 }

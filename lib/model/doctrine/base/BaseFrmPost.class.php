@@ -12,7 +12,6 @@
  * @property integer $user_id
  * @property integer $forum_id
  * @property string $author_name
- * @property timestamp $date
  * @property FrmForum $FrmForum
  * @property FrmTopic $FrmTopic
  * @property sfGuardUser $sfGuardUser
@@ -24,7 +23,6 @@
  * @method integer     getUserId()      Returns the current record's "user_id" value
  * @method integer     getForumId()     Returns the current record's "forum_id" value
  * @method string      getAuthorName()  Returns the current record's "author_name" value
- * @method timestamp   getDate()        Returns the current record's "date" value
  * @method FrmForum    getFrmForum()    Returns the current record's "FrmForum" value
  * @method FrmTopic    getFrmTopic()    Returns the current record's "FrmTopic" value
  * @method sfGuardUser getSfGuardUser() Returns the current record's "sfGuardUser" value
@@ -35,7 +33,6 @@
  * @method FrmPost     setUserId()      Sets the current record's "user_id" value
  * @method FrmPost     setForumId()     Sets the current record's "forum_id" value
  * @method FrmPost     setAuthorName()  Sets the current record's "author_name" value
- * @method FrmPost     setDate()        Sets the current record's "date" value
  * @method FrmPost     setFrmForum()    Sets the current record's "FrmForum" value
  * @method FrmPost     setFrmTopic()    Sets the current record's "FrmTopic" value
  * @method FrmPost     setSfGuardUser() Sets the current record's "sfGuardUser" value
@@ -74,9 +71,6 @@ abstract class BaseFrmPost extends sfDoctrineRecord
         $this->hasColumn('author_name', 'string', 255, array(
              'type' => 'string',
              'length' => 255,
-             ));
-        $this->hasColumn('date', 'timestamp', null, array(
-             'type' => 'timestamp',
              ));
 
         $this->option('type', 'MySIAM');

@@ -62,12 +62,12 @@ class commentActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
+    //$request->checkCSRFProtection();
 
     $this->forward404Unless($community_comment = Doctrine_Core::getTable('CommunityComment')->find(array($request->getParameter('id'))), sprintf('Object community_comment does not exist (%s).', $request->getParameter('id')));
     $community_comment->delete();
 
-    $this->redirect('comment/index');
+    $this->redirect('post/show/?id=' . $request->getParameter('post_id'));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

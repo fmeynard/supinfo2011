@@ -36,6 +36,8 @@
                     <p><?php echo $community_comment->getContent() ?></p>
                     <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getIsSuperAdmin()): ?>
                         <a class="comment-edit-link" href="<?php echo url_for('comment/edit?id=' . $community_comment->getId()) ?>">Edit Comment</a>
+                        -
+                        <a class="comment-edit-link" href="<?php echo url_for('comment/delete?id=' . $community_comment->getId() . "&post_id=" . $community_post->getId()) ?>">Remove Comment</a>
                     <?php endif; ?>
                 </div>
             </div>
