@@ -1,4 +1,13 @@
-<?php echo $agency; ?>
+<div id="subMenu">
+  <ul>
+    <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
+    <li><?php echo link_to(__($agency),'dashboard_agency', $agency); ?></li>
+    <li><?php echo link_to(__('Vehicles'),'dashboard_vehicles', $agency); ?></li>
+    <li><?php echo __('New')?></li>
+  </ul>
+</div>
+<br /><br />
+<h2>New Vehicle</h2>
 <div id="sf_admin_content">
   <div class="sf_admin_form">
     <form method="post" action="<?php echo url_for('agency_create_vehicle', $agency); ?>" >

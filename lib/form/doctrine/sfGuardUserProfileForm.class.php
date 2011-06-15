@@ -14,8 +14,16 @@ class sfGuardUserProfileForm extends BasesfGuardUserProfileForm
   {
     unset($this['sf_guard_user_id']);
     unset($this['type']);
+    unset($this['slug']);
     
-    $uprof = new sfGuardUserForm($this->object->sfGuardUser);
-    $this->embedMergeForm('sfGuardUserForm', $uprof);
+    if($this->getOption('agency'))
+    {
+      unset($this['agency_id']);
+    }
+  }
+  
+  public function save($con = null)
+  {
+    parent::save($con);
   }
 }
