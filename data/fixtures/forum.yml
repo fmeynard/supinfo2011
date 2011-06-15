@@ -29,6 +29,7 @@ FrmForum:
     rank:                   1
     nb_posts:               2
     nb_topics:              1
+    latest_post_id:         1
   forum_2:
     name:                   Nos professeurs
     description:            Etre en contact avec nos professeurs
@@ -36,7 +37,7 @@ FrmForum:
     rank:                   2
     nb_posts:               1
     nb_topics:              1
-
+    latest_post_id:         3
 FrmPost:
   post_1:
     title:                  Foo discussion
