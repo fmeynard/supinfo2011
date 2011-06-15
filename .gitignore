@@ -2,5 +2,7 @@ cache/*
 log/*
 nbproject/
 lib/model/doctrine/base/*
-lib/model/form/doctrine/base/*
+lib/form/doctrine/base/*
 data/sql/*
+lib/filter/doctrine/base/*
+lib/model/doctrine/sfDoctrineGuardPlugin/base/*

@@ -16,7 +16,7 @@ abstract class BaseCommunityCommentForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'      => new sfWidgetFormInputHidden(),
-      'user_id' => new sfWidgetFormInputText(),
+      'user_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => false)),
       'post_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityPost'), 'add_empty' => false)),
       'content' => new sfWidgetFormTextarea(),
       'date'    => new sfWidgetFormDateTime(),
@@ -24,7 +24,7 @@ abstract class BaseCommunityCommentForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'      => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'user_id' => new sfValidatorInteger(),
+      'user_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'))),
       'post_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityPost'))),
       'content' => new sfValidatorString(),
       'date'    => new sfValidatorDateTime(array('required' => false)),
