@@ -22,6 +22,7 @@ abstract class BaseFrmPostForm extends BaseFormDoctrine
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'forum_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FrmForum'), 'add_empty' => true)),
       'author_name' => new sfWidgetFormInputText(),
+      'date'        => new sfWidgetFormDateTime(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -34,6 +35,7 @@ abstract class BaseFrmPostForm extends BaseFormDoctrine
       'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
       'forum_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('FrmForum'), 'required' => false)),
       'author_name' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'date'        => new sfValidatorDateTime(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));
