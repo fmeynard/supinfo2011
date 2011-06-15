@@ -8,7 +8,7 @@
         <?php include_stylesheets() ?>
         <?php include_javascripts() ?>
     </head>
-    <body style="background-color:#705d57;">
+    <body>
 
         <!-- _________________________ Start Page _________________________ -->
         <div id="page" style="background:rgba(0, 0, 0, 0.40);">
@@ -43,7 +43,7 @@
 
                 <!-- _________________________ Start Container _________________________ -->
                 <div id="container">
-                    <div class="cont_nav"><span class="trans">You are here:  &nbsp;</span><a href="#">Home</a>&nbsp; /&nbsp; <a href="#">Pages</a>&nbsp; /&nbsp; News</div>
+                    <div class="cont_nav"><span class="trans"><?php include_slot('breadcrumb') ?></span></div>
 
                     <!-- _________________________ Start Middle _________________________ -->
                     <div id="middle" class="white_ver">

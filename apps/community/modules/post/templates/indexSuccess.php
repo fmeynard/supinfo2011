@@ -1,3 +1,7 @@
+<?php slot(
+  'breadcrumb',
+  sprintf('You are here : Home'))
+?>
 <div class="entry">
     <div class="content_news">
         <table>

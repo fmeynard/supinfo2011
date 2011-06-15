@@ -1,3 +1,7 @@
+<?php slot(
+  'breadcrumb',
+  sprintf('You are here : %s / %s / %s', link_to( 'Home','homepage'), link_to($community_post->getCommunityCategory()->getName(), "show_category", $community_post->getCommunityCategory()), $community_post->getTitle()))
+?>
 <h1><?php echo $community_post->getTitle() ?></h1>
 <div class="dotted_line">
     <a href="#" class="comment_left fr"><?php echo $community_post->getCommunityComment()->count() ?></a>
