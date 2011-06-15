@@ -94,6 +94,7 @@ FrmPost:
     user_id:          integer
     forum_id:         integer
     author_name:      string(255)
+    date:               { type: timestamp }
   relations:
     FrmForum:
       local:          forum_id
