@@ -26,8 +26,10 @@ CommunityPost:
     date:               { type: timestamp }
     category_id:        { type: integer }
     is_active:          { type: boolean }
+    user_id:            {type: integer }
   relations:
     CommunityCategory:  { class: CommunityCategory, local: category_id, foreign: id }
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
 
 CommunityComment:
   tableName:            community_comment
