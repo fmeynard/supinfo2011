@@ -21,6 +21,7 @@ abstract class BasePackageFormFilter extends BaseFormFilterDoctrine
       'image'             => new sfWidgetFormFilterInput(),
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
       'slug'              => new sfWidgetFormFilterInput(),
+      'offers_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Offer')),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BasePackageFormFilter extends BaseFormFilterDoctrine
       'image'             => new sfValidatorPass(array('required' => false)),
       'category_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Category'), 'column' => 'id')),
       'slug'              => new sfValidatorPass(array('required' => false)),
+      'offers_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Offer', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('package_filters[%s]');
@@ -41,6 +43,24 @@ abstract class BasePackageFormFilter extends BaseFormFilterDoctrine
     $this->setupInheritance();
 
     parent::setup();
+  }
+
+  public function addOffersListColumnQuery(Doctrine_Query $query, $field, $values)
+  {
+    if (!is_array($values))
+    {
+      $values = array($values);
+    }
+
+    if (!count($values))
+    {
+      return;
+    }
+
+    $query
+      ->leftJoin($query->getRootAlias().'.PackageHasOffer PackageHasOffer')
+      ->andWhereIn('PackageHasOffer.offer_id', $values)
+    ;
   }
 
   public function getModelName()
@@ -60,6 +80,7 @@ abstract class BasePackageFormFilter extends BaseFormFilterDoctrine
       'image'             => 'Text',
       'category_id'       => 'ForeignKey',
       'slug'              => 'Text',
+      'offers_list'       => 'ManyKey',
     );
   }
 }

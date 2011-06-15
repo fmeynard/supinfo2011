@@ -14,6 +14,7 @@ abstract class BaseFormationCenterFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'agency_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Agency'), 'add_empty' => true)),
       'image'       => new sfWidgetFormFilterInput(),
       'address'     => new sfWidgetFormFilterInput(),
       'address_bis' => new sfWidgetFormFilterInput(),
@@ -23,6 +24,7 @@ abstract class BaseFormationCenterFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'name'        => new sfValidatorPass(array('required' => false)),
+      'agency_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Agency'), 'column' => 'id')),
       'image'       => new sfValidatorPass(array('required' => false)),
       'address'     => new sfValidatorPass(array('required' => false)),
       'address_bis' => new sfValidatorPass(array('required' => false)),
@@ -49,6 +51,7 @@ abstract class BaseFormationCenterFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'          => 'Number',
       'name'        => 'Text',
+      'agency_id'   => 'ForeignKey',
       'image'       => 'Text',
       'address'     => 'Text',
       'address_bis' => 'Text',

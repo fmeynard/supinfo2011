@@ -64,8 +64,6 @@ abstract class BaseCommunityPost extends sfDoctrineRecord
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
              ));
-
-        $this->option('type', 'MySIAM');
     }
 
     public function setUp()

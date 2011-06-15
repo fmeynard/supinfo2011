@@ -13,6 +13,8 @@
  * @property string $mail
  * @property string $fax
  * @property AgencyRoom $AgencyRoom
+ * @property Doctrine_Collection $FormationCenter
+ * @property Doctrine_Collection $FormationSession
  * @property Doctrine_Collection $Vehicle
  * @property Doctrine_Collection $sfGuardUserProfile
  * 
@@ -24,6 +26,8 @@
  * @method string              getMail()               Returns the current record's "mail" value
  * @method string              getFax()                Returns the current record's "fax" value
  * @method AgencyRoom          getAgencyRoom()         Returns the current record's "AgencyRoom" value
+ * @method Doctrine_Collection getFormationCenter()    Returns the current record's "FormationCenter" collection
+ * @method Doctrine_Collection getFormationSession()   Returns the current record's "FormationSession" collection
  * @method Doctrine_Collection getVehicle()            Returns the current record's "Vehicle" collection
  * @method Doctrine_Collection getSfGuardUserProfile() Returns the current record's "sfGuardUserProfile" collection
  * @method Agency              setId()                 Sets the current record's "id" value
@@ -34,6 +38,8 @@
  * @method Agency              setMail()               Sets the current record's "mail" value
  * @method Agency              setFax()                Sets the current record's "fax" value
  * @method Agency              setAgencyRoom()         Sets the current record's "AgencyRoom" value
+ * @method Agency              setFormationCenter()    Sets the current record's "FormationCenter" collection
+ * @method Agency              setFormationSession()   Sets the current record's "FormationSession" collection
  * @method Agency              setVehicle()            Sets the current record's "Vehicle" collection
  * @method Agency              setSfGuardUserProfile() Sets the current record's "sfGuardUserProfile" collection
  * 
@@ -86,6 +92,14 @@ abstract class BaseAgency extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('AgencyRoom', array(
+             'local' => 'id',
+             'foreign' => 'agency_id'));
+
+        $this->hasMany('FormationCenter', array(
+             'local' => 'id',
+             'foreign' => 'agency_id'));
+
+        $this->hasMany('FormationSession', array(
              'local' => 'id',
              'foreign' => 'agency_id'));
 

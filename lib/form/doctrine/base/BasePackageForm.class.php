@@ -24,6 +24,7 @@ abstract class BasePackageForm extends BaseFormDoctrine
       'image'             => new sfWidgetFormInputText(),
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => false)),
       'slug'              => new sfWidgetFormInputText(),
+      'offers_list'       => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Offer')),
     ));
 
     $this->setValidators(array(
@@ -36,6 +37,7 @@ abstract class BasePackageForm extends BaseFormDoctrine
       'image'             => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'category_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Category'))),
       'slug'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'offers_list'       => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Offer', 'required' => false)),
     ));
 
     $this->validatorSchema->setPostValidator(
@@ -54,6 +56,62 @@ abstract class BasePackageForm extends BaseFormDoctrine
   public function getModelName()
   {
     return 'Package';
+  }
+
+  public function updateDefaultsFromObject()
+  {
+    parent::updateDefaultsFromObject();
+
+    if (isset($this->widgetSchema['offers_list']))
+    {
+      $this->setDefault('offers_list', $this->object->Offers->getPrimaryKeys());
+    }
+
+  }
+
+  protected function doSave($con = null)
+  {
+    $this->saveOffersList($con);
+
+    parent::doSave($con);
+  }
+
+  public function saveOffersList($con = null)
+  {
+    if (!$this->isValid())
+    {
+      throw $this->getErrorSchema();
+    }
+
+    if (!isset($this->widgetSchema['offers_list']))
+    {
+      // somebody has unset this widget
+      return;
+    }
+
+    if (null === $con)
+    {
+      $con = $this->getConnection();
+    }
+
+    $existing = $this->object->Offers->getPrimaryKeys();
+    $values = $this->getValue('offers_list');
+    if (!is_array($values))
+    {
+      $values = array();
+    }
+
+    $unlink = array_diff($existing, $values);
+    if (count($unlink))
+    {
+      $this->object->unlink('Offers', array_values($unlink));
+    }
+
+    $link = array_diff($values, $existing);
+    if (count($link))
+    {
+      $this->object->link('Offers', array_values($link));
+    }
   }
 
 }

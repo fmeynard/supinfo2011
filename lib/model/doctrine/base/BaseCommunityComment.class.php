@@ -11,7 +11,6 @@
  * @property clob $content
  * @property timestamp $date
  * @property CommunityPost $CommunityPost
- * @property sfGuardUser $sfGuardUser
  * 
  * @method integer          getId()            Returns the current record's "id" value
  * @method integer          getUserId()        Returns the current record's "user_id" value
@@ -19,14 +18,12 @@
  * @method clob             getContent()       Returns the current record's "content" value
  * @method timestamp        getDate()          Returns the current record's "date" value
  * @method CommunityPost    getCommunityPost() Returns the current record's "CommunityPost" value
- * @method sfGuardUser      getSfGuardUser()   Returns the current record's "sfGuardUser" value
  * @method CommunityComment setId()            Sets the current record's "id" value
  * @method CommunityComment setUserId()        Sets the current record's "user_id" value
  * @method CommunityComment setPostId()        Sets the current record's "post_id" value
  * @method CommunityComment setContent()       Sets the current record's "content" value
  * @method CommunityComment setDate()          Sets the current record's "date" value
  * @method CommunityComment setCommunityPost() Sets the current record's "CommunityPost" value
- * @method CommunityComment setSfGuardUser()   Sets the current record's "sfGuardUser" value
  * 
  * @package    d
  * @subpackage model
@@ -58,8 +55,6 @@ abstract class BaseCommunityComment extends sfDoctrineRecord
         $this->hasColumn('date', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
-
-        $this->option('type', 'MySIAM');
     }
 
     public function setUp()
@@ -67,10 +62,6 @@ abstract class BaseCommunityComment extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('CommunityPost', array(
              'local' => 'post_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('sfGuardUser', array(
-             'local' => 'user_id',
              'foreign' => 'id'));
     }
 }

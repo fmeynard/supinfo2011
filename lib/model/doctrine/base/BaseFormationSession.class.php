@@ -8,25 +8,31 @@
  * @property integer $id
  * @property string $name
  * @property integer $formation_type_id
+ * @property integer $agency_id
  * @property integer $capacity
  * @property timestamp $date_start
  * @property timestamp $date_end
  * @property FormationType $FormationType
+ * @property Agency $Agency
  * 
  * @method integer          getId()                Returns the current record's "id" value
  * @method string           getName()              Returns the current record's "name" value
  * @method integer          getFormationTypeId()   Returns the current record's "formation_type_id" value
+ * @method integer          getAgencyId()          Returns the current record's "agency_id" value
  * @method integer          getCapacity()          Returns the current record's "capacity" value
  * @method timestamp        getDateStart()         Returns the current record's "date_start" value
  * @method timestamp        getDateEnd()           Returns the current record's "date_end" value
  * @method FormationType    getFormationType()     Returns the current record's "FormationType" value
+ * @method Agency           getAgency()            Returns the current record's "Agency" value
  * @method FormationSession setId()                Sets the current record's "id" value
  * @method FormationSession setName()              Sets the current record's "name" value
  * @method FormationSession setFormationTypeId()   Sets the current record's "formation_type_id" value
+ * @method FormationSession setAgencyId()          Sets the current record's "agency_id" value
  * @method FormationSession setCapacity()          Sets the current record's "capacity" value
  * @method FormationSession setDateStart()         Sets the current record's "date_start" value
  * @method FormationSession setDateEnd()           Sets the current record's "date_end" value
  * @method FormationSession setFormationType()     Sets the current record's "FormationType" value
+ * @method FormationSession setAgency()            Sets the current record's "Agency" value
  * 
  * @package    d
  * @subpackage model
@@ -50,6 +56,9 @@ abstract class BaseFormationSession extends sfDoctrineRecord
         $this->hasColumn('formation_type_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('agency_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('capacity', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -68,6 +77,11 @@ abstract class BaseFormationSession extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('FormationType', array(
              'local' => 'formation_type_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
+        $this->hasOne('Agency', array(
+             'local' => 'agency_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
     }
