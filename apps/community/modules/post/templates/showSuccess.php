@@ -35,4 +35,6 @@
 
 <a href="<?php echo url_for('post/edit?id='.$community_post->getId()) ?>">Edit</a>
 &nbsp;
-<a href="<?php echo url_for('post/index') ?>">List</a>
+<a href="<?php echo url_for('post/index') ?>">Retour à la catégorie</a>
+&nbsp;
+<a href="<?php echo url_for('post/index') ?>">Retour à l'accueil</a>

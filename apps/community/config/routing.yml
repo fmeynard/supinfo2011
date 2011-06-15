@@ -8,6 +8,15 @@ homepage:
 
 # generic rules
 # please, remove them by adding more specific rules
+show_post:
+  url:     /post/:category_id/:id/:slug
+  class:   sfDoctrineRoute
+  options: { model: CommunityPost, type: object }
+  param:   { module: post, action: show }
+  requirements:
+    id: \d+
+    sf_method: [get]
+    
 default_index:
   url:   /:module
   param: { action: index }
