@@ -12,5 +12,8 @@ class PackageForm extends BasePackageForm
 {
   public function configure()
   {
+    unset($this['slug'], $this['image']);
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
   }
 }
