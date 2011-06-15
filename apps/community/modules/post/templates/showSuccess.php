@@ -2,10 +2,10 @@
 <div class="dotted_line">
     <a href="#" class="comment_left fr"><?php echo $community_post->getCommunityComment()->count() ?></a>
     <p class="post_data"><?php echo $community_post->getDate() ?></p>
-    <span>in <?php echo link_to($community_post->getCommunityCategory()->getName(),"show_category",$community_post->getCommunityCategory()) ?> by <?php echo $community_post->getUserId() ?></span>
+    <span>in <?php echo link_to($community_post->getCommunityCategory()->getName(),"show_category",$community_post->getCommunityCategory()) ?> by <?php echo $community_post->getSfGuardUser()->getProfile()->getFullname() ?></span>
 </div>
-
-
+<p><?php echo $community_post->getContent() ?></p>
+================================
 <table>
   <tbody>
     <tr>

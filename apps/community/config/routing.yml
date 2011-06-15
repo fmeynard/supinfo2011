@@ -9,7 +9,7 @@ homepage:
 # generic rules
 # please, remove them by adding more specific rules
 show_post:
-  url:     /post/:category_id/:id/:slug
+  url:     /post/:id/:slug
   class:   sfDoctrineRoute
   options: { model: CommunityPost, type: object }
   param:   { module: post, action: show }
