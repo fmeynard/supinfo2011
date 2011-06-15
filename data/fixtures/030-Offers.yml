@@ -2,17 +2,17 @@ Category:
     c01:
         id: 1
         name: Category01
-        short_test: testc01
+        short_description: testc01
         is_active: 1
     c02:
         id: 2
         name: Category02
-        short_test: testc02
+        short_description: testc02
         is_active: 1
     c03:
         id: 3
         name: Category03
-        short_test: testc03
+        short_description: testc03
         is_active: 1
 Offer:
     offer01:
