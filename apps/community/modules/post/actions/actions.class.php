@@ -21,6 +21,8 @@ class postActions extends sfActions
   {
     $this->community_post = Doctrine_Core::getTable('CommunityPost')->find(array($request->getParameter('id')));
     $this->forward404Unless($this->community_post);
+    
+    $this->form = new CommunityCommentForm();
   }
 
   public function executeNew(sfWebRequest $request)

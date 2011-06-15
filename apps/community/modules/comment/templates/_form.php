@@ -21,31 +21,10 @@
     <tbody>
       <?php echo $form->renderGlobalErrors() ?>
       <tr>
-        <th><?php echo $form['user_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['user_id']->renderError() ?>
-          <?php echo $form['user_id'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['post_id']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['post_id']->renderError() ?>
-          <?php echo $form['post_id'] ?>
-        </td>
-      </tr>
-      <tr>
         <th><?php echo $form['content']->renderLabel() ?></th>
         <td>
           <?php echo $form['content']->renderError() ?>
           <?php echo $form['content'] ?>
-        </td>
-      </tr>
-      <tr>
-        <th><?php echo $form['date']->renderLabel() ?></th>
-        <td>
-          <?php echo $form['date']->renderError() ?>
-          <?php echo $form['date'] ?>
         </td>
       </tr>
     </tbody>

@@ -46,7 +46,9 @@
 <?php endif; ?>
 <hr />
 <?php if ($sf_user->isAuthenticated()): ?>
-    <a href="<?php echo url_for('post/edit?id=' . $community_post->getId()) ?>">Edit post</a>
-    
+  <form method="post" action="<?php echo url_for('comment/create?postId='.$community_post->getId()); ?>">
+  <?php echo $form; ?>    
+  <input type="submit" value="Save" />
+  </form>
 <?php endif; ?>
     
