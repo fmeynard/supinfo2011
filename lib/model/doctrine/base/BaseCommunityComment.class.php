@@ -58,8 +58,6 @@ abstract class BaseCommunityComment extends sfDoctrineRecord
         $this->hasColumn('date', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
-
-        $this->option('type', 'MySIAM');
     }
 
     public function setUp()
