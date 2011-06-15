@@ -16,6 +16,15 @@ show_post:
   requirements:
     id: \d+
     sf_method: [get]
+
+show_category:
+  url:     /category/:id/:slug
+  class:   sfDoctrineRoute
+  options: { model: CommunityCategory, type: object }
+  param:   { module: category, action: show }
+  requirements:
+    id: \d+
+    sf_method: [get]
     
 default_index:
   url:   /:module

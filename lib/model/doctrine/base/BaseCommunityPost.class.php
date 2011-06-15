@@ -11,7 +11,9 @@
  * @property timestamp $date
  * @property integer $category_id
  * @property boolean $is_active
+ * @property integer $user_id
  * @property CommunityCategory $CommunityCategory
+ * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $CommunityComment
  * 
  * @method integer             getId()                Returns the current record's "id" value
@@ -20,7 +22,9 @@
  * @method timestamp           getDate()              Returns the current record's "date" value
  * @method integer             getCategoryId()        Returns the current record's "category_id" value
  * @method boolean             getIsActive()          Returns the current record's "is_active" value
+ * @method integer             getUserId()            Returns the current record's "user_id" value
  * @method CommunityCategory   getCommunityCategory() Returns the current record's "CommunityCategory" value
+ * @method sfGuardUser         getSfGuardUser()       Returns the current record's "sfGuardUser" value
  * @method Doctrine_Collection getCommunityComment()  Returns the current record's "CommunityComment" collection
  * @method CommunityPost       setId()                Sets the current record's "id" value
  * @method CommunityPost       setTitle()             Sets the current record's "title" value
@@ -28,7 +32,9 @@
  * @method CommunityPost       setDate()              Sets the current record's "date" value
  * @method CommunityPost       setCategoryId()        Sets the current record's "category_id" value
  * @method CommunityPost       setIsActive()          Sets the current record's "is_active" value
+ * @method CommunityPost       setUserId()            Sets the current record's "user_id" value
  * @method CommunityPost       setCommunityCategory() Sets the current record's "CommunityCategory" value
+ * @method CommunityPost       setSfGuardUser()       Sets the current record's "sfGuardUser" value
  * @method CommunityPost       setCommunityComment()  Sets the current record's "CommunityComment" collection
  * 
  * @package    d
@@ -64,6 +70,9 @@ abstract class BaseCommunityPost extends sfDoctrineRecord
         $this->hasColumn('is_active', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('user_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
         $this->option('type', 'MySIAM');
     }
@@ -73,6 +82,10 @@ abstract class BaseCommunityPost extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('CommunityCategory', array(
              'local' => 'category_id',
+             'foreign' => 'id'));
+
+        $this->hasOne('sfGuardUser', array(
+             'local' => 'user_id',
              'foreign' => 'id'));
 
         $this->hasMany('CommunityComment', array(

@@ -19,16 +19,17 @@
                     <a class="logo" title="CarBox" href="<?php echo url_for('homepage') ?>"><img alt="CarBox" src="/images/community/logo.png" /></a>
                     <div class="top_line">
                         <?php if($sf_user->isAuthenticated()): ?>
-                        Bienvenue <?php echo $sf_user->getProfile()->getFullname() . '<br/>'; ?>
-                        <?php echo link_to("Se déconnecter","sfGuardAuth/signout",array("class"=>"user_area")) ?>
-                        <?php else:?>
-                        <?php echo link_to("User Area","sfGuardAuth/signin",array("class"=>"user_area")) ?>
+                            Bienvenue <?php echo $sf_user->getProfile()->getFullname() . '<br/>'; ?>
+                            <?php echo link_to("Se déconnecter","sfGuardAuth/signout",array("class"=>"user_area")) ?>
+                            <?php else:?>
+                            <p><?php echo link_to("User Area","sfGuardAuth/signin",array("class"=>"user_area")) . link_to("Register","sfGuardAuth/register",array("class"=>"user_area")) ?></p>
+                            <div style="clear:both;" ></div>
                         <?php endif; ?>
                     </div>
 
                     <!-- _________________________ Start Navigation _________________________ -->
                     <ul id="navigation" class="sf-js-enabled">
-                        <li class=""><a href="#">Home</a></li>
+                        <li class=""><?php echo link_to("Home",'homepage') ?></li>
                         <li class=""><a href="#">Pages</a></li>
                         <li class=""><a href="#">Categories &gt;&gt;</a>
                             <ul style="display: none; visibility: hidden; ">
@@ -51,11 +52,6 @@
 
                     <!-- _________________________ Start Middle _________________________ -->
                     <div id="middle" class="white_ver">
-                        <div id="home">
-                            <div class="home_container">
-                                <h1 class="headline">News</h1>
-                            </div>
-                        </div>
                         <div class="middle_line sidebar_bg">
 
                             <!-- _________________________ Start Content _________________________ -->
