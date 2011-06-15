@@ -14,7 +14,7 @@
  * @property boolean $is_active
  * @property Category $Category
  * @property Doctrine_Collection $Package
- * @property Doctrine_Collection $SingleOffer
+ * @property Doctrine_Collection $Offer
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getName()              Returns the current record's "name" value
@@ -25,7 +25,7 @@
  * @method boolean             getIsActive()          Returns the current record's "is_active" value
  * @method Category            getCategory()          Returns the current record's "Category" value
  * @method Doctrine_Collection getPackage()           Returns the current record's "Package" collection
- * @method Doctrine_Collection getSingleOffer()       Returns the current record's "SingleOffer" collection
+ * @method Doctrine_Collection getOffer()             Returns the current record's "Offer" collection
  * @method Category            setId()                Sets the current record's "id" value
  * @method Category            setName()              Sets the current record's "name" value
  * @method Category            setShortDescription()  Sets the current record's "short_description" value
@@ -35,7 +35,7 @@
  * @method Category            setIsActive()          Sets the current record's "is_active" value
  * @method Category            setCategory()          Sets the current record's "Category" value
  * @method Category            setPackage()           Sets the current record's "Package" collection
- * @method Category            setSingleOffer()       Sets the current record's "SingleOffer" collection
+ * @method Category            setOffer()             Sets the current record's "Offer" collection
  * 
  * @package    d
  * @subpackage model
@@ -89,7 +89,7 @@ abstract class BaseCategory extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'category_id'));
 
-        $this->hasMany('SingleOffer', array(
+        $this->hasMany('Offer', array(
              'local' => 'id',
              'foreign' => 'category_id'));
 

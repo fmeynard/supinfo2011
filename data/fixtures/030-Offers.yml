@@ -1,0 +1,43 @@
+Category:
+    c01:
+        id: 1
+        name: Category01
+        short_description: testc01
+        is_active: 1
+    c02:
+        id: 2
+        name: Category02
+        short_description: testc02
+        is_active: 1
+    c03:
+        id: 3
+        name: Category03
+        short_description: testc03
+        is_active: 1
+Offer:
+    offer01:
+        id:                 1
+        name:               Offer01
+        short_description:  testDesc01
+        price:              100
+        category_id:        1
+        is_active:          1
+        is_package_only:    1
+    offer02:
+        id:                 2
+        name:               Offer02
+        short_description:  testDesc02
+        price:              200
+        category_id:        2
+        is_active:          1
+        is_package_only:    1
+    offer01:
+        id:                 3
+        name:               Offer03
+        short_description:  testDesc03
+        price:              300
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+        
+        

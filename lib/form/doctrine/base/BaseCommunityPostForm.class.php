@@ -21,6 +21,7 @@ abstract class BaseCommunityPostForm extends BaseFormDoctrine
       'date'        => new sfWidgetFormDateTime(),
       'category_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityCategory'), 'add_empty' => true)),
       'is_active'   => new sfWidgetFormInputCheckbox(),
+      'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'slug'        => new sfWidgetFormInputText(),
     ));
 
@@ -31,6 +32,7 @@ abstract class BaseCommunityPostForm extends BaseFormDoctrine
       'date'        => new sfValidatorDateTime(array('required' => false)),
       'category_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityCategory'), 'required' => false)),
       'is_active'   => new sfValidatorBoolean(array('required' => false)),
+      'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
       'slug'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 

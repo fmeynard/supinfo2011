@@ -5,3 +5,7 @@ vehiclesSuccess:
 listCustomersSuccess:
     javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
     stylesheets: [flexigrid.pack.css]
+    
+listEmployeesSuccess:
+    javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
+    stylesheets: [flexigrid.pack.css]

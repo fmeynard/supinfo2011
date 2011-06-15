@@ -12,5 +12,8 @@ class CategoryForm extends BaseCategoryForm
 {
   public function configure()
   {
+    unset($this['slug'], $this['image'], $this['category_id']);
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
   }
 }

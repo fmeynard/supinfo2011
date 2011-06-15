@@ -1,7 +1,15 @@
-<?php include_partial('subMenu',array('agency'=>$agency)); ?>
-<h1 class="afterSub"><?php echo $agency; ?> : <?php echo __('Vehicles'); ?></h1>
+<div id="subMenu">
+  <ul>
+    <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
+    <li><?php echo link_to(__($agency),'dashboard_agency', $agency); ?></li>
+    <li><?php echo __('Customers'); ?></li>
+  </ul>
+</div>
+
+
+<h1 class="afterSub"><?php echo __('Customers'); ?></h1>
 <ul id="dashLinks">
-  <li><?php echo link_to(__('New Vehicle'),'agency_new_vehicle',$agency); ?></li>
+  <li><?php echo link_to(__('New Customer'),'new_customer',$agency); ?></li>
 </ul>
 <div style="clear: both;"></div>
 <div id="sfGrid" style="bottom: 0"></div>

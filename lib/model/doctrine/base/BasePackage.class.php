@@ -14,7 +14,8 @@
  * @property string $image
  * @property integer $category_id
  * @property Category $Category
- * @property Doctrine_Collection $PackageLine
+ * @property Doctrine_Collection $Offers
+ * @property Doctrine_Collection $PackagesOffers
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getName()              Returns the current record's "name" value
@@ -25,7 +26,8 @@
  * @method string              getImage()             Returns the current record's "image" value
  * @method integer             getCategoryId()        Returns the current record's "category_id" value
  * @method Category            getCategory()          Returns the current record's "Category" value
- * @method Doctrine_Collection getPackageLine()       Returns the current record's "PackageLine" collection
+ * @method Doctrine_Collection getOffers()            Returns the current record's "Offers" collection
+ * @method Doctrine_Collection getPackagesOffers()    Returns the current record's "PackagesOffers" collection
  * @method Package             setId()                Sets the current record's "id" value
  * @method Package             setName()              Sets the current record's "name" value
  * @method Package             setShortDescription()  Sets the current record's "short_description" value
@@ -35,7 +37,8 @@
  * @method Package             setImage()             Sets the current record's "image" value
  * @method Package             setCategoryId()        Sets the current record's "category_id" value
  * @method Package             setCategory()          Sets the current record's "Category" value
- * @method Package             setPackageLine()       Sets the current record's "PackageLine" collection
+ * @method Package             setOffers()            Sets the current record's "Offers" collection
+ * @method Package             setPackagesOffers()    Sets the current record's "PackagesOffers" collection
  * 
  * @package    d
  * @subpackage model
@@ -94,7 +97,12 @@ abstract class BasePackage extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 
-        $this->hasMany('PackageLine', array(
+        $this->hasMany('Offer as Offers', array(
+             'refClass' => 'PackageHasOffer',
+             'local' => 'package_id',
+             'foreign' => 'offer_id'));
+
+        $this->hasMany('PackageHasOffer as PackagesOffers', array(
              'local' => 'id',
              'foreign' => 'package_id'));
 

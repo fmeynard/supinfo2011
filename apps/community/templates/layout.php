@@ -12,19 +12,24 @@
 
         <!-- _________________________ Start Page _________________________ -->
         <div id="page" style="background:rgba(0, 0, 0, 0.40);">
-            <div id="page_patern" style="background-image:url(../images/community/bg_i_4.jpg);background-attachment: fixed; background-position: 50% 0px; background-repeat: no-repeat no-repeat;">
+            <div id="page_patern" style="background-image:url(/images/community/bg_i_4.jpg);background-attachment: fixed; background-position: 50% 0px; background-repeat: no-repeat no-repeat;">
 
                 <!-- _________________________ Start Header _________________________ -->
                 <div id="header">
-                    <a class="logo" title="Clockstone" href="#"><img alt="Clockstone" src="./Clockstone_files/logo.png" /></a>
+                    <a class="logo" title="CarBox" href="<?php echo url_for('homepage') ?>"><img alt="CarBox" src="/images/community/logo.png" /></a>
                     <div class="top_line">
-                        <a href="#" class="user_area" title="User Area">User Area</a>
-
+                        <?php if($sf_user->isAuthenticated()): ?>
+                            Bienvenue <?php echo $sf_user->getProfile()->getFullname() . '<br/>'; ?>
+                            <?php echo link_to("Se déconnecter","sfGuardAuth/signout",array("class"=>"user_area")) ?>
+                            <?php else:?>
+                            <p><?php echo link_to("User Area","sfGuardAuth/signin",array("class"=>"user_area")) . link_to("Register","sfGuardAuth/register",array("class"=>"user_area")) ?></p>
+                            <div style="clear:both;" ></div>
+                        <?php endif; ?>
                     </div>
 
                     <!-- _________________________ Start Navigation _________________________ -->
                     <ul id="navigation" class="sf-js-enabled">
-                        <li class=""><a href="#">Home</a></li>
+                        <li class=""><?php echo link_to("Home",'homepage') ?></li>
                         <li class=""><a href="#">Pages</a></li>
                         <li class=""><a href="#">Categories &gt;&gt;</a>
                             <ul style="display: none; visibility: hidden; ">
@@ -47,11 +52,6 @@
 
                     <!-- _________________________ Start Middle _________________________ -->
                     <div id="middle" class="white_ver">
-                        <div id="home">
-                            <div class="home_container">
-                                <h1 class="headline">News</h1>
-                            </div>
-                        </div>
                         <div class="middle_line sidebar_bg">
 
                             <!-- _________________________ Start Content _________________________ -->

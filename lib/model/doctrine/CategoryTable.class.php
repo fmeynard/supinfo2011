@@ -16,4 +16,16 @@ class CategoryTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Category');
     }
+    
+    static public function getActiveQuery()
+    {
+      return Doctrine_Query::create()
+              ->from('Category c')
+              ->where('is_active = ?', true);
+    }
+    
+    static public function getActive()
+    {
+      return self::getActiveQuery()->execute();
+    }
 }

@@ -7,23 +7,29 @@
  * 
  * @property integer $id
  * @property string $name
+ * @property integer $agency_id
  * @property string $image
  * @property string $address
  * @property string $address_bis
  * @property integer $capacity
+ * @property Agency $Agency
  * 
  * @method integer         getId()          Returns the current record's "id" value
  * @method string          getName()        Returns the current record's "name" value
+ * @method integer         getAgencyId()    Returns the current record's "agency_id" value
  * @method string          getImage()       Returns the current record's "image" value
  * @method string          getAddress()     Returns the current record's "address" value
  * @method string          getAddressBis()  Returns the current record's "address_bis" value
  * @method integer         getCapacity()    Returns the current record's "capacity" value
+ * @method Agency          getAgency()      Returns the current record's "Agency" value
  * @method FormationCenter setId()          Sets the current record's "id" value
  * @method FormationCenter setName()        Sets the current record's "name" value
+ * @method FormationCenter setAgencyId()    Sets the current record's "agency_id" value
  * @method FormationCenter setImage()       Sets the current record's "image" value
  * @method FormationCenter setAddress()     Sets the current record's "address" value
  * @method FormationCenter setAddressBis()  Sets the current record's "address_bis" value
  * @method FormationCenter setCapacity()    Sets the current record's "capacity" value
+ * @method FormationCenter setAgency()      Sets the current record's "Agency" value
  * 
  * @package    d
  * @subpackage model
@@ -44,6 +50,9 @@ abstract class BaseFormationCenter extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 64,
+             ));
+        $this->hasColumn('agency_id', 'integer', null, array(
+             'type' => 'integer',
              ));
         $this->hasColumn('image', 'string', 255, array(
              'type' => 'string',
@@ -67,6 +76,11 @@ abstract class BaseFormationCenter extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Agency', array(
+             'local' => 'agency_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 
              array(

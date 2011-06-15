@@ -101,6 +101,10 @@ agency_new_vehicle:
 agency_load_vehicles:
   url:      /agency-load-vehicles/*
   param:    { module: agency, action: loadVehicles }
+  
+agency_load_employees:
+ url:      /agency-load-employees/*
+ param:    { module: agency, action: loadEmployees }
 
 agency_create_vehicle:
   url:      /agency/:slug/create-vehicle
@@ -115,6 +119,12 @@ agency_customers:
   class:    sfDoctrineRoute
   options:  { model: Agency, type: object }
   param:    { module: agency, action: listCustomers }
+  
+agency_employees:
+  url:      /agency/:slug/employees
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: listEmployees }
 
 agency_load_customers:
  url:      /agency-load-customers/*
@@ -136,6 +146,40 @@ new_customer:
   class:    sfDoctrineRoute
   options:  { model: Agency, type: object }
   param:    { module: user, action: newCustomer }
+
+new_employee: 
+  url:      /agency/:slug/newEmployee
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: newEmployee }
+
+agency_customer_create:
+  url:      /agency/:slug/createCustomer
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: createCustomer }
+  requirements:
+      sf_method:  [POST]
+      
+agency_employee_create:
+  url:      /agency/:slug/createEmployee
+  class:    sfDoctrineRoute
+  options:  { model: Agency, type: object }
+  param:    { module: agency, action: createEmployee }
+  requirements:
+      sf_method:  [POST]
+  
+view_customer:
+  url:      /agency/:agency/customer/:slug
+  class:    sfDoctrineRoute
+  options:  { model: sfGuardUserProfile, type: object }
+  param:    { module: user, action: viewCustomer }
+
+view_employee:
+  url:      /agency/:agency/employee/:slug
+  class:    sfDoctrineRoute
+  options:  { model: sfGuardUserProfile, type: object }
+  param:    { module: agency, action: viewEmployee }  
   
 #Employee
 employee:
@@ -152,3 +196,10 @@ employee_view:
 settings:
   url:      /settings
   param:    { module: settings, action: index }
+  
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

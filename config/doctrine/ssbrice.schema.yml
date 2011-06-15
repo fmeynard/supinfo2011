@@ -1,0 +1,45 @@
+options:
+  type: MySIAM
+  
+
+#Début community
+CommunityCategory:
+  actAs:
+    Sluggable:
+      fields:           [name]
+  tableName:            community_category
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    name:               { type: string(64), notnull: true }
+    description:        { type: string(255) }
+    is_active:          { type: boolean }
+
+CommunityPost:
+  actAs:
+    Sluggable:
+      fields:           [title]
+  tableName:            community_post
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    title:              { type: string(64), notnull: true }
+    content:            { type: clob, notnull: true }
+    date:               { type: timestamp }
+    category_id:        { type: integer }
+    is_active:          { type: boolean }
+    user_id:            {type: integer }
+  relations:
+    CommunityCategory:  { class: CommunityCategory, local: category_id, foreign: id }
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
+
+CommunityComment:
+  tableName:            community_comment
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    user_id:            { type: integer, notnull: true }
+    post_id:            { type: integer, notnull: true }
+    content:            { type: clob, notnull: true }
+    date:               { type: timestamp }
+  relations:
+    CommunityPost:      { class: CommunityPost, local: post_id, foreign: id }
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
+#Fin community

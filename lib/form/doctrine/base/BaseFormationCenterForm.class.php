@@ -17,6 +17,7 @@ abstract class BaseFormationCenterForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'name'        => new sfWidgetFormInputText(),
+      'agency_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Agency'), 'add_empty' => true)),
       'image'       => new sfWidgetFormInputText(),
       'address'     => new sfWidgetFormInputText(),
       'address_bis' => new sfWidgetFormInputText(),
@@ -27,6 +28,7 @@ abstract class BaseFormationCenterForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'name'        => new sfValidatorString(array('max_length' => 64)),
+      'agency_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Agency'), 'required' => false)),
       'image'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'address'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'address_bis' => new sfValidatorString(array('max_length' => 255, 'required' => false)),

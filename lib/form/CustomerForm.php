@@ -5,20 +5,24 @@ class CustomerForm extends sfGuardUserForm
   {
     parent::configure();
     
-    $uprof = new sfGuardUserProfileForm($this->object->Profile);
+    $uprof = new sfGuardUserProfileForm($this->object->Profile, array('agency'=>$this->getOption('agency')));
     unset($uprof['user_id']);
     $this->embedMergeForm('Profile', $uprof);
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
   }
   
   public function save($con = null)
   {
-    /*
     if($this->getObject()->isNew())
     {
-      $this->getObject()->setAgency()
-      $this->getObject()->setType(sfGuardUserProfile::TYPE_EMPLOYEE);
+      if($this->getOption('agency'))
+      {
+        $this->getObject()->getProfile()->setAgencyId($this->getOption('agency')->getId());
+      }
+      
+      $this->getObject()->getProfile()->setType($this->getOption('type', sfGuardUserProfile::TYPE_CUSTOMER));
     }
-    */
     
     parent::save($con);
   }

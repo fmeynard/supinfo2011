@@ -1,4 +1,11 @@
-<?php include_partial('subMenu',array('agency'=>$agency)); ?>
+<div id="subMenu">
+  <ul>
+    <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
+    <li><?php echo link_to(__($agency),'dashboard_agency', $agency); ?></li>
+    <li><?php echo __('Vehicles'); ?></li>
+  </ul>
+</div>
+
 <h1 class="afterSub"><?php echo $agency; ?> : <?php echo __('Vehicles'); ?></h1>
 <ul id="dashLinks">
   <li><?php echo link_to(__('New Vehicle'),'agency_new_vehicle',$agency); ?></li>
@@ -48,7 +55,7 @@ function test(com, grid){
   }
 );
 
-}			
+}
 
 </script>
 
