@@ -19,7 +19,6 @@ abstract class BaseFrmPostFormFilter extends BaseFormFilterDoctrine
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'forum_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FrmForum'), 'add_empty' => true)),
       'author_name' => new sfWidgetFormFilterInput(),
-      'date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -31,7 +30,6 @@ abstract class BaseFrmPostFormFilter extends BaseFormFilterDoctrine
       'user_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
       'forum_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FrmForum'), 'column' => 'id')),
       'author_name' => new sfValidatorPass(array('required' => false)),
-      'date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -60,7 +58,6 @@ abstract class BaseFrmPostFormFilter extends BaseFormFilterDoctrine
       'user_id'     => 'ForeignKey',
       'forum_id'    => 'ForeignKey',
       'author_name' => 'Text',
-      'date'        => 'Date',
       'created_at'  => 'Date',
       'updated_at'  => 'Date',
     );
