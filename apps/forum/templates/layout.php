@@ -133,24 +133,6 @@
   <tr>
     <td width="18" class="ml"></td>
     <td>
-	<table class="tablebg" width="100%" cellspacing="0">
-	<tr>
-		<td class="catb" colspan="2"><h4>Statistics</h4></td>
-	</tr>
-	<tr>
-
-		<td class="row1" rowspan="2" align="center" valign="middle"><img src="/images/forum/whosonline.png" alt="Who is online" /></td>
-
-		<td class="row1" width="100%">
-        <span class="genmed">Total posts <strong>16</strong> | Total topics <strong>9</strong> | Total members <strong>1</strong> | Our newest member <strong><a href="" style="color: #AA0000;" class="username-coloured">admin</a></strong></span>
-        <br /><br />
-                </td>
-        </tr>
-		<tr>
-			<td class="row1"></td>
-		</tr>
-
-	</table>
         	</td>
     <td width="18" class="mr"></td>
   </tr>

@@ -16,7 +16,7 @@ class forumEditActions extends sfActions
       ->createQuery('a')
       ->execute();
   }
-
+  
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new FrmForumForm();

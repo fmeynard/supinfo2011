@@ -33,7 +33,7 @@
 			<td class="forumrow" width="31" align="center"><img src="/images/forum/forum_read.png" width="68" height="68" alt="No unread posts" title="No unread posts" /></td>
 			<td class="row1h" width="70%">
 
-				<a class="forumlink" href=""><?php echo $frm_forum->getName() ?></a>
+				<a class="forumlink" href="<?php echo url_for('forum/show?id='.$frm_forum->getId()) ?>"><?php echo $frm_forum->getName() ?></a>
 				<p class="forumdesc"><?php echo $frm_forum->getDescription() ?></p>
                                  
 			</td>

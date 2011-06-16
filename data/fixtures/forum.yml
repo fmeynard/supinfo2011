@@ -1,38 +1,40 @@
 FrmCategory:
   c1:
-    name:        Sécurité routière
-    description: Tout sur la sécurité routière
+    name:        Road Security
+    description: All things you should know about Road Security
     rank:        1
   c2:
-    name:        Notre auto-école
-    description: Afin de discuter et d'entrer en contact avec notre auto-école
+    name:        Our Driving School
+    description: In order to discuss and hhave advice from our team
     rank:        2
 
 FrmTopic:
   topic_1:
-    title:              Attacher votre ceinture.
+    title:              Keep your seatbelt.
     FrmForum: forum_1
     user_id:        1
     nb_posts:           1
+    latest_post_id: 2
   topic_2:
-    title:              Liste de nos professeurs.
+    title:              Teacher's list.
     FrmForum: forum_2
     user_id:        1
     is_sticked:         true
     nb_posts:           2
+    latest_post_id: 3
 
 FrmForum:
   forum_1:
-    name:                   Conseils pratiques
-    description:            Tout ce qu'il faut savoir avant de monter en voiture
+    name:                   General Advice
+    description:            All things you need to know before going into a car
     FrmCategory:  c1
     rank:                   1
     nb_posts:               2
     nb_topics:              1
     latest_post_id:         1
   forum_2:
-    name:                   Nos professeurs
-    description:            Etre en contact avec nos professeurs
+    name:                   Our Team
+    description:            Stay in touch
     FrmCategory:  c2
     rank:                   2
     nb_posts:               1
@@ -55,7 +57,7 @@ FrmPost:
 
   post_3:
     title:                  Bar discussion
-    content:                If you want a bar, this is where you will find it
+    content:                Blah Blah Blah
     user_id:            1
     FrmTopic:     topic_2
     FrmForum:     forum_2
