@@ -9,3 +9,20 @@
 <br /><br />
 
 <h2><?php echo __('Formation Session')?> : <?php echo $formationSession->getName(); ?></h2>
+
+<?php if($participationsValidated = $formationSession->getValidatedParticipations()->count()) : ?>
+  <table>
+    <thead>
+      <tr>Name</tr>
+      <tr>Actions</tr>
+    </thead>
+    <tbody>
+      <?php foreach($participationsValidated as $participation) : ?>
+        <tr>
+          <td><?php echo $participation->getSfGuardUser()->getProfile()->getFullname(); ?></td>
+          <td><?php echo link_to('Delete','formationSession/deleteParticipation?id='.$participation->getId())?></td>
+        </tr>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+<?php endif; ?>
