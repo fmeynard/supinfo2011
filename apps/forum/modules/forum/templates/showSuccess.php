@@ -67,7 +67,7 @@
 
 				<td class="row1h">
 
-					 <a title="Posted: Tue Jun 14, 2011 12:10 am" href="" class="topictitle"><?php echo $frm_topic->getTitle()?></a>
+					 <a title="Posted: Tue Jun 14, 2011 12:10 am" href="<?php echo url_for('forum/showtopic?id='.$frm_topic->getId()) ?>" class="topictitle"><?php echo $frm_topic->getTitle()?></a>
 
 				</td>
 				<td class="forumrow" width="130" align="center"><p class="topicauthor"><?php echo $frm_topic->getSfGuardUser()->getUsername()?></p></td>
@@ -76,8 +76,7 @@
 				<td class="forumrow" width="140" align="center">
 					<p class="topicdetails" style="white-space: nowrap;"><?php echo $frm_topic->getFrmPost()->getCreatedAt() ?></p>
 					<p class="topicdetails"><a href="" style="color: #AA0000;" class="username-coloured"><?php echo $frm_topic->getFrmPost()->getSfGuardUser()->getUsername() ?> </a>
-						<a href=""><img src="/images/forum/icon_topic_latest.gif" width="18" height="9" alt="View the latest post" title="View the latest post" /></a>
-					</p>
+						</p>
 				</td>
 			</tr>
 <?php endforeach; ?>

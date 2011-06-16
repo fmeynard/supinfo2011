@@ -31,7 +31,7 @@
 <div class="topbarleft">
 <div class="topbar-left-cap"></div>
 <ul class="topmenuleft">
-<li class="home"> <a href="">Home</a></li>
+<li class="home"> <a href="<?php echo url_for('forum/index') ?>">Home</a></li>
 <li> <a href="">FAQ</a></li>
 <li> <a href="">Contact</a></li>
 </ul>

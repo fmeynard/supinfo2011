@@ -22,6 +22,11 @@ class forumActions extends sfActions
       $this->frm_forum = Doctrine_Core::getTable('FrmForum')->find(array($request->getParameter('id')));
   }
 
+  public function executeShowtopic(sfWebRequest $request)
+  {
+      $this->frm_topic = Doctrine_Core::getTable('FrmTopic')->find(array($request->getParameter('id')));
+  }
+
   public function executeListedit(sfWebRequest $request)
   {
     $this->frm_categorys = Doctrine_Core::getTable('FrmCategory')

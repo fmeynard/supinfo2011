@@ -29,7 +29,7 @@ FrmForum:
     description:            All things you need to know before going into a car
     FrmCategory:  c1
     rank:                   1
-    nb_posts:               2
+    nb_posts:               1
     nb_topics:              1
     latest_post_id:         1
   forum_2:
@@ -37,7 +37,7 @@ FrmForum:
     description:            Stay in touch
     FrmCategory:  c2
     rank:                   2
-    nb_posts:               1
+    nb_posts:               2
     nb_topics:              1
     latest_post_id:         3
 FrmPost:
@@ -45,19 +45,19 @@ FrmPost:
     title:                  Foo discussion
     content:                Everybody is foo here
     user_id:            1
-    FrmTopic:     topic_1
-    FrmForum:     forum_1
+    FrmTopic:           1
+    FrmForum:           1
 
   post_2:
     title:                  Foo discussion2
     content:                Everybody is foo here2
     user_id:            1
-    FrmTopic:     topic_1
-    FrmForum:     forum_1
+    FrmTopic:           1
+    FrmForum:           1
 
   post_3:
     title:                  Bar discussion
     content:                Blah Blah Blah
     user_id:            1
-    FrmTopic:     topic_2
-    FrmForum:     forum_2
+    FrmTopic:           2
+    FrmForum:           2
