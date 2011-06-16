@@ -87,7 +87,7 @@ AgencyRoom:
     agency_id:          { type: integer }
     capacity:           { type: integer }
   relations:
-    Agency:             { type: Agency, local: agency_id, foreign: id, onDelete: SET NULL }
+    Agency:             { class: Agency, local: agency_id, foreign: id, onDelete: SET NULL }
 
 FormationCenter:
   actAs:
@@ -124,6 +124,18 @@ FormationSession:
   relations:
     FormationType:      { class: FormationType, foreign: id, local: formation_type_id,  onDelete: SET NULL }
     Agency:             { class: Agency,        foreign: id, local: agency_id,          onDelete: SET NULL }
+    
+FormationHasUser:
+  tableName:            formation_has_user
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    formation_session_id: { type: integer }
+    user_id:            { type: integer }
+    is_valid:           { type: boolean }
+  relations:
+    FormationSession:   { class: Formation, foreign: id, local: formation_session_id }
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id }
+
 
 VehicleType:
   tableName:            vehicle_type

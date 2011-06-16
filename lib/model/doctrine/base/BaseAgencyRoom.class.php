@@ -9,18 +9,18 @@
  * @property string $name
  * @property integer $agency_id
  * @property integer $capacity
- * @property Doctrine_Collection $Agency
+ * @property Agency $Agency
  * 
- * @method integer             getId()        Returns the current record's "id" value
- * @method string              getName()      Returns the current record's "name" value
- * @method integer             getAgencyId()  Returns the current record's "agency_id" value
- * @method integer             getCapacity()  Returns the current record's "capacity" value
- * @method Doctrine_Collection getAgency()    Returns the current record's "Agency" collection
- * @method AgencyRoom          setId()        Sets the current record's "id" value
- * @method AgencyRoom          setName()      Sets the current record's "name" value
- * @method AgencyRoom          setAgencyId()  Sets the current record's "agency_id" value
- * @method AgencyRoom          setCapacity()  Sets the current record's "capacity" value
- * @method AgencyRoom          setAgency()    Sets the current record's "Agency" collection
+ * @method integer    getId()        Returns the current record's "id" value
+ * @method string     getName()      Returns the current record's "name" value
+ * @method integer    getAgencyId()  Returns the current record's "agency_id" value
+ * @method integer    getCapacity()  Returns the current record's "capacity" value
+ * @method Agency     getAgency()    Returns the current record's "Agency" value
+ * @method AgencyRoom setId()        Sets the current record's "id" value
+ * @method AgencyRoom setName()      Sets the current record's "name" value
+ * @method AgencyRoom setAgencyId()  Sets the current record's "agency_id" value
+ * @method AgencyRoom setCapacity()  Sets the current record's "capacity" value
+ * @method AgencyRoom setAgency()    Sets the current record's "Agency" value
  * 
  * @package    d
  * @subpackage model
@@ -55,7 +55,7 @@ abstract class BaseAgencyRoom extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Agency', array(
+        $this->hasOne('Agency', array(
              'local' => 'agency_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));

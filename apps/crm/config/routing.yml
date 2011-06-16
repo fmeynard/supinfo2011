@@ -135,6 +135,14 @@ agency_view_vehicle:
   class:    sfDoctrineRoute
   options:  { model: Vehicle, type: object }
   param:    { module: agency, action: viewVehicle }
+  
+agency_new_formation_center:
+  url:      /agency/:slug/formation-center/new
+  param:    { module: agency, action: newFormationCenter }
+
+agency_update_agency_room:
+    url:      /agency/:id/updateAgencyRoom
+    param:    { module: agency, action: updateAgencyRoom }
 
 # User
 user:
@@ -145,7 +153,7 @@ new_customer:
   url:      /agency/:slug/newCustomer
   class:    sfDoctrineRoute
   options:  { model: Agency, type: object }
-  param:    { module: user, action: newCustomer }
+  param:    { module: agency, action: newCustomer }
 
 new_employee: 
   url:      /agency/:slug/newEmployee
@@ -173,7 +181,7 @@ view_customer:
   url:      /agency/:agency/customer/:slug
   class:    sfDoctrineRoute
   options:  { model: sfGuardUserProfile, type: object }
-  param:    { module: user, action: viewCustomer }
+  param:    { module: agency, action: viewCustomer }
 
 view_employee:
   url:      /agency/:agency/employee/:slug

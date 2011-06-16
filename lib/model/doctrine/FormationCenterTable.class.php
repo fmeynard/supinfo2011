@@ -16,4 +16,11 @@ class FormationCenterTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('FormationCenter');
     }
+    
+    static public function getByAgencyQuery(Agency $agency)
+    {
+      return Doctrine_Query::create()->from('FormationCenter c')
+        ->leftJoin('c.Agency a')
+        ->where('a.id = ?', $agency->getId());
+    }
 }

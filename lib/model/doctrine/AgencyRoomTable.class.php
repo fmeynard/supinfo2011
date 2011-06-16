@@ -16,4 +16,9 @@ class AgencyRoomTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('AgencyRoom');
     }
+    
+    static public function getByAgencyQuery(Agency $agency)
+    {
+      return Doctrine_Query::create()->from('AgencyRoom r')->leftJoin('r.Agency a')->where('a.id = ?', $agency->getId());
+    }
 }

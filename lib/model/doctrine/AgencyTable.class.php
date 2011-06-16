@@ -16,4 +16,9 @@ class AgencyTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Agency');
     }
+    
+    static public function getBySlug($slug)
+    {
+      return Doctrine_Query::create()->from('Agency a')->where('a.slug = ?',$slug)->fetchOne();
+    }
 }

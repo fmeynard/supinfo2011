@@ -11,4 +11,6 @@
   <li><?php echo link_to(__('Customers'),'agency_customers',$agency); ?></li>
   <li><?php echo link_to(__('Vehicles'),'dashboard_vehicles', $agency); ?></li>
   <li><?php echo link_to(__('Employees'),'agency_employees',$agency); ?></li>
+  <li><?php echo link_to(__('Formations Center'),'agency/listFormationCenter?slug='.$agency->getSlug()); ?></li>
+  <li><?php echo link_to(__('Agency Rooms'),'agency/listAgencyRoom?slug='.$agency->getSlug()); ?></li>
 </ul>

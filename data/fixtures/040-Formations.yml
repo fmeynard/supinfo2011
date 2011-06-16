@@ -1,0 +1,20 @@
+FormationCenter:
+  fc01:
+    id:     1
+    name:   Circuit Lac
+
+FormationType:
+  f01:
+    id:     1
+    name:   Auto - Pratique
+
+  f02:
+    id:     2
+    name:   Auto - Théorique
+    
+FormationSession:
+  fs01:
+    id:                 1
+    formation_type_id:  1
+    agency_id:          1
+    capacity:           20
