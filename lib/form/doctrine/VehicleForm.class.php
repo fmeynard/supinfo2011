@@ -20,6 +20,8 @@ class VehicleForm extends BaseVehicleForm
             $this['next_verif_end'],
             $this['slug']
     );
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
   }
 
   /*

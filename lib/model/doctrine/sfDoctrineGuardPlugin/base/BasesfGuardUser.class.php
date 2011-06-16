@@ -18,6 +18,7 @@
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
+ * @property Doctrine_Collection $FormationHasUser
  * @property sfGuardUserProfile $Profile
  * @property Doctrine_Collection $CommunityPost
  * @property Doctrine_Collection $CommunityComment
@@ -38,6 +39,7 @@
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method Doctrine_Collection getFormationHasUser()      Returns the current record's "FormationHasUser" collection
  * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection getCommunityPost()         Returns the current record's "CommunityPost" collection
  * @method Doctrine_Collection getCommunityComment()      Returns the current record's "CommunityComment" collection
@@ -57,6 +59,7 @@
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setFormationHasUser()      Sets the current record's "FormationHasUser" collection
  * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser         setCommunityPost()         Sets the current record's "CommunityPost" collection
  * @method sfGuardUser         setCommunityComment()      Sets the current record's "CommunityComment" collection
@@ -143,6 +146,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardRememberKey as RememberKeys', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('FormationHasUser', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 
