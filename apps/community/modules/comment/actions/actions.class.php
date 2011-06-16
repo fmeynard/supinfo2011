@@ -12,7 +12,8 @@ class commentActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->community_comments = Doctrine_Core::getTable('CommunityComment')
+    // CommunityCommentTable::getInstance()
+    $this->community_comments = Doctrine_Core::getTable('CommunityComment') 
       ->createQuery('a')
       ->execute();
   }
@@ -31,8 +32,11 @@ class commentActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($communityPost = CommunityPostTable::getInstance()->find($request->getParameter('postId')));
 
-    $this->form = new CommunityCommentForm();
+    $this->form = new CommunityCommentForm(NULL, array(
+        'communityPost' => $communityPost,
+      ));
 
     $this->processForm($request, $this->form);
 
@@ -58,12 +62,12 @@ class commentActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
+    //$request->checkCSRFProtection();
 
     $this->forward404Unless($community_comment = Doctrine_Core::getTable('CommunityComment')->find(array($request->getParameter('id'))), sprintf('Object community_comment does not exist (%s).', $request->getParameter('id')));
     $community_comment->delete();
 
-    $this->redirect('comment/index');
+    $this->redirect('post/show/?id=' . $request->getParameter('post_id'));
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -71,9 +75,9 @@ class commentActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $community_comment = $form->save();
+      $form->save();
 
-      $this->redirect('comment/edit?id='.$community_comment->getId());
+      $this->redirect('post/show?id='.$form->getObject()->getPostId());
     }
   }
 }

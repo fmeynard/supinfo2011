@@ -31,12 +31,7 @@
                     <ul id="navigation" class="sf-js-enabled">
                         <li class=""><?php echo link_to("Home",'homepage') ?></li>
                         <li class=""><a href="#">Pages</a></li>
-                        <li class=""><a href="#">Categories &gt;&gt;</a>
-                            <ul style="display: none; visibility: hidden; ">
-                                <li><a href="#">Permis</a></li>
-                                <li><a href="#">Sécurité</a></li>
-                            </ul>
-                        </li>
+                        <li class=""><a href="<?php echo url_for("category/index") ?>">Categories &gt;&gt;</a></li>
                         <li class=""><a href="#">Blog</a></li>
                         <li><a href="#">Contacts</a></li>
                     </ul>

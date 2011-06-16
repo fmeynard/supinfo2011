@@ -18,10 +18,11 @@ abstract class BaseCommunityPostForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'title'       => new sfWidgetFormInputText(),
       'content'     => new sfWidgetFormTextarea(),
-      'date'        => new sfWidgetFormDateTime(),
       'category_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityCategory'), 'add_empty' => true)),
       'is_active'   => new sfWidgetFormInputCheckbox(),
       'user_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
       'slug'        => new sfWidgetFormInputText(),
     ));
 
@@ -29,10 +30,11 @@ abstract class BaseCommunityPostForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'title'       => new sfValidatorString(array('max_length' => 64)),
       'content'     => new sfValidatorString(),
-      'date'        => new sfValidatorDateTime(array('required' => false)),
       'category_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('CommunityCategory'), 'required' => false)),
       'is_active'   => new sfValidatorBoolean(array('required' => false)),
       'user_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
       'slug'        => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 

@@ -107,29 +107,6 @@ label {
     padding:0;
 }
 
-input[type="text"] {
-    border:0;
-    font:1em "Trebuchet MS", Helvetica, Garuda, sans-serif;
-    line-height:1em;
-    padding:4px;
-    background:none;
-    color:#fefefe;
-    outline:none;
-    -webkit-appearance:none;
-}
-
-textarea {
-    border:0;
-    background:none;
-    color:#fefefe;
-    font:1em "Trebuchet MS", Helvetica, Garuda, sans-serif;
-    line-height:1.4em;
-    overflow:hidden;
-    outline:none;
-    resize:none;
-    -webkit-appearance:none;
-}
-
 h1 {
     color:#fefefe;
     font-size:1.85em;

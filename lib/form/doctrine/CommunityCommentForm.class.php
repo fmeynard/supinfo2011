@@ -12,5 +12,22 @@ class CommunityCommentForm extends BaseCommunityCommentForm
 {
   public function configure()
   {
+    unset(
+      $this['user_id'],
+      $this['post_id'],
+      $this['created_at'],
+      $this['updated_at']
+    );
+  }
+  
+  public function save($con = null)
+  {
+    if($this->getObject()->isNew())
+    {
+      $this->getObject()->setPostId($this->getOption('communityPost')->getId());
+      $this->getObject()->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
+    }
+    
+    parent::save($con);
   }
 }

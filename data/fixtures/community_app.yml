@@ -17,7 +17,6 @@ CommunityPost:
     title:              Premier article sur la sécurité routière
     content:            Voici notre premier article, à modifier par la suite
     category_id:        1
-    date:               '2011-06-10 15:41:20'
     user_id:            1
     is_active:          1
   post2:
@@ -25,7 +24,6 @@ CommunityPost:
     title:              Deuxieme article sur la sécurité routière
     content:            Voici notre deuxieme article, à modifier par la suite
     category_id:        1
-    date:               '2011-06-10 15:37:10'
     user_id:            2
     is_active:          1
   post3:
@@ -33,7 +31,6 @@ CommunityPost:
     title:              Premier article sur le permis
     content:            Voici notre premier article, à modifier par la suite
     category_id:        2
-    date:               '2011-06-10 06:08:32'
     user_id:            3
     is_active:          1
 
@@ -42,5 +39,4 @@ CommunityComment:
     id:                 1
     user_id:            2
     post_id:            1
-    date:               '2011-06-10 06:16:37'
     content:            très beau premier article sur la sécurité routière !

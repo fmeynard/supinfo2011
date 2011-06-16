@@ -12,5 +12,8 @@ class CommunityCategoryForm extends BaseCommunityCategoryForm
 {
   public function configure()
   {
+      unset(
+      $this['slug']
+      );
   }
 }
