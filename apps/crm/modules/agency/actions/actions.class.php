@@ -230,5 +230,231 @@ class agencyActions extends autoAgencyActions
   {
     $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
   }
+  
+  
+  
+  public function executeNewCustomer(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+    
+    $this->form = new CustomerForm(array(), array('agency'=>$this->agency));
+  }
+  
+  public function executeCreateCustomer(sfWebRequest $request)
+  {
+    $this->agency = $this->getRoute()->getObject();
+    $this->form = new CustomerForm(array(), array('agency'=>$this->agency));
+    $this->processCustomerForm($request, $this->form);
+    
+    $this->setTemplate('newCustomer');
+  }
+  
+  /**
+   * Process vehicle form
+   *
+   * @param sfWebRequest $request
+   * @param sfForm $form
+   */
+  protected function processCustomerForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      $this->redirect($this->generateUrl('view_customer',array(
+                                      'agency'=> $form->getObject()->getProfile()->getAgency()->getSlug(),
+                                      'slug'  => $form->getObject()->getProfile()->getSlug())
+                                      ));
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+  }
+  
+  public function executeViewCustomer(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+  }
+  
+  public function executeListFormationCenter(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+  }
+  
+  public function executeLoadFormationCenter(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+     
+     $pager     = new FlexigridPager($request, FormationCenterTable::getByAgencyQuery($this->agency));
+     $response  = $pager->getDefaultStd();
+     $pager     = $pager->init();
 
+     $i=0;
+
+     foreach($pager->getResults() as $item)
+     {
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getName(),
+                $item->getAddress(),
+                $item->getCapacity(),
+                $this->getPartial('rowFormationCenterActions',array('item'=>$item)),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
+  
+  public function executeNewFormationCenter(sfWebRequest $request)
+  { 
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    
+    $this->form = new FormationCenterForm(array(), array('agency'=>$this->agency));
+  }
+  
+  public function executeCreateFormationCenter(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    
+    $this->form = new FormationCenterForm(array(), array('agency'=>$this->agency));
+    $this->processFormationCenterForm($request, $this->form);
+    
+    $this->setTemplate('newFormationCenter');
+  }
+  
+  public function executeEditFormationCenter(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationCenter = FormationCenterTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new FormationCenterForm($this->formationCenter);
+  }
+  
+  public function executeUpdateFormationCenter(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationCenter = FormationCenterTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new FormationCenterForm($this->formationCenter);
+    $this->processFormationCenterForm($request, $this->form);
+    
+    $this->setTemplate('editFormationCenter');
+  }
+  
+  
+  /**
+   * Process vehicle form
+   *
+   * @param sfWebRequest $request
+   * @param sfForm $form
+   */
+  protected function processFormationCenterForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      $this->redirect('agency/viewFormationCenter?id='.$form->getObject()->getId());
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+  }
+  
+  public function executeViewFormationCenter(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationCenter = FormationCenterTable::getInstance()->find($request->getParameter('id')));
+  }
+  
+  public function executeListAgencyRoom(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+  }
+  
+  public function executeLoadAgencyRoom(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+     
+     $pager     = new FlexigridPager($request, AgencyRoomTable::getByAgencyQuery($this->agency));
+     $response  = $pager->getDefaultStd();
+     $pager     = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item)
+     {
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getName(),
+                $item->getCapacity(),
+                $this->getPartial('rowAgencyRoomActions',array('item'=>$item)),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
+  
+  public function executeNewAgencyRoom(sfWebRequest $request)
+  { 
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    
+    $this->form = new AgencyRoomForm(array(), array('agency'=>$this->agency));
+  }
+  
+  public function executeCreateAgencyRoom(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    
+    $this->form = new AgencyRoomForm(array(), array('agency'=>$this->agency));
+    $this->processAgencyRoomForm($request, $this->form);
+    
+    $this->setTemplate('newAgencyRoom');
+  }
+  
+  public function executeEditAgencyRoom(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->AgencyRoom = AgencyRoomTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new AgencyRoomForm($this->AgencyRoom);
+  }
+  
+  public function executeUpdateAgencyRoom(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->AgencyRoom = AgencyRoomTable::getInstance()->find($request->getParameter('id')));
+    
+    $this->form = new AgencyRoomForm($this->AgencyRoom);
+    $this->processAgencyRoomForm($request, $this->form);
+    
+    $this->setTemplate('editAgencyRoom');
+  }
+  
+  
+  /**
+   * Process vehicle form
+   *
+   * @param sfWebRequest $request
+   * @param sfForm $form
+   */
+  protected function processAgencyRoomForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      $this->redirect('agency/viewAgencyRoom?id='.$form->getObject()->getId());
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+  }
+  
+  public function executeViewAgencyRoom(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->AgencyRoom = AgencyRoomTable::getInstance()->find($request->getParameter('id')));
+  }
 }
