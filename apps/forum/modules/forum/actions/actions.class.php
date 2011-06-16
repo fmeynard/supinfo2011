@@ -17,6 +17,13 @@ class forumActions extends sfActions
       ->execute();
   }
 
+  public function executeListedit(sfWebRequest $request)
+  {
+    $this->frm_categorys = Doctrine_Core::getTable('FrmCategory')
+      ->createQuery('a')
+      ->execute();
+  }
+
   public function executeNew(sfWebRequest $request)
   {
     $this->form = new FrmCategoryForm();
