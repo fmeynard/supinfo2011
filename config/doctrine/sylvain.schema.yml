@@ -98,41 +98,15 @@ FrmPost:
     FrmForum:
       local:          forum_id
       foreign:        id
-      type:           one
       onDelete:       CASCADE
     FrmTopic:
       local:          topic_id
       foreign:        id
-      type:           one
+      foreignAlias:   frmPosts
       onDelete:       CASCADE
     sfGuardUser:
       local:          user_id
       foreign:        id
-      type:           one
       onDelete:       CASCADE
-
-FrmTopicView:
-  actAs:
-    Timestampable:
-  tableName:          frm_TopicView
-  columns:
-    user_id:
-      type:           integer
-      primary:        true
-    topic_id:
-      type:           integer
-      primary:        true
-  relations:
-    sfGuardUser:
-      local:          user_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-    FrmTopic:
-      local:          topic_id
-      foreign:        id
-      type:           one
-      onDelete:       CASCADE
-
 
     ### End Forum ###
