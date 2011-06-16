@@ -45,19 +45,19 @@ FrmPost:
     title:                  Foo discussion
     content:                Everybody is foo here
     user_id:            1
-    FrmTopic:           1
-    FrmForum:           1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
 
   post_2:
     title:                  Foo discussion2
     content:                Everybody is foo here2
     user_id:            1
-    FrmTopic:           1
-    FrmForum:           1
+    FrmTopic:     topic_1
+    FrmForum:     forum_1
 
   post_3:
     title:                  Bar discussion
     content:                Blah Blah Blah
     user_id:            1
-    FrmTopic:           2
-    FrmForum:           2
+    FrmTopic:     topic_2
+    FrmForum:     forum_2

@@ -17,34 +17,31 @@
  * @property FrmForum $FrmForum
  * @property FrmPost $FrmPost
  * @property sfGuardUser $sfGuardUser
- * @property Doctrine_Collection $FrmTopicView
  * 
- * @method integer             getId()             Returns the current record's "id" value
- * @method string              getTitle()          Returns the current record's "title" value
- * @method boolean             getIsSticked()      Returns the current record's "is_sticked" value
- * @method boolean             getIsLocked()       Returns the current record's "is_locked" value
- * @method integer             getForumId()        Returns the current record's "forum_id" value
- * @method integer             getLatestPostId()   Returns the current record's "latest_post_id" value
- * @method integer             getUserId()         Returns the current record's "user_id" value
- * @method integer             getNbPosts()        Returns the current record's "nb_posts" value
- * @method integer             getNbViews()        Returns the current record's "nb_views" value
- * @method FrmForum            getFrmForum()       Returns the current record's "FrmForum" value
- * @method FrmPost             getFrmPost()        Returns the current record's "FrmPost" value
- * @method sfGuardUser         getSfGuardUser()    Returns the current record's "sfGuardUser" value
- * @method Doctrine_Collection getFrmTopicView()   Returns the current record's "FrmTopicView" collection
- * @method FrmTopic            setId()             Sets the current record's "id" value
- * @method FrmTopic            setTitle()          Sets the current record's "title" value
- * @method FrmTopic            setIsSticked()      Sets the current record's "is_sticked" value
- * @method FrmTopic            setIsLocked()       Sets the current record's "is_locked" value
- * @method FrmTopic            setForumId()        Sets the current record's "forum_id" value
- * @method FrmTopic            setLatestPostId()   Sets the current record's "latest_post_id" value
- * @method FrmTopic            setUserId()         Sets the current record's "user_id" value
- * @method FrmTopic            setNbPosts()        Sets the current record's "nb_posts" value
- * @method FrmTopic            setNbViews()        Sets the current record's "nb_views" value
- * @method FrmTopic            setFrmForum()       Sets the current record's "FrmForum" value
- * @method FrmTopic            setFrmPost()        Sets the current record's "FrmPost" value
- * @method FrmTopic            setSfGuardUser()    Sets the current record's "sfGuardUser" value
- * @method FrmTopic            setFrmTopicView()   Sets the current record's "FrmTopicView" collection
+ * @method integer     getId()             Returns the current record's "id" value
+ * @method string      getTitle()          Returns the current record's "title" value
+ * @method boolean     getIsSticked()      Returns the current record's "is_sticked" value
+ * @method boolean     getIsLocked()       Returns the current record's "is_locked" value
+ * @method integer     getForumId()        Returns the current record's "forum_id" value
+ * @method integer     getLatestPostId()   Returns the current record's "latest_post_id" value
+ * @method integer     getUserId()         Returns the current record's "user_id" value
+ * @method integer     getNbPosts()        Returns the current record's "nb_posts" value
+ * @method integer     getNbViews()        Returns the current record's "nb_views" value
+ * @method FrmForum    getFrmForum()       Returns the current record's "FrmForum" value
+ * @method FrmPost     getFrmPost()        Returns the current record's "FrmPost" value
+ * @method sfGuardUser getSfGuardUser()    Returns the current record's "sfGuardUser" value
+ * @method FrmTopic    setId()             Sets the current record's "id" value
+ * @method FrmTopic    setTitle()          Sets the current record's "title" value
+ * @method FrmTopic    setIsSticked()      Sets the current record's "is_sticked" value
+ * @method FrmTopic    setIsLocked()       Sets the current record's "is_locked" value
+ * @method FrmTopic    setForumId()        Sets the current record's "forum_id" value
+ * @method FrmTopic    setLatestPostId()   Sets the current record's "latest_post_id" value
+ * @method FrmTopic    setUserId()         Sets the current record's "user_id" value
+ * @method FrmTopic    setNbPosts()        Sets the current record's "nb_posts" value
+ * @method FrmTopic    setNbViews()        Sets the current record's "nb_views" value
+ * @method FrmTopic    setFrmForum()       Sets the current record's "FrmForum" value
+ * @method FrmTopic    setFrmPost()        Sets the current record's "FrmPost" value
+ * @method FrmTopic    setSfGuardUser()    Sets the current record's "sfGuardUser" value
  * 
  * @package    d
  * @subpackage model
@@ -111,10 +108,6 @@ abstract class BaseFrmTopic extends sfDoctrineRecord
              'local' => 'user_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
-
-        $this->hasMany('FrmTopicView', array(
-             'local' => 'id',
-             'foreign' => 'topic_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $sluggable0 = new Doctrine_Template_Sluggable(array(
