@@ -98,17 +98,15 @@ FrmPost:
     FrmForum:
       local:          forum_id
       foreign:        id
-      type:           one
       onDelete:       CASCADE
     FrmTopic:
       local:          topic_id
       foreign:        id
-      type:           one
+      foreignAlias:   frmPosts
       onDelete:       CASCADE
     sfGuardUser:
       local:          user_id
       foreign:        id
-      type:           one
       onDelete:       CASCADE
 
     ### End Forum ###

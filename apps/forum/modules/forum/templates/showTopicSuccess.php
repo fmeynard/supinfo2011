@@ -47,7 +47,7 @@
 
 
 
-                 <?php foreach ($frm_topic->getFrmTopicView() as $frm_post): ?>
+                 <?php foreach ($frm_topic->getFrmPosts as $frm_post): ?>
 	<tr class="row1">
 
 			<td class="profile" align="center" valign="middle">
