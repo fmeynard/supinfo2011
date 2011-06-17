@@ -1,4 +1,4 @@
-<h1>Edit Topic</h1>
+<h1>Edit Post</h1>
 <?php if($sf_user->IsSuperAdmin()): ?>
 <?php include_partial('form', array('form' => $form)) ?>
 <?php else: ?>

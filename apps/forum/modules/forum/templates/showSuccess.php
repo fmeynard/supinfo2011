@@ -14,7 +14,7 @@
 				<td align="left" width="100" valign="middle">
 
       <div class="buttons">
-			<div class="post-icon"><a href="" title="Post a new topic"><span></span></a></div>
+			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?idForum='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
 		</div>
 
                 </td>
@@ -68,7 +68,7 @@
 				<td class="row1h">
 
 					 <a title="Posted: Tue Jun 14, 2011 12:10 am" href="<?php echo url_for('forum/showtopic?id='.$frm_topic->getId()) ?>" class="topictitle"><?php echo $frm_topic->getTitle()?></a>
-
+                                        <?php if($sf_user->IsSuperAdmin()): ?> <a title="" href="<?php echo url_for('listTopic/edit?id='.$frm_topic->getId()) ?>" class=""> Edit </a> <?php endif; ?>
 				</td>
 				<td class="forumrow" width="130" align="center"><p class="topicauthor"><?php echo $frm_topic->getSfGuardUser()->getUsername()?></p></td>
 				<td class="forumrow" width="50" align="center"><p class="topicdetails"><?php echo $frm_topic->getNbPosts() ?></p></td>
@@ -105,7 +105,7 @@
 
 				<td height="35" align="left" width="100" valign="middle">
         <div class="buttons">
-			<div class="post-icon"><a href="" title="Post a new topic"><span></span></a></div>
+			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?idForum='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
 		</div>
           </td>
 

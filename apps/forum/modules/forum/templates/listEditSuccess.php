@@ -1,4 +1,6 @@
-<h1>Frm categorys List</h1>
+<h1>Manage Category</h1>
+<?php if($sf_user->IsSuperAdmin()): ?>
+
 
 <table>
   <thead>
@@ -15,7 +17,7 @@
   <tbody>
     <?php foreach ($frm_categorys as $frm_category): ?>
     <tr>
-      <td><a href="<?php echo url_for('editCategory/edit?id='.$frm_category->getId()) ?>"><?php echo $frm_category->getId() ?></a></td>
+      <td><a href="<?php echo url_for('editCategory/edit?id='.$frm_category->getId()) ?>"> Edit <?php echo $frm_category->getId() ?> </a></td>
       <td><?php echo $frm_category->getName() ?></td>
       <td><?php echo $frm_category->getDescription() ?></td>
       <td><?php echo $frm_category->getRank() ?></td>
@@ -28,3 +30,6 @@
 </table>
 
   <a href="<?php echo url_for('editCategory/new') ?>">New</a>
+<?php else: ?>
+<center>You need to be an administrator.</center>
+<?php endif; ?>
