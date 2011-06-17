@@ -25,8 +25,11 @@ class listTopicActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($forum = FrmForumTable::getInstance()->find($request->getParameter('idForum')));
 
-    $this->form = new FrmTopicForm();
+        $this->form = new FrmTopicForm(NULL, array(
+        'forum' => $forum,
+      ));
 
     $this->processForm($request, $this->form);
 
@@ -67,7 +70,7 @@ class listTopicActions extends sfActions
     {
       $frm_topic = $form->save();
 
-      $this->redirect('listTopic/edit?id='.$frm_topic->getId());
+      $this->redirect('forum/index');
     }
   }
 }

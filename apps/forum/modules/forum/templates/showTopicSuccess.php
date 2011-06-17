@@ -15,7 +15,7 @@
 		<td align="left" height="30" width="100" valign="middle" nowrap="nowrap">
         <div class="buttons">
 
-		<div class="reply-icon"><a href="<?php echo url_for('Post/new?id='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
+		<div class="reply-icon"><a href="<?php echo url_for('Post/new?idTopic='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
 
         </div>
 		</td>
@@ -120,7 +120,7 @@
 		<td align="left" height="35" width="100" valign="middle" nowrap="nowrap">
 		<div class="buttons">
 
-		<div class="reply-icon"><a href="<?php echo url_for('Post/new?id='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
+		<div class="reply-icon"><a href="<?php echo url_for('Post/new?idTopic='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
 
         </div>
 		</td>

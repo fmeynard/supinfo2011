@@ -25,10 +25,13 @@ class postActions extends sfActions
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
+    $this->forward404Unless($topic = FrmTopicTable::getInstance()->find($request->getParameter('idTopic')));
 
-    $this->form = new FrmPostForm();
+     $this->form = new FrmPostForm(NULL, array(
+        'topic' => $topic,
+      ));
 
-    $this->processForm($request, $this->form);
+      $this->processForm($request, $this->form);
 
     $this->setTemplate('new');
   }
@@ -67,7 +70,7 @@ class postActions extends sfActions
     {
       $frm_post = $form->save();
 
-      $this->redirect('post/edit?id='.$frm_post->getId());
+      $this->redirect('forum/index');
     }
   }
 }

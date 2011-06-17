@@ -14,7 +14,7 @@
 				<td align="left" width="100" valign="middle">
 
       <div class="buttons">
-			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?id='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
+			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?idForum='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
 		</div>
 
                 </td>
@@ -105,7 +105,7 @@
 
 				<td height="35" align="left" width="100" valign="middle">
         <div class="buttons">
-			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?id='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
+			<div class="post-icon"><a href="<?php echo url_for('listTopic/new?idForum='.$frm_forum->getId()) ?>" title="Post a new topic"><span></span></a></div>
 		</div>
           </td>
 
