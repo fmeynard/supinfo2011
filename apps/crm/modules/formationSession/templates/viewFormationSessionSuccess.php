@@ -10,11 +10,19 @@
 
 <h2><?php echo __('Formation Session')?> : <?php echo $formationSession->getName(); ?></h2>
 
-<?php if($participationsValidated = $formationSession->getValidatedParticipations()->count()) : ?>
+<div class="beforeTableActions">
+  <form method="post" action="<?php echo url_for('formationSession/createParticipation?id='.$formationSession->getId()); ?>">
+  <?php echo $addForm; ?> <input type="submit" value="add" class="smallAdd"/>
+  </form>
+</div>
+
+<?php if($participationsValidated = $formationSession->getValidatedParticipations()) : ?>
   <table>
     <thead>
-      <tr>Name</tr>
-      <tr>Actions</tr>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
     </thead>
     <tbody>
       <?php foreach($participationsValidated as $participation) : ?>
@@ -25,4 +33,6 @@
       <?php endforeach; ?>
     </tbody>
   </table>
+<?php else: ?>
+  Nobody registered
 <?php endif; ?>
