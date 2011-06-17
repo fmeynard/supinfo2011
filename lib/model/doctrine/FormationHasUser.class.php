@@ -12,5 +12,4 @@
  */
 class FormationHasUser extends BaseFormationHasUser
 {
-
 }

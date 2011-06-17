@@ -16,4 +16,9 @@ class FormationSessionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('FormationSession');
     }
+    
+    static public function getByAgencyQuery(Agency $agency)
+    {
+      return Doctrine_Query::create()->from('FormationSession f')->leftJoin('f.Agency s')->where('s.id = ?', $agency->getId());
+    }
 }
