@@ -19,7 +19,7 @@ class listTopicActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new TopicForm();
+    $this->form = new TopicForm(null, array('idForum'=>$request->getParameter('idForum')));
   }
 
   public function executeCreate(sfWebRequest $request)
