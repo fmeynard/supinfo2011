@@ -47,16 +47,16 @@
 
 
 
-                 <?php foreach ($frm_topic->getFrmPosts as $frm_post): ?>
+                 <?php foreach ($frm_topic->getFrmPosts() as $frm_post): ?>
 	<tr class="row1">
 
 			<td class="profile" align="center" valign="middle">
 				<a name="p5"></a>
-				<b class="postauthor" style="color: #AA0000">admin</b>
+				<b class="postauthor" style="color: #AA0000"><?php echo $frm_post->getSfGuardUser()->getUsername() ?></b>
 			</td>
 
-					<td class="row3h" width="100%"><div style="float: left;">&nbsp;Post subject: More Dummy Content</div><div style="float: right;">
-                                                <a href=""><img src="/images/forum/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a>Posted: Tue Jun 14, 2011 12:02 am&nbsp;</div></td>
+					<td class="row3h" width="100%"><div style="float: left;">&nbsp;Post subject: <?php echo $frm_post->getTitle() ?></div><div style="float: right;">
+                                                <a href=""><img src="/images/forum/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a>Posted: <?php echo $frm_post->getCreatedAt() ?> </div></td>
 		</tr>
 
 		<tr class="row1">
@@ -65,13 +65,13 @@
 				<table cellspacing="4" align="center" width="150">
 
 				<tr>
-					<td align="center" class="postdetails">Site Admin</td>
+					<td align="center" class="postdetails"><?php if($frm_post->getSfGuardUser()->getIsSuperAdmin()): ?> Administrator <?php else: ?> Membre <?php endif; ?></td>
 				</tr>
 
 				</table>
 
 				<span class="postdetails">
-					<br /><b>Joined:</b> Mon Jun 13, 2011 11:49 pm<br /><b>Posts:</b> 16
+					<br /><b>Joined:</b> <?php echo $frm_post->getSfGuardUser()->getCreatedAt() ?> <br />
 				</span>
 
 			</td>
@@ -92,7 +92,7 @@
 						</tr>
 						</table>
 
-						<div class="postbody"> message</div>
+						<div class="postbody"> <?php echo $frm_post->getContent() ?></div>
 
 					<br clear="all" /><br />
 					</td>

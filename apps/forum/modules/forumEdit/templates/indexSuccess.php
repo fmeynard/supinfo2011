@@ -1,4 +1,5 @@
-<h1>Frm forums List</h1>
+<h1>Manage Forum</h1>
+<?php if($sf_user->IsSuperAdmin()): ?>
 
 <table>
   <thead>
@@ -19,7 +20,7 @@
   <tbody>
     <?php foreach ($frm_forums as $frm_forum): ?>
     <tr>
-      <td><a href="<?php echo url_for('forumEdit/edit?id='.$frm_forum->getId()) ?>"><?php echo $frm_forum->getId() ?></a></td>
+      <td><a href="<?php echo url_for('forumEdit/edit?id='.$frm_forum->getId()) ?>">Edit <?php echo $frm_forum->getId() ?></a></td>
       <td><?php echo $frm_forum->getName() ?></td>
       <td><?php echo $frm_forum->getDescription() ?></td>
       <td><?php echo $frm_forum->getRank() ?></td>
@@ -36,3 +37,7 @@
 </table>
 
   <a href="<?php echo url_for('forumEdit/new') ?>">New</a>
+
+<?php else: ?>
+<center>You need to be an administrator.</center>
+<?php endif; ?>
