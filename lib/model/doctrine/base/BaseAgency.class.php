@@ -12,7 +12,7 @@
  * @property string $phone
  * @property string $mail
  * @property string $fax
- * @property AgencyRoom $AgencyRoom
+ * @property Doctrine_Collection $AgencyRoom
  * @property Doctrine_Collection $FormationCenter
  * @property Doctrine_Collection $FormationSession
  * @property Doctrine_Collection $Vehicle
@@ -25,7 +25,7 @@
  * @method string              getPhone()              Returns the current record's "phone" value
  * @method string              getMail()               Returns the current record's "mail" value
  * @method string              getFax()                Returns the current record's "fax" value
- * @method AgencyRoom          getAgencyRoom()         Returns the current record's "AgencyRoom" value
+ * @method Doctrine_Collection getAgencyRoom()         Returns the current record's "AgencyRoom" collection
  * @method Doctrine_Collection getFormationCenter()    Returns the current record's "FormationCenter" collection
  * @method Doctrine_Collection getFormationSession()   Returns the current record's "FormationSession" collection
  * @method Doctrine_Collection getVehicle()            Returns the current record's "Vehicle" collection
@@ -37,7 +37,7 @@
  * @method Agency              setPhone()              Sets the current record's "phone" value
  * @method Agency              setMail()               Sets the current record's "mail" value
  * @method Agency              setFax()                Sets the current record's "fax" value
- * @method Agency              setAgencyRoom()         Sets the current record's "AgencyRoom" value
+ * @method Agency              setAgencyRoom()         Sets the current record's "AgencyRoom" collection
  * @method Agency              setFormationCenter()    Sets the current record's "FormationCenter" collection
  * @method Agency              setFormationSession()   Sets the current record's "FormationSession" collection
  * @method Agency              setVehicle()            Sets the current record's "Vehicle" collection
@@ -91,7 +91,7 @@ abstract class BaseAgency extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('AgencyRoom', array(
+        $this->hasMany('AgencyRoom', array(
              'local' => 'id',
              'foreign' => 'agency_id'));
 

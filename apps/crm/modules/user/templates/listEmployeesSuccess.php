@@ -1,7 +1,7 @@
 <div id="subMenu">
   <ul>
     <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
-    <li><?php echo link_to(__($agency),'dashboard_agency', $agency); ?></li>
+    <li><?php echo link_to(__($agency),'agency/view?slug='.$agency->getSlug()); ?></li>
     <li><?php echo __('Employees'); ?></li>
   </ul>
 </div>
@@ -14,7 +14,7 @@ var testg;
 $("#sfGrid").flexigrid
 (
   {
-    url: "<?php echo url_for('@agency_load_employees?id='.$agency->getId()); ?>",
+    url: "<?php echo url_for('user/loadEmployees?id='.$agency->getId()); ?>",
     dataType: 'json',
     colModel : [
     {display: '<?php echo __('Id'); ?>', name : 'id', width: 30, sortable : true, align: 'left'},
@@ -22,6 +22,7 @@ $("#sfGrid").flexigrid
     {display: '<?php echo __('E-mail'); ?>', name : 'Mail', width: 150, sortable : true, align: 'left'},
     {display: '<?php echo __('Portable'); ?>', name : 'Mobile', width: 150, sortable : true, align: 'left'},
     {display: '<?php echo __('Fixe'); ?>', name : 'Phone', width: 150, sortable : true, align: 'left'},
+    {display: '<?php echo __('Actions'); ?>', name : 'Phone', width: 150, sortable : true, align: 'left'},
     ],
     buttons : [
     {name: 'Add', bclass: 'add', onpress : addFct},
@@ -46,7 +47,7 @@ $("#sfGrid").flexigrid
 
 function addFct(com)
 {
- window.location.replace("<?php echo url_for('new_employee', $agency); ?>"); 
+ window.location.replace("<?php echo url_for('user/newEmployee?slug='.$agency->getSlug()); ?>"); 
 }
 
 </script>

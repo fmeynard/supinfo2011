@@ -18,12 +18,12 @@
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
+ * @property Doctrine_Collection $FormationHasUser
  * @property sfGuardUserProfile $Profile
  * @property Doctrine_Collection $CommunityPost
  * @property Doctrine_Collection $CommunityComment
  * @property Doctrine_Collection $FrmTopic
  * @property Doctrine_Collection $FrmPost
- * @property Doctrine_Collection $FrmTopicView
  * 
  * @method integer             getId()                    Returns the current record's "id" value
  * @method string              getUsername()              Returns the current record's "username" value
@@ -38,12 +38,12 @@
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method Doctrine_Collection getFormationHasUser()      Returns the current record's "FormationHasUser" collection
  * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection getCommunityPost()         Returns the current record's "CommunityPost" collection
  * @method Doctrine_Collection getCommunityComment()      Returns the current record's "CommunityComment" collection
  * @method Doctrine_Collection getFrmTopic()              Returns the current record's "FrmTopic" collection
  * @method Doctrine_Collection getFrmPost()               Returns the current record's "FrmPost" collection
- * @method Doctrine_Collection getFrmTopicView()          Returns the current record's "FrmTopicView" collection
  * @method sfGuardUser         setId()                    Sets the current record's "id" value
  * @method sfGuardUser         setUsername()              Sets the current record's "username" value
  * @method sfGuardUser         setAlgorithm()             Sets the current record's "algorithm" value
@@ -57,12 +57,12 @@
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setFormationHasUser()      Sets the current record's "FormationHasUser" collection
  * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser         setCommunityPost()         Sets the current record's "CommunityPost" collection
  * @method sfGuardUser         setCommunityComment()      Sets the current record's "CommunityComment" collection
  * @method sfGuardUser         setFrmTopic()              Sets the current record's "FrmTopic" collection
  * @method sfGuardUser         setFrmPost()               Sets the current record's "FrmPost" collection
- * @method sfGuardUser         setFrmTopicView()          Sets the current record's "FrmTopicView" collection
  * 
  * @package    d
  * @subpackage model
@@ -146,6 +146,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'user_id'));
 
+        $this->hasMany('FormationHasUser', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
         $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));
@@ -163,10 +167,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasMany('FrmPost', array(
-             'local' => 'id',
-             'foreign' => 'user_id'));
-
-        $this->hasMany('FrmTopicView', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 

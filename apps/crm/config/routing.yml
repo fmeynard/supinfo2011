@@ -46,157 +46,20 @@ vehicle:
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+load_vehicles:
+  url: /load-vehicles/agency/:id
+  param: { module: vehicle, action: loadVehicles}
+  
+create_vehicle:
+  url: /create-vehicle/agency/:slug
+  param: { module: vehicle, action: createVehicle}
+
+
 # default rules
 homepage:
   url:   /
   param: { module: dashboard, action: index }
 
-
-# Vehicles
-vehicles:
-  url:    /vehicles
-  param:  { module: vehicle, action: index }
-  
-new_vehicle:
-  url:    /vehicles/new
-  param:  { module: vehicle, action: new }
-  
-vehicle_create:
-  url:    /vehicles/create
-  param:  { module: vehicle, action: create }
-
-vehicle_update:
-  url:    /vehicles/update
-  param:  { module: vehicle, action: update }
-  
-# Agencies
-agencies:
-  url:    /agencies
-  param:  { module: agency, action: index }
-  
-#Categories
-categories:
-  url:    /categories
-  param:  { module: category, action: index }
-  
-#Agencies
-dashboard_agency:
-  url:      /agency/:slug/dashboard
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: view }
-
-dashboard_vehicles:
-  url:      /agency/:slug/vehicles
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: vehicles }
-
-agency_new_vehicle:
-  url:      /agency/:slug/new-vehicle
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: newVehicle }
-  
-agency_load_vehicles:
-  url:      /agency-load-vehicles/*
-  param:    { module: agency, action: loadVehicles }
-  
-agency_load_employees:
- url:      /agency-load-employees/*
- param:    { module: agency, action: loadEmployees }
-
-agency_create_vehicle:
-  url:      /agency/:slug/create-vehicle
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: createVehicle }
-  requirements:
-    sf_method:  [POST]
-    
-agency_customers:
-  url:      /agency/:slug/customers
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: listCustomers }
-  
-agency_employees:
-  url:      /agency/:slug/employees
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: listEmployees }
-
-agency_load_customers:
- url:      /agency-load-customers/*
- param:    { module: agency, action: loadCustomers }
-    
-agency_view_vehicle:
-  url:      /agency/:agency/vehicle/:slug
-  class:    sfDoctrineRoute
-  options:  { model: Vehicle, type: object }
-  param:    { module: agency, action: viewVehicle }
-
-# User
-user:
-  url:      /user
-  param:    { module: user, action: index }
-
-new_customer: 
-  url:      /agency/:slug/newCustomer
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: user, action: newCustomer }
-
-new_employee: 
-  url:      /agency/:slug/newEmployee
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: newEmployee }
-
-agency_customer_create:
-  url:      /agency/:slug/createCustomer
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: createCustomer }
-  requirements:
-      sf_method:  [POST]
-      
-agency_employee_create:
-  url:      /agency/:slug/createEmployee
-  class:    sfDoctrineRoute
-  options:  { model: Agency, type: object }
-  param:    { module: agency, action: createEmployee }
-  requirements:
-      sf_method:  [POST]
-  
-view_customer:
-  url:      /agency/:agency/customer/:slug
-  class:    sfDoctrineRoute
-  options:  { model: sfGuardUserProfile, type: object }
-  param:    { module: user, action: viewCustomer }
-
-view_employee:
-  url:      /agency/:agency/employee/:slug
-  class:    sfDoctrineRoute
-  options:  { model: sfGuardUserProfile, type: object }
-  param:    { module: agency, action: viewEmployee }  
-  
-#Employee
-employee:
-  url:      /user/employees
-  param:    { module: employee, action: index }
-  
-employee_view:
-  url:      /user/employee/dashboard/:slug
-  class:    sfDoctrineRoute
-  options:  { model: sfGuardUserProfile, type: object }
-  param:    { module: employee, action: view }
-
-#Settings
-settings:
-  url:      /settings
-  param:    { module: settings, action: index }
-  
 default_index:
   url:   /:module
   param: { action: index }

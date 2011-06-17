@@ -30,4 +30,19 @@ class VehicleTable extends Doctrine_Table
               ->from('Vehicle v')
               ->where('v.agency_id = ?', $agency_id);
     }
+    
+    /**
+     * Get by slug
+     *
+     * @param String $string
+     *
+     * @return Vehicle
+     */
+    static public function getBySlug($string)
+    {
+      return Doctrine_Query::create()
+              ->from('Vehicle v')
+              ->where('v.slug = ?',$string)
+              ->fetchOne();
+    }
 }

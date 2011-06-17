@@ -12,4 +12,18 @@
  */
 class FormationSession extends BaseFormationSession
 {
+  public function __toString()
+  {
+    $toString = '';
+    if($this->getName()) {
+      return $this->getName();
+    }
+    
+    if($this->getDateStart())
+    {
+      return $this->getDateStart();
+    }
+    
+    return 'Formation Session #'.$this->getId();
+  }
 }

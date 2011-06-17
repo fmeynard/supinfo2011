@@ -9,3 +9,14 @@ Agency:
     name:     Bordeaux  
     address:  14 cours saint louis
     mail:     domitille.thebaud@supinfo.com
+    
+AgencyRoom:
+  ar01:
+    id:         1
+    name:       Salle 1
+    agency_id:  1
+
+  ar02:
+    id:         2
+    name:       Salle 2
+    agency_id:  1
