@@ -1,3 +1,7 @@
+<?php slot(
+  'breadcrumb',
+  sprintf('You are here : %s / %s', link_to( 'Home','homepage'), $community_category->getName()))
+?>
 <h1><?php echo $community_category->getName() ?></h1>
 <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getIsSuperAdmin()): ?>
     <a href="<?php echo url_for('category/edit?id=' . $community_category->getId()) ?>">Edit category</a>
@@ -23,3 +27,6 @@
             </div>
 <?php endif; ?>
 <?php endforeach; ?>
+<?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getIsSuperAdmin()): ?>
+            <a href="<?php echo url_for('post/new') ?>">New post</a>
+<?php endif; ?>
