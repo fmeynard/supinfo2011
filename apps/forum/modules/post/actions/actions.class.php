@@ -60,7 +60,7 @@ class postActions extends sfActions
     $this->forward404Unless($frm_post = Doctrine_Core::getTable('FrmPost')->find(array($request->getParameter('id'))), sprintf('Object frm_post does not exist (%s).', $request->getParameter('id')));
     $frm_post->delete();
 
-    $this->redirect('post/index');
+    $this->redirect('forum/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

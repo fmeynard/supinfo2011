@@ -19,7 +19,7 @@ class listTopicActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new FrmTopicForm();
+    $this->form = new TopicForm(null, array('idForum'=>$request->getParameter('idForum')));
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -27,7 +27,7 @@ class listTopicActions extends sfActions
     $this->forward404Unless($request->isMethod(sfRequest::POST));
     $this->forward404Unless($forum = FrmForumTable::getInstance()->find($request->getParameter('idForum')));
 
-        $this->form = new FrmTopicForm(NULL, array(
+        $this->form = new TopicForm(NULL, array(
         'forum' => $forum,
       ));
 
@@ -60,7 +60,7 @@ class listTopicActions extends sfActions
     $this->forward404Unless($frm_topic = Doctrine_Core::getTable('FrmTopic')->find(array($request->getParameter('id'))), sprintf('Object frm_topic does not exist (%s).', $request->getParameter('id')));
     $frm_topic->delete();
 
-    $this->redirect('listTopic/index');
+    $this->redirect('forum/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

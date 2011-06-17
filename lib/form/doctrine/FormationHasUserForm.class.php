@@ -12,5 +12,17 @@ class FormationHasUserForm extends BaseFormationHasUserForm
 {
   public function configure()
   {
+    $this->setWidget('user_id', new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)));
+    
+  }
+  
+  public function save($con = null)
+  {
+    if($this->getObject()->isNew())
+    {
+      $this->getObject()->setFormationSessionId($this->getOption('formationSession')->getId());
+    }
+    
+    parent::save($con);
   }
 }

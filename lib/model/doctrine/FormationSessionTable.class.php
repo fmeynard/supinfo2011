@@ -17,8 +17,71 @@ class FormationSessionTable extends Doctrine_Table
         return Doctrine_Core::getTable('FormationSession');
     }
     
+    /**
+     * Get by Agency Query
+     *
+     * @param Agency $agency
+     *
+     * @return Doctrine_Query
+     */
     static public function getByAgencyQuery(Agency $agency)
     {
       return Doctrine_Query::create()->from('FormationSession f')->leftJoin('f.Agency s')->where('s.id = ?', $agency->getId());
+    }
+    
+    /**
+     * get participations
+     *
+     * @param FormationSession  $formationSession
+     * @param Integer           $filter
+     *
+     * @return Doctrine_Collection
+     */
+    static public function getParticipations(FormationSession $formationSession, $filter = FormationSession::PARTICIPATION_ALL)
+    {
+      $query = Doctrine_Query::create()
+                ->from('FormationHasUser fhc')
+                ->leftJoin('fhc.FormationSession fs')
+                ->where('fs.id = ?', $formationSession->getId());
+                
+      if($filter == FormationSession::PARTICIPATION_VALIDATED)
+      {
+        $query->addWhere('fhc.is_valid = ?', true);
+      } 
+      elseif($filter = FormationSession::PARTICIPATION_NOT_VALIDATED)
+      {
+        $query->addWhere('fhc.is_valid = ?', false);
+      }
+      
+      return $query->execute();
+    }
+    
+    /**
+     * get available customers
+     *
+     * @param FormationSession $formationSession
+     * 
+     * @return Array
+     */
+    static public function getAvailableCustomers(FormationSession $formationSession)
+    {
+      $agencyCutomers     = sfGuardUserProfileTable::getAgencyCustomersQuery($formationSession->getAgency())->execute();
+      $sessionCustomers   = array();
+      $availableCustomers = array();
+      
+      foreach($formationSession->getValidatedParticipations() as $current)
+      {
+        $sessionCustomers[] = $current->getUserId();
+      }
+      
+      foreach($agencyCutomers as $customer) 
+      {
+        if(!in_array($customer->getSfGuardUserId(), $sessionCustomers))
+        {
+          $availableCustomers[$customer->getSfGuardUserId()] = $customer->getFullname();
+        }
+      }
+      
+      return $availableCustomers;
     }
 }
