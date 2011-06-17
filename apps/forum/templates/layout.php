@@ -65,7 +65,7 @@
 	  <table width="100%" cellspacing="0">
 
             <tbody><tr>
-			<td class="gensmall"></td>
+			<td class="breadcrumbs"><?php include_slot('breadcrumb') ?></td>
 			<td class="gensmall" align="right">It is currently <?php echo Date('D d M  H:i:s') ?><br /></td>
 		</tr>
 		</tbody></table>
