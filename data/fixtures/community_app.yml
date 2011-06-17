@@ -2,14 +2,15 @@
 CommunityCategory:
   cat1:
     id:           1
-    name:         Sécurité Routière
-    description:  Toutes les règles de sécurité
+    name:         Road Safety
+    description:  All rules for a Road Safety
     is_active:    1
   cat2:
     id:           2
-    name:         Le permis
-    description:  Tout ce qu'il faut savoir sur le permis
+    name:         The Licence
+    description:  Everything about the licence
     is_active:    1
+
 
 CommunityPost:
   post1:
