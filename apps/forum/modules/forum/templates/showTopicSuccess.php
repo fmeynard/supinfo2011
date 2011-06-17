@@ -15,7 +15,7 @@
 		<td align="left" height="30" width="100" valign="middle" nowrap="nowrap">
         <div class="buttons">
 
-		<div class="reply-icon"><a href="" title="Post a reply"><span></span></a></div>
+		<div class="reply-icon"><a href="<?php echo url_for('Post/new?id='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
 
         </div>
 		</td>
@@ -56,6 +56,7 @@
 			</td>
 
 					<td class="row3h" width="100%"><div style="float: left;">&nbsp;Post subject: <?php echo $frm_post->getTitle() ?></div><div style="float: right;">
+                                                <?php if($sf_user->IsSuperAdmin()): ?> <a title="" href="<?php echo url_for('post/edit?id='.$frm_post->getId()) ?>" class=""> Edit </a> <?php endif; ?>
                                                 <a href=""><img src="/images/forum/icon_post_target.gif" width="12" height="9" alt="Post" title="Post" /></a>Posted: <?php echo $frm_post->getCreatedAt() ?> </div></td>
 		</tr>
 
@@ -119,7 +120,7 @@
 		<td align="left" height="35" width="100" valign="middle" nowrap="nowrap">
 		<div class="buttons">
 
-		<div class="reply-icon"><a href="" title="Post a reply"><span></span></a></div>
+		<div class="reply-icon"><a href="<?php echo url_for('Post/new?id='.$frm_topic->getId()) ?>" title="Post a reply"><span></span></a></div>
 
         </div>
 		</td>

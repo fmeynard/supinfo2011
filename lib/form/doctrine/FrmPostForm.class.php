@@ -12,5 +12,17 @@ class FrmPostForm extends BaseFrmPostForm
 {
   public function configure()
   {
+         unset($this['author_name'], $this['updated_at'], $this['created_at'],  $this['user_id'],  $this['topic_id'], $this['forum_id'] );
+  }
+
+   public function save($con = null)
+  {
+    if($this->getObject()->isNew())
+    {
+      $this->getObject()->setForumId($this->getOption('FrmForum')->getId());
+      $this->getObject()->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
+    }
+
+    parent::save($con);
   }
 }

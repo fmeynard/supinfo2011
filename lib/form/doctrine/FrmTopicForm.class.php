@@ -12,5 +12,17 @@ class FrmTopicForm extends BaseFrmTopicForm
 {
   public function configure()
   {
+      unset($this['slug'], $this['updated_at'], $this['created_at'], $this['nb_views'], $this['nb_posts'],  $this['user_id'],  $this['latest_post_id'], $this['forum_id'], $this['is_locked'], $this['is_sticked'] );
+  }
+
+  public function save($con = null)
+  {
+    if($this->getObject()->isNew())
+    {
+      $this->getObject()->setForumId($this->getOption('FrmForum')->getId());
+      $this->getObject()->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
+    }
+
+    parent::save($con);
   }
 }
