@@ -12,6 +12,17 @@
  */
 class FormationSession extends BaseFormationSession
 {
+  const PARTICIPATION_VALIDATED     = 1;
+  const PARTICIPATION_NOT_VALIDATED = 2;
+  const PARTICIPATION_ALL           = 3;
+  
+  protected $validatedParticipation = false;
+  
+  /**
+   * To String 
+   *
+   * @return String
+   */
   public function __toString()
   {
     $toString = '';
@@ -25,5 +36,20 @@ class FormationSession extends BaseFormationSession
     }
     
     return 'Formation Session #'.$this->getId();
+  }
+  
+  /**
+   * get validated participations
+   *
+   * @return Doctrine_Collection
+   */
+  public function getValidatedParticipations()
+  {
+    if(!$this->validatedParticipation)
+    {
+      $this->validatedParticipation = FormationSessionTable::getParticipations($this, FormationSession::PARTICIPATION_VALIDATED);
+    }
+    
+    return $this->validatedParticipation;
   }
 }
