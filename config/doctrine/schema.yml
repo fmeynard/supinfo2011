@@ -132,8 +132,9 @@ FormationHasUser:
     formation_session_id: { type: integer }
     user_id:            { type: integer }
     is_valid:           { type: boolean }
+    grade:              { type: integer }
   relations:
-    FormationSession:   { class: Formation, foreign: id, local: formation_session_id }
+    FormationSession:   { class: FormationSession, foreign: id, local: formation_session_id }
     sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id }
 
 

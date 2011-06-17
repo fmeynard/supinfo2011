@@ -14,25 +14,28 @@
  * @property timestamp $date_end
  * @property FormationType $FormationType
  * @property Agency $Agency
+ * @property Doctrine_Collection $FormationHasUser
  * 
- * @method integer          getId()                Returns the current record's "id" value
- * @method string           getName()              Returns the current record's "name" value
- * @method integer          getFormationTypeId()   Returns the current record's "formation_type_id" value
- * @method integer          getAgencyId()          Returns the current record's "agency_id" value
- * @method integer          getCapacity()          Returns the current record's "capacity" value
- * @method timestamp        getDateStart()         Returns the current record's "date_start" value
- * @method timestamp        getDateEnd()           Returns the current record's "date_end" value
- * @method FormationType    getFormationType()     Returns the current record's "FormationType" value
- * @method Agency           getAgency()            Returns the current record's "Agency" value
- * @method FormationSession setId()                Sets the current record's "id" value
- * @method FormationSession setName()              Sets the current record's "name" value
- * @method FormationSession setFormationTypeId()   Sets the current record's "formation_type_id" value
- * @method FormationSession setAgencyId()          Sets the current record's "agency_id" value
- * @method FormationSession setCapacity()          Sets the current record's "capacity" value
- * @method FormationSession setDateStart()         Sets the current record's "date_start" value
- * @method FormationSession setDateEnd()           Sets the current record's "date_end" value
- * @method FormationSession setFormationType()     Sets the current record's "FormationType" value
- * @method FormationSession setAgency()            Sets the current record's "Agency" value
+ * @method integer             getId()                Returns the current record's "id" value
+ * @method string              getName()              Returns the current record's "name" value
+ * @method integer             getFormationTypeId()   Returns the current record's "formation_type_id" value
+ * @method integer             getAgencyId()          Returns the current record's "agency_id" value
+ * @method integer             getCapacity()          Returns the current record's "capacity" value
+ * @method timestamp           getDateStart()         Returns the current record's "date_start" value
+ * @method timestamp           getDateEnd()           Returns the current record's "date_end" value
+ * @method FormationType       getFormationType()     Returns the current record's "FormationType" value
+ * @method Agency              getAgency()            Returns the current record's "Agency" value
+ * @method Doctrine_Collection getFormationHasUser()  Returns the current record's "FormationHasUser" collection
+ * @method FormationSession    setId()                Sets the current record's "id" value
+ * @method FormationSession    setName()              Sets the current record's "name" value
+ * @method FormationSession    setFormationTypeId()   Sets the current record's "formation_type_id" value
+ * @method FormationSession    setAgencyId()          Sets the current record's "agency_id" value
+ * @method FormationSession    setCapacity()          Sets the current record's "capacity" value
+ * @method FormationSession    setDateStart()         Sets the current record's "date_start" value
+ * @method FormationSession    setDateEnd()           Sets the current record's "date_end" value
+ * @method FormationSession    setFormationType()     Sets the current record's "FormationType" value
+ * @method FormationSession    setAgency()            Sets the current record's "Agency" value
+ * @method FormationSession    setFormationHasUser()  Sets the current record's "FormationHasUser" collection
  * 
  * @package    d
  * @subpackage model
@@ -84,5 +87,9 @@ abstract class BaseFormationSession extends sfDoctrineRecord
              'local' => 'agency_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
+
+        $this->hasMany('FormationHasUser', array(
+             'local' => 'id',
+             'foreign' => 'formation_session_id'));
     }
 }

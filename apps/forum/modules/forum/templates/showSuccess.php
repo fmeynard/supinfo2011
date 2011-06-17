@@ -1,3 +1,7 @@
+<?php slot(
+  'breadcrumb','<a href="'.url_for('forum/index').'">Home</a>'
+  );
+?>
 <div id="pageheader">
 		<h2><a class="titles" href=""><?php echo $frm_forum->getName() ?></a></h2>
 
