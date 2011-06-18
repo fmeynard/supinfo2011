@@ -20,6 +20,7 @@
  * @property sfGuardRememberKey $RememberKeys
  * @property Doctrine_Collection $FormationHasTeacher
  * @property Doctrine_Collection $FormationHasUser
+ * @property Doctrine_Collection $ExamHasUser
  * @property sfGuardUserProfile $Profile
  * @property Doctrine_Collection $CommunityPost
  * @property Doctrine_Collection $CommunityComment
@@ -41,6 +42,7 @@
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method Doctrine_Collection getFormationHasTeacher()   Returns the current record's "FormationHasTeacher" collection
  * @method Doctrine_Collection getFormationHasUser()      Returns the current record's "FormationHasUser" collection
+ * @method Doctrine_Collection getExamHasUser()           Returns the current record's "ExamHasUser" collection
  * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
  * @method Doctrine_Collection getCommunityPost()         Returns the current record's "CommunityPost" collection
  * @method Doctrine_Collection getCommunityComment()      Returns the current record's "CommunityComment" collection
@@ -61,6 +63,7 @@
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser         setFormationHasTeacher()   Sets the current record's "FormationHasTeacher" collection
  * @method sfGuardUser         setFormationHasUser()      Sets the current record's "FormationHasUser" collection
+ * @method sfGuardUser         setExamHasUser()           Sets the current record's "ExamHasUser" collection
  * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
  * @method sfGuardUser         setCommunityPost()         Sets the current record's "CommunityPost" collection
  * @method sfGuardUser         setCommunityComment()      Sets the current record's "CommunityComment" collection
@@ -156,6 +159,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('FormationHasUser', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('ExamHasUser', array(
+             'local' => 'id',
+             'foreign' => 'customer_id'));
 
         $this->hasOne('sfGuardUserProfile as Profile', array(
              'local' => 'id',
