@@ -23,6 +23,19 @@ sfGuardUser:
     password:           admin
     is_active:          true
     is_super_admin:     true
+
+<?php $fname = array('John', 'Sylvain', 'Brice', 'Fabien', 'Mathieu', 'Ludovic', 'Raphael', 'Egle', 'James', 'Ian', 'Paul', 'Jerome', 'Io', 'Jenifer', 'Michel', 'Rachelle', 'Nicolas');
+$lname = array('Mura', 'Norsa', 'Causero', 'Meynard', 'Riveil', 'Bouzebiba', 'Boiry', 'Sarkozy', 'Poutine', 'Bush', 'Guest', 'Thompson', 'Petraityte', 'Loupiot', 'Raven', 'Doe')?>
+<?php for ($i = 5; $i <= 20; $i++): ?>
+  user_<?php echo $i ?>:
+    id:                 <?php echo $i ?>
+    username:           <?php echo $fname[rand(0,15)] ?>
+    password:           <?php echo $i ?>
+    is_active:          true
+    is_super_admin:     false
+
+<?php endfor ?>
+
     
     
 sfGuardUserProfile:
@@ -61,3 +74,15 @@ sfGuardUserProfile:
     last_name:          Istrator
     type:               1
     mail:               admin.istrator@supinfo.com
+
+  <?php for ($i = 5; $i <= 20; $i++): ?>
+  user_<?php echo $i ?>Profile:
+    id:                 <?php echo $i ?>
+    sf_guard_user_id:   <?php echo $i ?>
+    agency_id:          1
+    first_name:         <?php echo $fname[rand(0,15)] ?>
+    last_name:          <?php echo $lname[rand(0,14)] ?>
+    type:               1
+    mail:               <?php echo $fname[rand(0,15)] ?>. <?php echo $lname[rand(0,14)] ?>@supinfo.com
+
+<?php endfor ?>

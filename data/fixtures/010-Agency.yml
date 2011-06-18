@@ -9,14 +9,69 @@ Agency:
     name:     Bordeaux  
     address:  14 cours saint louis
     mail:     domitille.thebaud@supinfo.com
+  agency3:
+    id:       3
+    name:     Nice
+    address:  455 av. de la Californie
+    mail:     nice.agency@supinfo.com
+  agency4:
+    id:       4
+    name:     Barcelone
+    address:  1 av. Dela Vega
+    mail:     repu.gnant@supinfo.com
+  agency5:
+    id:       5
+    name:     San Francisco
+    address:  1 Golden gate street
+    mail:     gertrude.thebaud@supinfo.com
     
 AgencyRoom:
   ar01:
     id:         1
-    name:       Salle 1
+    name:       Room 1
     agency_id:  1
 
   ar02:
     id:         2
-    name:       Salle 2
+    name:       Room 2
     agency_id:  1
+
+  ar03:
+    id:         3
+    name:       Room 3
+    agency_id:  1
+
+  ar04:
+    id:         4
+    name:       Room 1
+    agency_id:  2
+
+  ar05:
+    id:         5
+    name:       Room 2
+    agency_id:  2
+
+  ar06:
+    id:         6
+    name:       Room 3
+    agency_id:  2
+
+  ar07:
+    id:         7
+    name:       Room 1
+    agency_id:  3
+
+  ar08:
+    id:         8
+    name:       Room 1
+    agency_id:  4
+
+  ar09:
+    id:         9
+    name:       Room 1
+    agency_id:  5
+
+  ar10:
+    id:         10
+    name:       Room 2
+    agency_id:  5
