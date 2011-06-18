@@ -15,39 +15,105 @@ Vehicle:
     name:             5554 MK 33
     brand:            Renault
     model:            Megane
-    year:             2011-15-03 02:17:15
-    purchase_date:    2010-15-02 02:17:15
-    next_verif_start: 2011-15-04 02:17:15
-    next_verif_end:   2011-22-03 02:17:15
-    agency_id:        2
+    year:             '2011-02-15'
+    purchase_date:    '2011-02-15'
+    next_verif_start: '2011-06-15'
+    next_verif_end:   '2011-07-15'
+    agency_id:        1
   v2:
     id:               2
     name:             6925 YW 33
     brand:            Peugeot
     model:            206
-    year:             '2011-03-15'
+    year:             '2009-03-15'
     purchase_date:    '2010-02-15'
-    next_verif_start: 2011-15-04 02:17:15
-    next_verif_end:   2011-22-03 02:17:15
+    next_verif_start: '2010-06-08'
+    next_verif_end:   '2010-07-08'
     agency_id:        1
   v3:
     id:               3
     name:             3851 DJ 01
     brand:            Renault
     model:            Megane
-    year:             2011-15-03 02:17:15
-    purchase_date:    2010-15-02 02:17:15
-    next_verif_start: 2011-15-04 02:17:15
-    next_verif_end:   2011-22-03 02:17:15
-    agency_id:        2
+    year:             '2010-07-15'
+    purchase_date:    '2010-08-27'
+    next_verif_start: '2010-06-26'
+    next_verif_end:   '2010-07-15'
+    agency_id:        1
   v4:
     id:               4
     name:             6251 PL 78
     brand:            Renault
     model:            Megane
-    year:             2011-15-03 02:17:15
-    purchase_date:    2010-15-02 02:17:15
-    next_verif_start: 2011-15-04 02:17:15
-    next_verif_end:   2011-22-03 02:17:15
+    year:             '2010-05-15'
+    purchase_date:    '2011-02-15'
+    next_verif_start: '2011-09-01'
+    next_verif_end:   '2011-10-01'
     agency_id:        2
 
+  v5:
+    id:               5
+    name:             8798 UB 06
+    brand:            Peugeot
+    model:            207
+    year:             '2010-08-15'
+    purchase_date:    '2010-09-15'
+    next_verif_start: '2011-10-15'
+    next_verif_end:   '2010-11-15'
+    agency_id:        1
+
+  v6:
+    id:               6
+    name:             8785 MR 85
+    brand:            Renault
+    model:            Modus
+    year:             '2011-05-15'
+    purchase_date:    '2011-05-15'
+    next_verif_start: '2011-05-15'
+    next_verif_end:   '2011-06-15'
+    agency_id:        2
+
+
+  v7:
+    id:               7
+    name:             4578 LK 20
+    brand:            Ford
+    model:            Fiesta
+    year:             '2010-02-15'
+    purchase_date:    '2010-02-15'
+    next_verif_start: '2010-02-15'
+    next_verif_end:   '2010-02-15'
+    agency_id:        2
+
+  v8:
+    id:               8
+    name:             4521 FG 56
+    brand:            Ford
+    model:            Fiesta
+    year:             '2009-05-18'
+    purchase_date:    '2009-02-15'
+    next_verif_start: '2011-07-15'
+    next_verif_end:   '2011-08-15'
+    agency_id:        3
+
+  v9:
+    id:               9
+    name:             6271 PL 78
+    brand:            Renault
+    model:            Megane
+    year:             '2011-02-15'
+    purchase_date:    '2010-02-15'
+    next_verif_start: '2012-02-15'
+    next_verif_end:   '2012-02-15'
+    agency_id:        4
+
+  v10:
+    id:               10
+    name:             4578 KK 20
+    brand:            Ford
+    model:            Fiesta
+    year:             '2011-02-15'
+    purchase_date:    '2011-02-15'
+    next_verif_start: '2011-06-18'
+    next_verif_end:   '2011-07-01'
+    agency_id:        5

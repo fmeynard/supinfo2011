@@ -1,7 +1,25 @@
 FormationCenter:
   fc01:
     id:     1
-    name:   Circuit Lac
+    name:   Circuit¨Pré du Lac
+  fc02:
+    id:     2
+    name:   Circuit des trois chemins
+  fc03:
+    id:     3
+    name:   Circuit du rouret
+  fc04:
+    id:     4
+    name:   Circuit Nice - St Laurent
+  fc05:
+    id:     5
+    name:   Circuit Promenade des Anglais
+  fc06:
+    id:     6
+    name:   Circuit Plateau London
+  fc07:
+    id:     7
+    name:   Circuit Plateau Bordeaux
 
 FormationType:
   f01:
@@ -18,3 +36,5 @@ FormationSession:
     formation_type_id:  1
     agency_id:          1
     capacity:           20
+
+   

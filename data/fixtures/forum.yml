@@ -8,6 +8,56 @@ FrmCategory:
     description: In order to discuss and have advice from our team
     rank:        2
 
+FrmForum:
+  forum_1:
+    name:                   General Advice
+    description:            All things you need to know before going into a car
+    FrmCategory:  c1
+    rank:                   1
+    nb_posts:               1
+    nb_topics:              4
+    latest_post_id:         1
+  forum_2:
+    name:                   CrashTest
+    description:            Here you can discuss about all car security.
+    FrmCategory:  c1
+    rank:                   1
+    nb_posts:               1
+    nb_topics:              1
+    latest_post_id:         1
+  forum_3:
+    name:                   Rules
+    description:            Here you can ask any question you have about the law.
+    FrmCategory:  c1
+    rank:                   1
+    nb_posts:               1
+    nb_topics:              1
+    latest_post_id:         1
+  forum_4:
+    name:                   News
+    description:            Stay tuned !
+    FrmCategory:  c2
+    rank:                   1
+    nb_posts:               2
+    nb_topics:              1
+    latest_post_id:         3
+  forum_5:
+    name:                   Our Team
+    description:            Stay in touch !
+    FrmCategory:  c2
+    rank:                   2
+    nb_posts:               2
+    nb_topics:              1
+    latest_post_id:         3
+  forum_6:
+    name:                   London Agency
+    description:            If you have any question about the London branch.
+    FrmCategory:  c2
+    rank:                   1
+    nb_posts:               2
+    nb_topics:              1
+    latest_post_id:         3
+
 FrmTopic:
   topic_1:
     title:              Keep your seatbelt.
@@ -16,30 +66,27 @@ FrmTopic:
     nb_posts:           1
     latest_post_id: 2
   topic_2:
-    title:              Teacher's list.
-    FrmForum: forum_2
+    title:              Always cross on the clue.
+    FrmForum: forum_1
+    user_id:        1
+    is_sticked:         true
+    nb_posts:           2
+    latest_post_id: 3
+  topic_3:
+    title:              Overspeed is your ennemy.
+    FrmForum: forum_1
+    user_id:        1
+    is_sticked:         true
+    nb_posts:           2
+    latest_post_id: 3
+  topic_4:
+    title:              Under the rain, take care !
+    FrmForum: forum_1
     user_id:        1
     is_sticked:         true
     nb_posts:           2
     latest_post_id: 3
 
-FrmForum:
-  forum_1:
-    name:                   General Advice
-    description:            All things you need to know before going into a car
-    FrmCategory:  c1
-    rank:                   1
-    nb_posts:               1
-    nb_topics:              1
-    latest_post_id:         1
-  forum_2:
-    name:                   Our Team
-    description:            Stay in touch
-    FrmCategory:  c2
-    rank:                   2
-    nb_posts:               2
-    nb_topics:              1
-    latest_post_id:         3
 FrmPost:
   post_1:
     title:                  Foo discussion
