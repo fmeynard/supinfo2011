@@ -1,25 +1,39 @@
 FormationCenter:
   fc01:
-    id:     1
-    name:   Circuit¨Pré du Lac
+    id:         1
+    name:       Circuit¨Pré du Lac
+    agency_id:  1
+    capacity:   10
   fc02:
     id:     2
     name:   Circuit des trois chemins
+    agency_id:  1
+    capacity:   12
   fc03:
     id:     3
     name:   Circuit du rouret
+    agency_id:  1
+    capacity:   13
   fc04:
     id:     4
     name:   Circuit Nice - St Laurent
+    agency_id:  2
+    capacity:   14
   fc05:
     id:     5
     name:   Circuit Promenade des Anglais
+    agency_id:  2
+    capacity:   15
   fc06:
     id:     6
     name:   Circuit Plateau London
+    agency_id:  1
+    capacity:   10
   fc07:
     id:     7
     name:   Circuit Plateau Bordeaux
+    agency_id:  2
+    capacity:   20
 
 FormationType:
   f01:
@@ -28,13 +42,183 @@ FormationType:
 
   f02:
     id:     2
-    name:   Auto - Théorique
+    name:   Auto - Theorique
+
+  f03:
+    id:     3
+    name:   Moto - Pratique
+
+  f04:
+    id:     4
+    name:   Moto - Theorique
     
 FormationSession:
   fs01:
     id:                 1
+    name:               Pratical Auto Session 1
     formation_type_id:  1
     agency_id:          1
-    capacity:           20
+    formation_center_id:  1
+    capacity:           12
+    date_start:         '2011-06-21 15:00:00'
+    date_end:           '2011-06-21 17:00:00'
 
-   
+  fs02:
+    id:                 2
+    name:               Pratical Auto Session 2
+    formation_type_id:  1
+    agency_id:          1
+    formation_center_id:  1
+    capacity:           12
+    date_start:         '2011-06-22 11:00:00'
+    date_end:           '2011-06-22 13:00:00'
+
+  fs03:
+    id:                 3
+    name:               Pratical Auto Session 3
+    formation_type_id:  1
+    agency_id:          1
+    formation_center_id:  2
+    capacity:           12
+    date_start:         '2011-06-26 11:00:00'
+    date_end:           '2011-06-26 13:00:00'
+
+  fs04:
+    id:                 4
+    name:               Pratical Auto Session 4
+    formation_type_id:  1
+    agency_id:          1
+    formation_center_id:  3
+    capacity:           12
+    date_start:         '2011-06-27 11:00:00'
+    date_end:           '2011-06-27 13:00:00'
+
+  fs05:
+    id:                 5
+    name:               Theoric Auto Session 1
+    formation_type_id:  2
+    agency_id:          1
+    agency_room_id:     1
+    capacity:           20
+    date_start:         '2011-06-15 15:00:00'
+    date_end:           '2011-06-15 17:00:00'
+
+  fs06:
+    id:                 6
+    name:               Theoric Auto Session 2
+    formation_type_id:  2
+    agency_id:          1
+    agency_room_id:     2
+    capacity:           20
+    date_start:         '2011-06-17 15:00:00'
+    date_end:           '2011-06-17 17:00:00'
+
+  fs07:
+    id:                 7
+    name:               Theoric Auto Session 3
+    formation_type_id:  2
+    agency_id:          1
+    agency_room_id:     3
+    capacity:           20
+    date_start:         '2011-06-21 15:00:00'
+    date_end:           '2011-06-21 17:00:00'
+
+  fs08:
+    id:                 8
+    name:               Theoric Auto Session 4
+    formation_type_id:  2
+    agency_id:          1
+    agency_room_id:     1
+    capacity:           20
+    date_start:         '2011-06-21 17:00:00'
+    date_end:           '2011-06-21 19:00:00'
+
+  fs09:
+    id:                 9
+    name:               Theoric Auto Session 5
+    formation_type_id:  2
+    agency_id:          1
+    agency_room_id:     1
+    capacity:           20
+    date_start:         '2011-06-25 15:00:00'
+    date_end:           '2011-06-25 17:00:00'
+
+  fs10:
+    id:                 10
+    name:               Pratical Moto Session 1
+    formation_type_id:  3
+    agency_id:          1
+    formation_center_id:  6
+    capacity:           12
+    date_start:         '2011-06-15 15:00:00'
+    date_end:           '2011-06-15 17:00:00'
+
+  fs11:
+    id:                 11
+    name:               Pratical Moto Session 2
+    formation_type_id:  3
+    agency_id:          1
+    formation_center_id:  6
+    capacity:           12
+    date_start:         '2011-06-18 13:00:00'
+    date_end:           '2011-06-18 15:00:00'
+
+  fs12:
+    id:                 12
+    name:               Pratical Moto Session 3
+    formation_type_id:  3
+    agency_id:          1
+    formation_center_id:  6
+    capacity:           12
+    date_start:         '2011-06-21 15:00:00'
+    date_end:           '2011-06-21 17:00:00'
+
+  fs13:
+    id:                 13
+    name:               Pratical Moto Session 4
+    formation_type_id:  3
+    agency_id:          1
+    formation_center_id:  1
+    capacity:           12
+    date_start:         '2011-06-22 13:00:00'
+    date_end:           '2011-06-22 15:00:00'
+
+  fs14:
+    id:                 14
+    name:               Pratical Moto Session 5
+    formation_type_id:  3
+    agency_id:          1
+    formation_center_id:  2
+    capacity:           12
+    date_start:         '2011-06-25 13:00:00'
+    date_end:           '2011-06-25 15:00:00'
+
+  fs15:
+    id:                 15
+    name:               Theoric Moto Session 1
+    formation_type_id:  4
+    agency_id:          1
+    agency_room_id:     2
+    capacity:           20
+    date_start:         '2011-06-15 15:00:00'
+    date_end:           '2011-06-15 17:00:00'
+
+  fs16:
+    id:                 16
+    name:               Theoric Moto Session 2
+    formation_type_id:  4
+    agency_id:          1
+    agency_room_id:     1
+    capacity:           20
+    date_start:         '2011-06-18 15:00:00'
+    date_end:           '2011-06-18 17:00:00'
+
+  fs17:
+    id:                 17
+    name:               Theoric Moto Session 3
+    formation_type_id:  4
+    agency_id:          1
+    agency_room_id:     3
+    capacity:           20
+    date_start:         '2011-06-25 13:00:00'
+    date_end:           '2011-06-25 15:00:00'
