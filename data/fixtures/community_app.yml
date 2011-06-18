@@ -12,32 +12,22 @@ CommunityCategory:
     is_active:    1
 
 
+<?php for ($i = 100; $i <= 120; $i++): ?>
 CommunityPost:
-  post1:
-    id:                 1
-    title:              Premier article sur la sécurité routière
-    content:            Voici notre premier article, à modifier par la suite
-    category_id:        1
-    user_id:            1
+  post_<?php echo $i ?>:
+    id:                 <?php echo $i . "\n" ?>
+    CommunityCategory:  cat<?php echo $i%2 + 1."\n" ?>
+    user_id:            <?php echo rand(1,4) ?>
     is_active:          1
-  post2:
-    id:                 2
-    title:              Deuxieme article sur la sécurité routière
-    content:            Voici notre deuxieme article, à modifier par la suite
-    category_id:        1
-    user_id:            2
-    is_active:          1
-  post3:
-    id:                 3
-    title:              Premier article sur le permis
-    content:            Voici notre premier article, à modifier par la suite
-    category_id:        2
-    user_id:            3
-    is_active:          1
+    title:              Post <?php echo $i."\n" ?>
+    content:            This is the post number <?php echo $i ?>, it's an example post to show how works our solution.
+<?php endfor ?>
 
+<?php for ($i = 100; $i <= 130; $i++): ?>
 CommunityComment:
-  comment1:
-    id:                 1
-    user_id:            2
-    post_id:            1
-    content:            très beau premier article sur la sécurité routière !
+  comment_<?php echo $i ?>:
+    id:                 <?php echo $i . "\n" ?>
+    user_id:            <?php echo rand(5,25) ?>
+    post_id:            <?php echo rand(100,120) ?>
+    content:            <?php echo ($i%2 == 0) ? "Very nice post ! Thx you for the information about that \n": "Wooooow, it's amazing !! :) \n"; ?>
+<?php endfor ?>

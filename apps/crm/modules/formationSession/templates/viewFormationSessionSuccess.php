@@ -12,3 +12,4 @@
 
 <?php include_partial('participations', array('formationSession'=>$formationSession,'form'=>$participationForm))?>
 <?php include_partial('vehicles', array('formationSession'=>$formationSession, 'form'=>$vehicleForm))?>
+<?php include_partial('teachers', array('formationSession'=>$formationSession, 'form'=>$teacherForm))?>

@@ -20,6 +20,7 @@ class FormationSession extends BaseFormationSession
   protected $notValidatedParticipation  = false;
   
   protected $vehiclesReservations       = false;
+  protected $teachersRegistrations      = false;
   
   /**
    * To String 
@@ -69,6 +70,21 @@ class FormationSession extends BaseFormationSession
     }
     
     return $this->notValidatedParticipation;
+  }
+  
+  /**
+   * Get teachers registrations
+   *
+   * @return Doctrine_Collection
+   */
+  public function getTeachersRegistrations()
+  {
+    if(!$this->teachersRegistrations)
+    {
+      $this->teachersRegistrations = FormationSessionTable::getTeachersRegistrations($this);
+    }
+    
+    return $this->teachersRegistrations;
   }
   
   /**
