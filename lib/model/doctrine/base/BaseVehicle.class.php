@@ -17,6 +17,7 @@
  * @property integer $vehicle_type_id
  * @property Agency $Agency
  * @property VehicleType $VehicleType
+ * @property Doctrine_Collection $FormationHasVehicle
  * @property Doctrine_Collection $VehicleVerification
  * 
  * @method integer             getId()                  Returns the current record's "id" value
@@ -31,6 +32,7 @@
  * @method integer             getVehicleTypeId()       Returns the current record's "vehicle_type_id" value
  * @method Agency              getAgency()              Returns the current record's "Agency" value
  * @method VehicleType         getVehicleType()         Returns the current record's "VehicleType" value
+ * @method Doctrine_Collection getFormationHasVehicle() Returns the current record's "FormationHasVehicle" collection
  * @method Doctrine_Collection getVehicleVerification() Returns the current record's "VehicleVerification" collection
  * @method Vehicle             setId()                  Sets the current record's "id" value
  * @method Vehicle             setName()                Sets the current record's "name" value
@@ -44,6 +46,7 @@
  * @method Vehicle             setVehicleTypeId()       Sets the current record's "vehicle_type_id" value
  * @method Vehicle             setAgency()              Sets the current record's "Agency" value
  * @method Vehicle             setVehicleType()         Sets the current record's "VehicleType" value
+ * @method Vehicle             setFormationHasVehicle() Sets the current record's "FormationHasVehicle" collection
  * @method Vehicle             setVehicleVerification() Sets the current record's "VehicleVerification" collection
  * 
  * @package    d
@@ -108,6 +111,10 @@ abstract class BaseVehicle extends sfDoctrineRecord
         $this->hasOne('VehicleType', array(
              'local' => 'vehicle_type_id',
              'foreign' => 'id'));
+
+        $this->hasMany('FormationHasVehicle', array(
+             'local' => 'id',
+             'foreign' => 'vehicle_id'));
 
         $this->hasMany('VehicleVerification', array(
              'local' => 'id',

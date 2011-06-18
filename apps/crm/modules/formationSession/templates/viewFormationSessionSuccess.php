@@ -10,29 +10,5 @@
 
 <h2><?php echo __('Formation Session')?> : <?php echo $formationSession->getName(); ?></h2>
 
-<div class="beforeTableActions">
-  <form method="post" action="<?php echo url_for('formationSession/createParticipation?id='.$formationSession->getId()); ?>">
-  <?php echo $addForm; ?> <input type="submit" value="add" class="smallAdd"/>
-  </form>
-</div>
-
-<?php if($participationsValidated = $formationSession->getValidatedParticipations()) : ?>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php foreach($participationsValidated as $participation) : ?>
-        <tr>
-          <td><?php echo $participation->getSfGuardUser()->getProfile()->getFullname(); ?></td>
-          <td><?php echo link_to('Delete','formationSession/deleteParticipation?id='.$participation->getId())?></td>
-        </tr>
-      <?php endforeach; ?>
-    </tbody>
-  </table>
-<?php else: ?>
-  Nobody registered
-<?php endif; ?>
+<?php include_partial('participations', array('formationSession'=>$formationSession,'form'=>$participationForm))?>
+<?php include_partial('vehicles', array('formationSession'=>$formationSession, 'form'=>$vehicleForm))?>

@@ -16,7 +16,10 @@ class FormationSession extends BaseFormationSession
   const PARTICIPATION_NOT_VALIDATED = 2;
   const PARTICIPATION_ALL           = 3;
   
-  protected $validatedParticipation = false;
+  protected $validatedParticipation     = false;
+  protected $notValidatedParticipation  = false;
+  
+  protected $vehiclesReservations       = false;
   
   /**
    * To String 
@@ -51,5 +54,35 @@ class FormationSession extends BaseFormationSession
     }
     
     return $this->validatedParticipation;
+  }
+  
+  /**
+   * Get validated participations
+   *
+   * @return Doctrine_Collection
+   */
+  public function getNotValidatedParticipations()
+  {
+    if(!$this->notValidatedParticipation)
+    {
+      $this->notValidatedParticipation = FormationSessionTable::getParticipations($this, FormationSession::PARTICIPATION_NOT_VALIDATED);
+    }
+    
+    return $this->notValidatedParticipation;
+  }
+  
+  /**
+   * Get vehicles reservation
+   *
+   * @return Doctrine_Collection
+   */
+  public function getVehiclesReservations()
+  {
+    if(!$this->vehiclesReservations)
+    {
+      $this->vehiclesReservations = FormationSessionTable::getVehiclesReservations($this);
+    }
+    
+    return $this->vehiclesReservations;
   }
 }

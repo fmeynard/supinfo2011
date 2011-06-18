@@ -19,7 +19,9 @@ class FrmPostForm extends BaseFrmPostForm
    public function save($con = null)
   {
     if($this->getObject()->isNew())
-    { 
+    {
+      if($this->getOption('topic') != null)
+              $this->getObject()->setTopicId($this->getOption('topic')->getId());
       $this->getObject()->setUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
     }
    

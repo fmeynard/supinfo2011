@@ -22,6 +22,7 @@ abstract class BaseFormationSessionForm extends BaseFormDoctrine
       'capacity'          => new sfWidgetFormInputText(),
       'date_start'        => new sfWidgetFormDateTime(),
       'date_end'          => new sfWidgetFormDateTime(),
+      'teacher_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -32,6 +33,7 @@ abstract class BaseFormationSessionForm extends BaseFormDoctrine
       'capacity'          => new sfValidatorInteger(array('required' => false)),
       'date_start'        => new sfValidatorDateTime(array('required' => false)),
       'date_end'          => new sfValidatorDateTime(array('required' => false)),
+      'teacher_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('formation_session[%s]');

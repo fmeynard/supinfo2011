@@ -11,5 +11,16 @@
  * @version    SVN: $Id: Builder.php 7691 2011-02-04 15:43:29Z jwage $
  */
 class FormationHasUser extends BaseFormationHasUser
-{
+{ 
+  /**
+   * Validate participation
+   *
+   * @return FormationHasUser
+   */
+  public function validate()
+  {
+    $this->setIsValid(true);
+    
+    return $this;
+  }
 }
