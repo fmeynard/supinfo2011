@@ -57,8 +57,8 @@ FormationSession:
     id:                 1
     name:               Pratical Auto Session 1
     formation_type_id:  1
-    agency_id:          1
-    formation_center_id:  1
+    agency_id:          2
+    formation_center_id:  5
     capacity:           12
     date_start:         '2011-06-21 15:00:00'
     date_end:           '2011-06-21 17:00:00'
@@ -147,8 +147,8 @@ FormationSession:
     id:                 10
     name:               Pratical Moto Session 1
     formation_type_id:  3
-    agency_id:          1
-    formation_center_id:  6
+    agency_id:          2
+    formation_center_id:  5
     capacity:           12
     date_start:         '2011-06-15 15:00:00'
     date_end:           '2011-06-15 17:00:00'
@@ -434,21 +434,21 @@ FormationHasUser:
     grade:                17
 
   fu12:
-    id:                   1
+    id:                   12
     formation_session_id: 4
     user_id:              13
     is_valid:             1
     grade:                11
 
   fu13:
-    id:                   1
+    id:                   13
     formation_session_id: 5
     user_id:              5
     is_valid:             1
     grade:                11
 
   fu14:
-    id:                   1
+    id:                   14
     formation_session_id: 5
     user_id:              7
     is_valid:             1
