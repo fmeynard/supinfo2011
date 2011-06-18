@@ -86,6 +86,35 @@ class FormationSessionTable extends Doctrine_Table
     }
     
     /**
+     * get available Teachers
+     *
+     * @param FormationSession $formationSession
+     * 
+     * @return Array
+     */
+    static public function getAvailableTeachers(FormationSession $formationSession)
+    {
+      $agencyTeachers     = sfGuardUserProfileTable::getAgencyTeachersQuery($formationSession->getAgency())->execute();
+      $sessionTeachers   = array();
+      $availableTeachers = array();
+      
+      foreach($formationSession->getTeachersRegistrations() as $current)
+      {
+        $sessionTeachers[] = $current->getTeacherId();
+      }
+      
+      foreach($agencyTeachers as $teacher) 
+      {
+        if(!in_array($teacher->getSfGuardUserId(), $sessionTeachers))
+        {
+          $availableTeachers[$teacher->getSfGuardUserId()] = $teacher->getFullname();
+        }
+      }
+      
+      return $availableTeachers;
+    }
+    
+    /**
      * get vehicles reservations for given FormationSession
      *
      * @param FormationSession $formationSession
@@ -96,6 +125,21 @@ class FormationSessionTable extends Doctrine_Table
     {
       return Doctrine_Query::create()
               ->from('FormationHasVehicle f')
+              ->where('f.formation_session_id = ?', $formationSession->getId())
+              ->execute();
+    }
+    
+    /**
+     * get teachers registrations for given FormationSession
+     *
+     * @param FormationSession $formationSession
+     *
+     * @return Doctrine_collection
+     */
+    static public function getTeachersRegistrations(FormationSession $formationSession)
+    {
+      return Doctrine_Query::create()
+              ->from('FormationHasTeacher f')
               ->where('f.formation_session_id = ?', $formationSession->getId())
               ->execute();
     }

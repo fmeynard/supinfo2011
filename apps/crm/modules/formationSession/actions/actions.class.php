@@ -147,6 +147,7 @@ class formationSessionActions extends sfActions
     
     $this->participationForm = new NewFormationSessionParticipationForm(NULL, array('formationSession'=>$this->formationSession));
     $this->vehicleForm       = new NewVehicleRegistrationForm(NULL, array('formationSession'=>$this->formationSession));
+    $this->teacherForm       = new NewTeacherRegistrationForm(NULL, array('formationSession'=>$this->formationSession));
   }
   
   /**
@@ -254,6 +255,45 @@ class formationSessionActions extends sfActions
     
     return sfView::NONE;
   }
+  
+  /**
+   * Executes create teacher registration action
+   * 
+   * @param sfWebRequest $request
+   */
+  public function executeCreateTeacherRegistration(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationSession = FormationSessionTable::getInstance()->find($request->getParameter('id')));
+    
+    $form = new NewTeacherRegistrationForm(NULL, array('formationSession'=>$this->formationSession));
+    $form->bind($request->getParameter($form->getName()));
+    if($form->isValid())
+    {
+      $form->save();
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+    
+    $this->redirect('formationSession/viewFormationSession?id='.$form->getObject()->getFormationSession()->getId());
+  }
+  
+  /**
+   * Executes delete teacher registration action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeDeleteTeacherRegistration(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationHasTeacher = FormationHasTeacherTable::getInstance()->find($request->getParameter('id')));
+    
+    $formationSessionId = $this->formationHasTeacher->getFormationSessionId();
+    $this->formationHasTeacher->delete();
+    
+    $this->redirect('formationSession/viewFormationSession?id='.$formationSessionId);
+  }
+  
   /**
    * Execute graduate session
    *

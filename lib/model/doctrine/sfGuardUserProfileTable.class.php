@@ -73,6 +73,22 @@ class sfGuardUserProfileTable extends Doctrine_Table
     }
     
     /**
+     * Get Agency Teachers Query
+     *
+     * @param Agency $agency
+     *
+     * @return Doctrine_Query
+     */
+    static public function getAgencyTeachersQuery(Agency $agency)
+    {
+      return Doctrine_Query::create()
+              ->from('sfGuardUserProfile p')
+              ->leftJoin('p.Agency a')
+              ->leftJoin('p.sfGuardUser u')
+              ->where('p.type = ? AND a.id = ?', array(sfGuardUserProfile::TYPE_TEACHER, $agency->getId()));
+    }
+    
+    /**
      * Get Agency Employees Query
      *
      * @param Agency $agency
