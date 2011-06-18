@@ -16,4 +16,23 @@ class sfGuardUserTable extends PluginsfGuardUserTable
     {
         return Doctrine_Core::getTable('sfGuardUser');
     }
+    
+    /**
+     * Get marks average
+     *
+     * @param Doctrine_Collection $usersCollection
+     *
+     * @return Array
+     */
+    static public function getMarksAverage(Doctrine_Collection $usersCollection, $type)
+    {
+      foreach($usersCollection as $user)
+      {
+        $averages[$user->getId()] = $user->getMarksAverage($type);
+      }
+      
+      arsort($averages);
+      
+      return $averages;
+    }
 }

@@ -12,4 +12,73 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+  protected $marks        = false;
+  protected $marksAverage = false;
+  
+  /**
+   * get or retrieved marks for given formation type
+   *
+   * @param integer $type Formation Type ID
+   *
+   * @return Array
+   */
+  public function getOrRetrievedMarks($type)
+  {
+    if(!$this->marks)
+    {
+      $datas = Doctrine_Query::create()
+                ->from('FormationHasUser fhu')
+                ->leftJoin('fhu.FormationSession fs')
+                ->where('fhu.is_valid = ? AND fhu.user_id = ? AND fs.formation_type_id = ?', array(true, $this->getId(), $type));
+                
+      $this->marks = array();
+      foreach($datas as $data)
+      {
+        if($data->getGrade() && $data->getGrade() > 0)
+        {
+          $this->marks[] = $data->getGrade();
+        }
+      }
+    }
+    
+    return $this->marks;
+  }
+  
+  /**
+   * get marks for given formation type
+   *
+   * @param integer $type Formation Type ID
+   *
+   * @return Array
+   */
+  public function getMarks($type)
+  {
+    $this->getOrRetrievedMarks($type);
+    
+    return $this->marks;
+  }
+  
+  /**
+   * Get marks average for given formation type
+   *
+   * @param integer $type Formation Type ID
+   *
+   * @return Array
+   */
+  public function getMarksAverage($type)
+  {
+    $this->getOrRetrievedMarks($type);
+    
+    if(!$this->marksAverage)
+    {
+      for($i=0; $i<$count; $i++)
+      {
+        $sum = $marks[$i];
+      }
+      
+      $this->marksAverage = $sum / $count;
+    }
+    
+    return $this->markAverage;
+  }
 }

@@ -1,0 +1,3 @@
+indexSuccess:
+    javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
+    stylesheets: [flexigrid.pack.css]
