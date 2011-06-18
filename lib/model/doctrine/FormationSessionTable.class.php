@@ -84,4 +84,49 @@ class FormationSessionTable extends Doctrine_Table
       
       return $availableCustomers;
     }
+    
+    /**
+     * get vehicles reservations for given FormationSession
+     *
+     * @param FormationSession $formationSession
+     *
+     * @return Doctrine_collection
+     */
+    static public function getVehiclesReservations(FormationSession $formationSession)
+    {
+      return Doctrine_Query::create()
+              ->from('FormationHasVehicle f')
+              ->where('f.formation_session_id = ?', $formationSession->getId())
+              ->execute();
+    }
+    
+    /**
+     * Get available vehicles 
+     *
+     * @param FormationSession $formationSession
+     *
+     * @return Array
+     */
+    static public function getAvailableVehicles(FormationSession $formationSession)
+    {
+      $agencyVehicles = VehicleTable::vehiclesByAgencyQuery($formationSession->getAgency()->getId())->execute();
+      
+      $sessionVehicles    = array();
+      $availableVehicles  = array();
+      
+      foreach($formationSession->getVehiclesReservations() as $current)
+      {
+        $sessionVehicles[] = $current->getVehicleId();
+      }
+      
+      foreach($agencyVehicles as $vehicle)
+      {
+        if(!in_array($vehicle->getId(), $sessionVehicles))
+        {
+          $availableVehicles[$vehicle->getId()] = '( '.$vehicle->getBrand().' - '. $vehicle->getModel() .' ) '.$vehicle->getName();
+        }
+      }
+      
+      return $availableVehicles;
+    }
 }

@@ -145,7 +145,8 @@ class formationSessionActions extends sfActions
   {
     $this->forward404Unless($this->formationSession = FormationSessionTable::getInstance()->find($request->getParameter('id')));
     
-    $this->addForm = new NewFormationSessionParticipationForm(NULL, array('formationSession'=>$this->formationSession));
+    $this->participationForm = new NewFormationSessionParticipationForm(NULL, array('formationSession'=>$this->formationSession));
+    $this->vehicleForm       = new NewVehicleRegistrationForm(NULL, array('formationSession'=>$this->formationSession));
   }
   
   /**
@@ -200,6 +201,59 @@ class formationSessionActions extends sfActions
     return sfView::NONE;
   }
   
+  /**
+   * Executes validate participation
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeValidateParticipation(sfWebRequest $request)
+  {
+    $this->forward404Unless($formationHasUser = FormationHasUserTable::getInstance()->find($request->getParameter('id')));
+    
+    $formationHasUser->validate()->save();
+    
+    $this->redirect('formationSession/viewFormationSession?id='.$formationHasUser->getFormationSession()->getId());
+  }
+  
+  /**
+   * Executes create vehicle registration
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeCreateVehicleRegistration(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationSession = FormationSessionTable::getInstance()->find($request->getParameter('id')));
+    $form = new NewVehicleRegistrationForm(NULL, array('formationSession'=>$this->formationSession));
+    
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+    
+    $this->redirect('formationSession/viewFormationSession?id='.$form->getObject()->getFormationSession()->getId());
+  }
+  
+  /**
+   * Executes delete vehicle reservation action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeDeleteVehicleReservation(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->formationHasVehicle = FormationHasVehicleTable::getInstance()->find($request->getParameter('id')));
+    
+    $formationSessionId = $this->formationHasVehicle->getFormationSessionId();
+    $this->formationHasVehicle->delete();
+    
+    $this->redirect('formationSession/viewFormationSession?id='.$formationSessionId);
+    
+    return sfView::NONE;
+  }
   /**
    * Execute graduate session
    *

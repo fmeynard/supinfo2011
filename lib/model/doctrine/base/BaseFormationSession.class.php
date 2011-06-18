@@ -12,30 +12,39 @@
  * @property integer $capacity
  * @property timestamp $date_start
  * @property timestamp $date_end
+ * @property integer $teacher_id
  * @property FormationType $FormationType
  * @property Agency $Agency
+ * @property sfGuardUser $sfGuardUser
  * @property Doctrine_Collection $FormationHasUser
+ * @property Doctrine_Collection $FormationHasVehicle
  * 
- * @method integer             getId()                Returns the current record's "id" value
- * @method string              getName()              Returns the current record's "name" value
- * @method integer             getFormationTypeId()   Returns the current record's "formation_type_id" value
- * @method integer             getAgencyId()          Returns the current record's "agency_id" value
- * @method integer             getCapacity()          Returns the current record's "capacity" value
- * @method timestamp           getDateStart()         Returns the current record's "date_start" value
- * @method timestamp           getDateEnd()           Returns the current record's "date_end" value
- * @method FormationType       getFormationType()     Returns the current record's "FormationType" value
- * @method Agency              getAgency()            Returns the current record's "Agency" value
- * @method Doctrine_Collection getFormationHasUser()  Returns the current record's "FormationHasUser" collection
- * @method FormationSession    setId()                Sets the current record's "id" value
- * @method FormationSession    setName()              Sets the current record's "name" value
- * @method FormationSession    setFormationTypeId()   Sets the current record's "formation_type_id" value
- * @method FormationSession    setAgencyId()          Sets the current record's "agency_id" value
- * @method FormationSession    setCapacity()          Sets the current record's "capacity" value
- * @method FormationSession    setDateStart()         Sets the current record's "date_start" value
- * @method FormationSession    setDateEnd()           Sets the current record's "date_end" value
- * @method FormationSession    setFormationType()     Sets the current record's "FormationType" value
- * @method FormationSession    setAgency()            Sets the current record's "Agency" value
- * @method FormationSession    setFormationHasUser()  Sets the current record's "FormationHasUser" collection
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method string              getName()                Returns the current record's "name" value
+ * @method integer             getFormationTypeId()     Returns the current record's "formation_type_id" value
+ * @method integer             getAgencyId()            Returns the current record's "agency_id" value
+ * @method integer             getCapacity()            Returns the current record's "capacity" value
+ * @method timestamp           getDateStart()           Returns the current record's "date_start" value
+ * @method timestamp           getDateEnd()             Returns the current record's "date_end" value
+ * @method integer             getTeacherId()           Returns the current record's "teacher_id" value
+ * @method FormationType       getFormationType()       Returns the current record's "FormationType" value
+ * @method Agency              getAgency()              Returns the current record's "Agency" value
+ * @method sfGuardUser         getSfGuardUser()         Returns the current record's "sfGuardUser" value
+ * @method Doctrine_Collection getFormationHasUser()    Returns the current record's "FormationHasUser" collection
+ * @method Doctrine_Collection getFormationHasVehicle() Returns the current record's "FormationHasVehicle" collection
+ * @method FormationSession    setId()                  Sets the current record's "id" value
+ * @method FormationSession    setName()                Sets the current record's "name" value
+ * @method FormationSession    setFormationTypeId()     Sets the current record's "formation_type_id" value
+ * @method FormationSession    setAgencyId()            Sets the current record's "agency_id" value
+ * @method FormationSession    setCapacity()            Sets the current record's "capacity" value
+ * @method FormationSession    setDateStart()           Sets the current record's "date_start" value
+ * @method FormationSession    setDateEnd()             Sets the current record's "date_end" value
+ * @method FormationSession    setTeacherId()           Sets the current record's "teacher_id" value
+ * @method FormationSession    setFormationType()       Sets the current record's "FormationType" value
+ * @method FormationSession    setAgency()              Sets the current record's "Agency" value
+ * @method FormationSession    setSfGuardUser()         Sets the current record's "sfGuardUser" value
+ * @method FormationSession    setFormationHasUser()    Sets the current record's "FormationHasUser" collection
+ * @method FormationSession    setFormationHasVehicle() Sets the current record's "FormationHasVehicle" collection
  * 
  * @package    d
  * @subpackage model
@@ -71,6 +80,9 @@ abstract class BaseFormationSession extends sfDoctrineRecord
         $this->hasColumn('date_end', 'timestamp', null, array(
              'type' => 'timestamp',
              ));
+        $this->hasColumn('teacher_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
         $this->option('type', 'MySIAM');
     }
@@ -88,7 +100,16 @@ abstract class BaseFormationSession extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 
+        $this->hasOne('sfGuardUser', array(
+             'local' => 'teacher_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
         $this->hasMany('FormationHasUser', array(
+             'local' => 'id',
+             'foreign' => 'formation_session_id'));
+
+        $this->hasMany('FormationHasVehicle', array(
              'local' => 'id',
              'foreign' => 'formation_session_id'));
     }

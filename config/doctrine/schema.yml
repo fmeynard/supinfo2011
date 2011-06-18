@@ -125,6 +125,16 @@ FormationSession:
     FormationType:      { class: FormationType, foreign: id, local: formation_type_id,  onDelete: SET NULL }
     Agency:             { class: Agency,        foreign: id, local: agency_id,          onDelete: SET NULL }
     
+FormationHasTeacher:
+  tableName:            formation_has_teacher
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    formation_session_id:   { type: integer }
+    teacher_id:         { type: integer }
+  relations:
+    FormationSession:   { class: FormationSession, foreign: id, local: formation_session_id }
+    sfGuardUser:        { class: sfGuardUser, local: teacher_id, foreign: id }
+    
 FormationHasUser:
   tableName:            formation_has_user
   columns:
@@ -136,7 +146,16 @@ FormationHasUser:
   relations:
     FormationSession:   { class: FormationSession, foreign: id, local: formation_session_id }
     sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id }
-
+    
+FormationHasVehicle:
+  tableName:            formation_has_vehicle
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    formation_session_id:   { type: integer }
+    vehicle_id:         { type: integer }
+  relations:
+    Vehicle:            { class: Vehicle, local: vehicle_id, foreign: id }
+    FormationSession:   { class: FormationSession, local: formation_session_id, foreign: id }
 
 VehicleType:
   tableName:            vehicle_type
@@ -173,8 +192,7 @@ VehicleVerification:
     date_end:           { type: timestamp }
   relations:
     Vehicle:            { class: Vehicle, foreign: id, local: vehicle_id, onDelete: NULL }
-    
-    
+
 sfGuardUserProfile:
   actAs: 
     Sluggable:

@@ -31,6 +31,7 @@ class NewFormationSessionParticipationForm extends FormationHasUserForm
   {
     if($this->getObject()->isNew())
     {
+      $this->getObject()->setFormationSessionId($this->getOption('formationSession')->getId());
       $this->getObject()->setIsValid(true);
     }
     
