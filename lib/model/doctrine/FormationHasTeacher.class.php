@@ -12,5 +12,4 @@
  */
 class FormationHasTeacher extends BaseFormationHasTeacher
 {
-
 }
