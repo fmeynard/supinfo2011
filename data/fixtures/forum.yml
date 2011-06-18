@@ -49,7 +49,7 @@ FrmForum:
     nb_posts:               2
     nb_topics:              1
     latest_post_id:         3
-forum_6:
+  forum_6:
     name:                   London Agency
     description:            If you have any question about the London branch.
     FrmCategory:  c2
