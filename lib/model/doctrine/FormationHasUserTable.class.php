@@ -16,4 +16,9 @@ class FormationHasUserTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('FormationHasUser');
     }
+
+    static public function getMarksByUserId()
+    {
+      return Doctrine_Query::create()->from('FormationHasUser f')->where('f.user_id = ?', sfContext::getInstance()->getUser()->getGuardUser()->getId());
+    }
 }
