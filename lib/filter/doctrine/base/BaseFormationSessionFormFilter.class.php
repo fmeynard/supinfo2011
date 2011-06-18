@@ -19,7 +19,6 @@ abstract class BaseFormationSessionFormFilter extends BaseFormFilterDoctrine
       'capacity'          => new sfWidgetFormFilterInput(),
       'date_start'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'date_end'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'teacher_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -29,7 +28,6 @@ abstract class BaseFormationSessionFormFilter extends BaseFormFilterDoctrine
       'capacity'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'date_start'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'date_end'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'teacher_id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('sfGuardUser'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('formation_session_filters[%s]');
@@ -56,7 +54,6 @@ abstract class BaseFormationSessionFormFilter extends BaseFormFilterDoctrine
       'capacity'          => 'Number',
       'date_start'        => 'Date',
       'date_end'          => 'Date',
-      'teacher_id'        => 'ForeignKey',
     );
   }
 }
