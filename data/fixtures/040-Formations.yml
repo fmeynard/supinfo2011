@@ -220,5 +220,5 @@ FormationSession:
     agency_id:          1
     agency_room_id:     3
     capacity:           20
-    date_start:         '2011-06-25 13:00:00'
-    date_end:           '2011-06-25 15:00:00'
+    date_start:         '2011-06-19 13:00:00'
+    date_end:           '2011-06-19 15:00:00'

@@ -9,11 +9,15 @@
  * @property string $name
  * @property integer $formation_type_id
  * @property integer $agency_id
+ * @property integer $formation_center_id
+ * @property integer $agency_room_id
  * @property integer $capacity
  * @property timestamp $date_start
  * @property timestamp $date_end
  * @property FormationType $FormationType
  * @property Agency $Agency
+ * @property FormationCenter $FormationCenter
+ * @property AgencyRoom $AgencyRoom
  * @property Doctrine_Collection $FormationHasTeacher
  * @property Doctrine_Collection $FormationHasUser
  * @property Doctrine_Collection $FormationHasVehicle
@@ -22,11 +26,15 @@
  * @method string              getName()                Returns the current record's "name" value
  * @method integer             getFormationTypeId()     Returns the current record's "formation_type_id" value
  * @method integer             getAgencyId()            Returns the current record's "agency_id" value
+ * @method integer             getFormationCenterId()   Returns the current record's "formation_center_id" value
+ * @method integer             getAgencyRoomId()        Returns the current record's "agency_room_id" value
  * @method integer             getCapacity()            Returns the current record's "capacity" value
  * @method timestamp           getDateStart()           Returns the current record's "date_start" value
  * @method timestamp           getDateEnd()             Returns the current record's "date_end" value
  * @method FormationType       getFormationType()       Returns the current record's "FormationType" value
  * @method Agency              getAgency()              Returns the current record's "Agency" value
+ * @method FormationCenter     getFormationCenter()     Returns the current record's "FormationCenter" value
+ * @method AgencyRoom          getAgencyRoom()          Returns the current record's "AgencyRoom" value
  * @method Doctrine_Collection getFormationHasTeacher() Returns the current record's "FormationHasTeacher" collection
  * @method Doctrine_Collection getFormationHasUser()    Returns the current record's "FormationHasUser" collection
  * @method Doctrine_Collection getFormationHasVehicle() Returns the current record's "FormationHasVehicle" collection
@@ -34,11 +42,15 @@
  * @method FormationSession    setName()                Sets the current record's "name" value
  * @method FormationSession    setFormationTypeId()     Sets the current record's "formation_type_id" value
  * @method FormationSession    setAgencyId()            Sets the current record's "agency_id" value
+ * @method FormationSession    setFormationCenterId()   Sets the current record's "formation_center_id" value
+ * @method FormationSession    setAgencyRoomId()        Sets the current record's "agency_room_id" value
  * @method FormationSession    setCapacity()            Sets the current record's "capacity" value
  * @method FormationSession    setDateStart()           Sets the current record's "date_start" value
  * @method FormationSession    setDateEnd()             Sets the current record's "date_end" value
  * @method FormationSession    setFormationType()       Sets the current record's "FormationType" value
  * @method FormationSession    setAgency()              Sets the current record's "Agency" value
+ * @method FormationSession    setFormationCenter()     Sets the current record's "FormationCenter" value
+ * @method FormationSession    setAgencyRoom()          Sets the current record's "AgencyRoom" value
  * @method FormationSession    setFormationHasTeacher() Sets the current record's "FormationHasTeacher" collection
  * @method FormationSession    setFormationHasUser()    Sets the current record's "FormationHasUser" collection
  * @method FormationSession    setFormationHasVehicle() Sets the current record's "FormationHasVehicle" collection
@@ -68,6 +80,12 @@ abstract class BaseFormationSession extends sfDoctrineRecord
         $this->hasColumn('agency_id', 'integer', null, array(
              'type' => 'integer',
              ));
+        $this->hasColumn('formation_center_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
+        $this->hasColumn('agency_room_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
         $this->hasColumn('capacity', 'integer', null, array(
              'type' => 'integer',
              ));
@@ -91,6 +109,16 @@ abstract class BaseFormationSession extends sfDoctrineRecord
 
         $this->hasOne('Agency', array(
              'local' => 'agency_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
+        $this->hasOne('FormationCenter', array(
+             'local' => 'formation_center_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
+        $this->hasOne('AgencyRoom', array(
+             'local' => 'agency_room_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 

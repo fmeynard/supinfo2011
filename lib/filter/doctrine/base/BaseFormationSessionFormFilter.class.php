@@ -13,21 +13,25 @@ abstract class BaseFormationSessionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'              => new sfWidgetFormFilterInput(),
-      'formation_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FormationType'), 'add_empty' => true)),
-      'agency_id'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Agency'), 'add_empty' => true)),
-      'capacity'          => new sfWidgetFormFilterInput(),
-      'date_start'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
-      'date_end'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'name'                => new sfWidgetFormFilterInput(),
+      'formation_type_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FormationType'), 'add_empty' => true)),
+      'agency_id'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Agency'), 'add_empty' => true)),
+      'formation_center_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FormationCenter'), 'add_empty' => true)),
+      'agency_room_id'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AgencyRoom'), 'add_empty' => true)),
+      'capacity'            => new sfWidgetFormFilterInput(),
+      'date_start'          => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'date_end'            => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
 
     $this->setValidators(array(
-      'name'              => new sfValidatorPass(array('required' => false)),
-      'formation_type_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FormationType'), 'column' => 'id')),
-      'agency_id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Agency'), 'column' => 'id')),
-      'capacity'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'date_start'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
-      'date_end'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'name'                => new sfValidatorPass(array('required' => false)),
+      'formation_type_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FormationType'), 'column' => 'id')),
+      'agency_id'           => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Agency'), 'column' => 'id')),
+      'formation_center_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FormationCenter'), 'column' => 'id')),
+      'agency_room_id'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AgencyRoom'), 'column' => 'id')),
+      'capacity'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'date_start'          => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
+      'date_end'            => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
 
     $this->widgetSchema->setNameFormat('formation_session_filters[%s]');
@@ -47,13 +51,15 @@ abstract class BaseFormationSessionFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'                => 'Number',
-      'name'              => 'Text',
-      'formation_type_id' => 'ForeignKey',
-      'agency_id'         => 'ForeignKey',
-      'capacity'          => 'Number',
-      'date_start'        => 'Date',
-      'date_end'          => 'Date',
+      'id'                  => 'Number',
+      'name'                => 'Text',
+      'formation_type_id'   => 'ForeignKey',
+      'agency_id'           => 'ForeignKey',
+      'formation_center_id' => 'ForeignKey',
+      'agency_room_id'      => 'ForeignKey',
+      'capacity'            => 'Number',
+      'date_start'          => 'Date',
+      'date_end'            => 'Date',
     );
   }
 }

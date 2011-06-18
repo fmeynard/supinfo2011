@@ -118,7 +118,7 @@ FormationSession:
     name:               { type: string(64) }
     formation_type_id:  { type: integer }
     agency_id:          { type: integer }
-    formation_center_id:{ type: integer }
+    formation_center_id: { type: integer }
     agency_room_id:     { type: integer }
     capacity:           { type: integer }
     date_start:         { type: timestamp }
