@@ -106,13 +106,11 @@ class marksActions extends sfActions
     if ($this->form->isValid())
     {
       $this->form->save();
-      $this->redirect('marks/graduateSession?id='.$this->formationSession->getId());
+      $this->redirect('marks/index');
     }
     else
     {
       $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
     }
-
-    $this->setTemplate('graduateSession');
   }
 }

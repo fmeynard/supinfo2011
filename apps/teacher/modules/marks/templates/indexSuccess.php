@@ -1,5 +1,4 @@
-<h1>Formation has teachers List</h1>
-<h5><?php echo $sf_user->getGuardUser()->getProfile()->getFullname() . "(" . $sf_user->getGuardUser()->getUsername() . ")" . " - " . link_to("Logout", "/logout") ?></h5>
+<h5><?php echo $sf_user->getGuardUser()->getProfile()->getFullname() . "(" . $sf_user->getGuardUser()->getUsername() . ")" . " - " . link_to("Logout", "/sfGuardAuth/signout") ?></h5>
 
 <table>
     <?php foreach ($formation_has_teachers as $formation_has_teacher): ?>
@@ -11,5 +10,3 @@
         <?php endif; ?>
     <?php endforeach; ?>
 </table>
-
-<a href="<?php echo url_for('marks/new') ?>">New</a>
