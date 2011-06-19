@@ -349,7 +349,7 @@ UserHasPackage:
     id:                 1
     user_id:            10
     package_id:         9
-  up03:
+  up02:
     id:                 2
     user_id:            11
     package_id:         20
