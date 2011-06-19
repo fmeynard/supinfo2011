@@ -25,7 +25,7 @@
                     <div class="topbar-left-cap"></div>
                     <ul class="topmenuleft">
                         <li class="home"> <a href="<?php echo url_for('forum/index') ?>">Home</a></li>
-                        <li> <a href="mailto:gerard.durand@SafeDriving.com">Contact</a></li>
+                        <li> <a href="mailto:contact@SafeDriving.com">Contact</a></li>
                     </ul>
                     <div class="topbar-right-cap"></div>
                 </div>
