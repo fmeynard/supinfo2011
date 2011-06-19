@@ -83,5 +83,4 @@ class forumActions extends sfActions {
             $this->redirect('forum/edit?id=' . $frm_category->getId());
         }
     }
-
 }
