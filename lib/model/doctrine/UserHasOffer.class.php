@@ -12,5 +12,27 @@
  */
 class UserHasOffer extends BaseUserHasOffer
 {
-
+  /**
+   * Disable current package
+   *
+   * @return UserHasOffer
+   */
+  public function disable()
+  {
+    $this->setIsActive(false);
+    
+    return $this;
+  }
+  
+  /**
+   * Enable current package
+   *
+   * @return UserHasOffer
+   */
+  public function enable()
+  {
+    $this->setIsActive(true);
+    
+    return $this;
+  }
 }

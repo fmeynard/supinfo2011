@@ -9,3 +9,26 @@
 <br /><br />
 
 <h2><?php echo __('Employee')?> : <?php echo $user->getFullname(); ?></h2>
+
+<table>
+  <tr>
+    <td>Firstname :</td>
+    <td><?php echo $user->getFirstName(); ?></td>
+  </tr>
+  <tr>
+    <td>Lastname :</td>
+    <td><?php echo $user->getLastName(); ?></td>
+  </tr>
+  <tr>
+    <td>Birthday :</td>
+    <td><?php echo $user->getBirthday()?></td>
+  </tr>
+  <tr>
+    <td>Mail :</td>
+    <td><?php echo $user->getMail(); ?></td>
+  </tr>
+  <tr>
+    <td>Phone :</td>
+    <td><?php echo $user->getPhone(); ?></td>
+  </tr>
+</table>
