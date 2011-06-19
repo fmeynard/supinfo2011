@@ -43,4 +43,11 @@ class sfGuardUserTable extends PluginsfGuardUserTable
       
       return array('averages'=>$averages,'users'=>$users);
     }
+    
+    static public function getTeacherAvailibiltiesQuery(sfGuardUser $Teacher)
+    {
+      return Doctrine_Query::create()
+              ->from('TeacherUnavailability u')
+              ->where('u.sf_guard_user_id = ?', $Teacher->getId());
+    }
 }
