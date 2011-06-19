@@ -60,7 +60,7 @@ class examActions extends sfActions
   {
     $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
     
-    $this->form = new ExamForm(NULL, array('agency'=>$agency));
+    $this->form = new ExamForm(NULL, array('agency'=>$this->agency));
   }
   
   /**
@@ -72,7 +72,7 @@ class examActions extends sfActions
   {
     $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
     
-    $this->form = new ExamForm(NULL, array('agency'=>$agency));
+    $this->form = new ExamForm(NULL, array('agency'=>$this->agency));
     $this->processExamForm($request, $this->form);
     
     $this->setTemplate('new');
@@ -109,7 +109,7 @@ class examActions extends sfActions
    * @param sfForm        $form
    * @param sfWebRequest  $request
    */
-  protected function processExamForm(sfForm $form, sfWebRequest $request)
+  protected function processExamForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
@@ -124,6 +124,16 @@ class examActions extends sfActions
   }
   
   /**
+   * Executes view action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeView(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->exam = ExamTable::getInstance()->find($request->getParameter('id')));
+  }
+  
+  /**
    * Executes registration process action
    *
    * @param sfWebRequest $request
@@ -135,6 +145,8 @@ class examActions extends sfActions
     $exam->registrationProcess();
     
     $this->redirect('exam/view?id='.$exam->getId());
+    
+    return sfView::NONE;
   }
   
   /**
@@ -158,6 +170,19 @@ class examActions extends sfActions
     }
   }
   
+  public function executeAddExamToUser(sfWebRequest $request)
+  {
+    $this->forward404Unless($exam = ExamTable::getInstance()->find($request->getParameter('exam')));
+    $this->forward404Unless($user = sfGuardUserTable::getInstance()->find($request->getParameter('user')));
+    
+    $ehu = new ExamHasUser();
+    $ehu->setExamId($exam->getId());
+    $ehu->setCustomerId($user->getId());
+    $ehu->save();
+    
+    $this->redirect('exam/view?id='.$exam->getId());
+  }
+  
   /**
    * Executes delete exam user action
    *
@@ -165,7 +190,7 @@ class examActions extends sfActions
    */
   public function executeDeleteExamUser(sfWebRequest $request)
   {
-    $this->forward404Unless($examUser = FormationHasUser::getInstance()->find($request)->getParameter('id'));
+    $this->forward404Unless($examUser = ExamHasUserTable::getInstance()->find($request->getParameter('id')));
     
     $examId = $examUser->getExamId();
     $examUser->delete();

@@ -24,15 +24,23 @@ class sfGuardUserTable extends PluginsfGuardUserTable
      *
      * @return Array
      */
-    static public function getMarksAverage(Doctrine_Collection $usersCollection, $type)
+    static public function getMarksAverage($type, Doctrine_Collection $usersCollection)
     {
+      $averages = array();
+      $users    = array();
+      
       foreach($usersCollection as $user)
       {
-        $averages[$user->getId()] = $user->getMarksAverage($type);
+        $avg = $user->getMarksAverage($type);
+        if($avg > 0)
+        {
+          $averages[$user->getSfGuardUser()->getId()] = $user->getMarksAverage($type);
+          $users[$user->getSfGuardUser()->getId()]    = $user->getFullname();
+        }
       }
       
       arsort($averages);
       
-      return $averages;
+      return array('averages'=>$averages,'users'=>$users);
     }
 }

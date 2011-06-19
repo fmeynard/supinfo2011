@@ -19,4 +19,9 @@ class sfGuardUserProfile extends BasesfGuardUserProfile
   public function __toString() { return $this->getFirstName() . ' ' . $this->getLastName(); }
   
   public function getFullname() { return $this->getFirstName() . ' ' .  $this->getLastName(); }
+  
+  public function getMarksAverage($type)
+  {
+    return $this->getSfGuardUser()->getMarksAverage($type);
+  }
 }
