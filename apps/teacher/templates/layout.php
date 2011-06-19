@@ -5,13 +5,20 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="viewport" content="width=360, initial-scale=1, minimum-scale=0.45"/>
+    <meta name="viewport" content="width=360, initial-scale=1, minimum-scale=1"/>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
-  <body style="width:360px;">
-    <?php include_partial('global/menu')?>
-
+  <body style="width:360px;background:#242527;">
+          <ul class="keyboard">
+              <li> <a class="link-button" href="<?php echo url_for('unavailability/index')?>"> <img src="/images/teacher/icon_event.png" alt="user" width="39" height="38"/> </a>
+          <label>Unavailability</label>
+        </li>
+        <li> <a class="link-button" href="<?php echo url_for('marks/index')?>"> <img src="/images/teacher/icon_write.png" alt="write" width="39" height="38"/> </a>
+          <label>Grade</label>
+        </li>
+      </ul>
+      <div style="clear:both;"></div>
     <div id="content">
       <?php echo $sf_content ?>
     </div>
