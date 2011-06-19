@@ -36,7 +36,9 @@ class forumActions extends sfActions {
     }
 
     public function executeRegister(sfWebRequest $request){
-       // $this->form = new CustomerForm($object, $options, $CSRFSecret)
+       $this->form = new CustomerForm();
+       $this->setTemplate('register');
+
     }
 
     public function executeCreate(sfWebRequest $request) {
