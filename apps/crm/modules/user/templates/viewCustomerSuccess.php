@@ -100,6 +100,7 @@
 <ul id="toggleUl">
   <li id="customersOffers" class="active">Offers</li>
 </ul>
+<div style="clear: both"></div>
 <div id="customersOffers-div" class="toggle">
   <form method="post" action="<?php echo url_for('user/addOffer?slug='.$user->getSlug()); ?>">
     <?php echo $userHasOfferForm; ?>
