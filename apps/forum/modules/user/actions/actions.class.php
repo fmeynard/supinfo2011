@@ -27,7 +27,7 @@ class userActions extends sfActions
    */
   public function executeNewCustomer(sfWebRequest $request)
   {
-    $this->form = new CustomerForm(array());
+    $this->form = new CustomerForumForm(array());
   }
 
   /**
@@ -37,7 +37,7 @@ class userActions extends sfActions
    */
   public function executeCreateCustomer(sfWebRequest $request)
   {
-    $this->form = new CustomerForm(array());
+    $this->form = new CustomerForumForm(array());
     $this->processCustomerForm($request, $this->form);
 
     $this->setTemplate('newCustomer');
@@ -55,7 +55,7 @@ class userActions extends sfActions
     if ($form->isValid())
     {
       $form->save();
-      $this->redirect('user/viewCustomer?slug='.$form->getObject()->getProfile()->getSlug());
+      $this->redirect('forum/index');
     }
     else
     {

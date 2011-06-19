@@ -27,3 +27,4 @@ class CustomerForm extends sfGuardUserForm
     parent::save($con);
   }
 }
+?>

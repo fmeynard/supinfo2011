@@ -1,18 +1,7 @@
-<div id="subMenu">
-  <ul>
-    <li><?php echo link_to(__('Agencies'),'agency/index'); ?></li>
-    <li><?php echo link_to(__($agency),'agency/view?slug='.$agency->getSlug()); ?></li>
-    <li><?php echo link_to(__('Customers'),'user/listCustomers?slug='.$agency->getSlug()); ?></li>
-    <li><?php echo __('New'); ?></li>
-  </ul>
-</div>
-
-<br /><br />
-
-<h2>New Customer</h2>
+<h2>New User</h2>
 <div id="sf_admin_content">
   <div class="sf_admin_form">
-    <form method="post" action="<?php echo url_for('user/createCustomer?slug='.$agency->getSlug()); ?>">
+    <form method="post" action="<?php echo url_for('user/createCustomer'); ?>">
     <fieldset>
       <?php echo $form; ?>
     </fieldset>
