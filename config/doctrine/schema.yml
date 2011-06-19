@@ -43,8 +43,10 @@ Offer:
     category_id:        { type: integer, notnull: true }
     is_active:          { type: boolean }
     is_package_only:    { type: boolean }
+    formation_type_id:  { type: integer }
   relations:
     Category:           { class: Category, local: category_id, foreign: id, onDelete: SET NULL }
+    FormationType:      { class: FormationType, local: formation_type_id, foreign: id, onDelete: SET NULL }
 
 Category:
   actAs:
@@ -61,6 +63,30 @@ Category:
     is_active:          { type: boolean }
   relations:
     Category:           { class: Category, local: category_id, foreign: id }
+
+UserHasPackage:
+  tableName:            user_has_package
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    user_id:            { type: integer }
+    package_id:         { type: integer }
+    is_active:          { type: boolean }
+    is_paid:            { type: boolean }
+  relations:
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
+    Package:            { class: Package, local: package_id, foreign: id}
+    
+UserHasOffer:
+  tableName:            user_has_offer
+  columns:
+    id:                 {type: integer, notnull: true, primary: true, autoincrement: true}
+    user_id:            { type: integer }
+    offer_id:           { type: integer }
+    is_active:          { type: boolean }
+    is_paid:            { type: boolean }
+  relations:
+    sfGuardUser:        { class: sfGuardUser, local: user_id, foreign: id}
+    Offer:            { class: Offer, local: offer_id, foreign: id}
 
 Agency:
   actAs:
