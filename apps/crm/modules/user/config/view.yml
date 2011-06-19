@@ -16,3 +16,7 @@ listTeachersSuccess:
 viewTeacherSuccess:
     javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
     stylesheets: [flexigrid.pack.css]
+    
+viewCustomerSuccess:
+    javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
+    stylesheets: [flexigrid.pack.css]

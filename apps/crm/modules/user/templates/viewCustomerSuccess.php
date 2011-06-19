@@ -154,3 +154,38 @@
     </tbody>
   </table>
 </div>
+
+<ul id="toggleUl">
+    <li id="customersOffers" class="active">Formations Sessions</li>
+</ul>
+<div style="clear: both"></div>
+<div id="customersOffers-div" class="toggle">
+    <div id="sfGrid" style="bottom: 0"></div>
+    <script language="javascript" type="text/javascript">
+    var testg;
+    $("#sfGrid").flexigrid
+    (
+      {
+        url: "<?php echo url_for('formationSession/loadCustomerFormationSession?id='.$user->getSfGuardUser()->getId()); ?>",
+        dataType: 'json',
+        colModel : [
+        {display: '<?php echo __('Id'); ?>', name : 'id', width: 30, sortable : true, align: 'left'},
+        {display: '<?php echo __('Type'); ?>', name : 'date_start', width: 150, sortable : false, align: 'left'},
+        {display: '<?php echo __('Grade'); ?>', name : 'date_end', width: 150, sortable : false, align: 'left'},
+        {display: '<?php echo __('Date'); ?>', name : 'capacity', width: 150, sortable : false, align: 'left'},
+        {display: '<?php echo __('Actions'); ?>', name : 'Actions', width: 150, sortable : false, align: 'left'},
+        ],
+        sortname : "id",
+        sortorder : "asc",
+        usepager : true,
+        useRp : true,
+        rp : 10,
+        showTableToggleBtn : false,
+        width : '100%',
+        height : '100%',
+        singleSelect: true
+      }
+    );
+
+    </script>
+</div>
