@@ -12,4 +12,97 @@
  */
 class Exam extends BaseExam
 {
+  protected $availableUsers = false;
+  protected $participations = false;
+  
+  
+  public function __toString()
+  {
+    return $this->getFormationType()->getName() . ' #' . $this->getId();
+  }
+  
+  public function getAvailableUsers()
+  {
+    if(!$this->availableUsers)
+    {
+      $this->availableUsers = sfGuardUserTable::getMarksAverage(
+        $this->getFormationType()->getId(), 
+        sfGuardUserProfileTable::getAgencyCustomersQuery($this->getAgency())->execute()
+      );
+    }
+    
+    return $this->availableUsers;
+  }
+  
+  public function getParticipations()
+  {
+    if(!$this->participations)
+    {
+      $this->participations = ExamHasUserTable::getByExamQuery($this)->execute();
+    }
+    
+    return $this->participations;
+  }
+  
+  public function registrationProcess()
+  {
+    $max = $this->getCapacity() - count($this->getParticipations());
+    
+    $pIds = array();
+    foreach($this->getParticipations() as $p)
+    {
+      $pIds[] = $p->getCustomerId();
+    }
+    
+    if($max > 0)
+    {
+      $i=0;
+      $avgU = $this->getAvailableUsers();
+      foreach($avgU['users'] as $id => $current)
+      {
+        if($i>$max || in_array($id, $pIds))
+        {
+          continue;
+        }
+        
+        $examHasUser = new ExamHasUser();
+        $examHasUser->setExamId($this->getId());
+        $examHasUser->setCustomerId($id);
+        $examHasUser->save();
+        
+        $i++;
+      }
+    }
+  }
+  
+  public function isRegistered($user)
+  {
+    if($user instanceof sfGuardUser)
+    {
+      $id = $user->getId();
+    }
+    elseif($user instanceof sfGuardUserProfile)
+    {
+      $id = $user->getSfGuardUserId();
+    }
+    else
+    {
+      $id = $user;
+    }
+    
+    $pIds = array();
+    foreach($this->getParticipations() as $p)
+    {
+      $pIds[] = $p->getCustomerId();
+    }
+    
+    if(in_array($id,$pIds))
+    {
+      return true;
+    }
+    
+    return false;
+  }
+  
+  
 }

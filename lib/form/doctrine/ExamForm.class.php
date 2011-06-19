@@ -12,5 +12,18 @@ class ExamForm extends BaseExamForm
 {
   public function configure()
   {
+    unset($this['agency_id']);
+    
+    sfWidgetFormSchema::setDefaultFormFormatterName('Div');
+  }
+  
+  public function save($con = null)
+  {
+    if($this->getObject()->isNew())
+    {
+      $this->getObject()->setAgencyId('agency_id');
+    }
+    
+    parent::save($con);
   }
 }

@@ -20,11 +20,6 @@ class forumActions extends sfActions {
         $this->frm_forum = Doctrine_Core::getTable('FrmForum')->find(array($request->getParameter('id')));
     }
 
-   // $q = $this->createQuery('j')
-   // ->where('j.expires_at > ?', date('Y-m-d H:i:s', time()))
-   // ->orderBy('j.expires_at DESC');
-
- // return $q->execute();
 
     public function executeShowtopic(sfWebRequest $request) {
         $this->frm_topic = Doctrine_Core::getTable('FrmTopic')->find(array($request->getParameter('id')));
@@ -38,6 +33,10 @@ class forumActions extends sfActions {
 
     public function executeNew(sfWebRequest $request) {
         $this->form = new FrmCategoryForm();
+    }
+
+    public function executeRegister(sfWebRequest $request){
+       // $this->form = new CustomerForm($object, $options, $CSRFSecret)
     }
 
     public function executeCreate(sfWebRequest $request) {
