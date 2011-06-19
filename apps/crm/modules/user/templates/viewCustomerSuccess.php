@@ -10,6 +10,11 @@
 
 <h2><?php echo __('Customer')?> : <?php echo $user->getFullname(); ?></h2>
 
+<ul id="toggleUl">
+  <li id="customersInformations" class="active">Main Informations</li>
+</ul>
+<div style="clear: both"></div>
+<div id="customersInformations-div" class="toggle toggleShow">
 <table>
   <tr>
     <td>Firstname :</td>
@@ -32,8 +37,13 @@
     <td><?php echo $user->getPhone(); ?></td>
   </tr>
 </table>
+</div>
 
-<div class="customersPackages">
+<ul id="toggleUl">
+  <li id="customersPackages" class="active">Packages</li>
+</ul>
+<div style="clear: both"></div>
+<div id="customersPackages-div" class="toggle">
   <form method="post" action="<?php echo url_for('user/addPackage?slug='.$user->getSlug()); ?>">
     <?php echo $userHasPackageForm; ?>
     <input type="submit" value="Add" />
@@ -49,8 +59,9 @@
       </tr>
     </thead>
     <tbody>
+      <?php $x=0;?>
       <?php foreach($user->getSfGuardUser()->getUserHasPackage() as $uhp) : ?>
-        <tr>
+        <tr <?php if($x % 2 == 0) :?>class="moduloRow"<?php endif; ?>>
           <td><?php echo $uhp->getPackage()->getName();?></td>
           <td>
             <?php if($uhp->getIsActive()) : ?>
@@ -66,7 +77,7 @@
               no
             <?php endif; ?>
           </td>
-          <td>
+          <td class="actions">
             <?php if($uhp->getIsActive()) : ?>
               <?php echo link_to('Desactivate', 'user/disablePackage?id='.$uhp->getId())?> -
             <?php else: ?>
@@ -76,16 +87,20 @@
             <?php if(!$uhp->getIsPaid()) : ?>
               <?php echo link_to('Mark as paid', 'user/payedPackage?id='.$uhp->getId())?>
             <?php else: ?>
-              <?php echo link_to('Mark as not paid', 'user/unpayedPackage?id='.$uhp->getId())?>
+              <?php echo link_to('Mark as unpaid', 'user/unpayedPackage?id='.$uhp->getId())?>
             <?php endif;?>
           </td>
         </tr>
+        <?php $x++; ?>
       <?php endforeach;?>
     </tbody>
   </table>
 </div>
 
-<div class="customersOffers">
+<ul id="toggleUl">
+  <li id="customersOffers" class="active">Offers</li>
+</ul>
+<div id="customersOffers-div" class="toggle">
   <form method="post" action="<?php echo url_for('user/addOffer?slug='.$user->getSlug()); ?>">
     <?php echo $userHasOfferForm; ?>
     <input type="submit" value="Add" />
@@ -101,8 +116,9 @@
       </tr>
     </thead>
     <tbody>
+      <?php $x=0; ?>
       <?php foreach($user->getSfGuardUser()->getUserHasOffer() as $uhp) : ?>
-        <tr>
+        <tr <?php if($x % 2 == 0) :?>class="moduloRow"<?php endif; ?>>
           <td><?php echo $uhp->getOffer()->getName();?></td>
           <td>
             <?php if($uhp->getIsActive()) : ?>
@@ -118,7 +134,7 @@
               no
             <?php endif; ?>
           </td>
-          <td>
+          <td class="actions">
             <?php if($uhp->getIsActive()) : ?>
               <?php echo link_to('Desactivate', 'user/disableOffer?id='.$uhp->getId())?> -
             <?php else: ?>
@@ -128,10 +144,11 @@
             <?php if(!$uhp->getIsPaid()) : ?>
               <?php echo link_to('Mark as paid', 'user/payedOffer?id='.$uhp->getId())?>
             <?php else: ?>
-              <?php echo link_to('Mark as not paid', 'user/unpayedOffer?id='.$uhp->getId())?>
+              <?php echo link_to('Mark as unpaid', 'user/unpayedOffer?id='.$uhp->getId())?>
             <?php endif;?>
           </td>
         </tr>
+        <?php $x++; ?>
       <?php endforeach;?>
     </tbody>
   </table>

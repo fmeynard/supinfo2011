@@ -1,3 +1,6 @@
+all:
+    javascripts: [jquery/jquery.js]
+    
 listCustomersSuccess:
     javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
     stylesheets: [flexigrid.pack.css]

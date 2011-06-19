@@ -377,3 +377,45 @@ ul#dashLinks li {
 }
 
 ul#dashLinks { list-style-type: none;}
+
+div.toggle {
+	padding: 5px;
+	border: 2px solid #CCC;
+	background: white;
+	margin-bottom: 5px;
+}
+
+ul#toggleUl {
+	list-style-type: none;
+}
+
+ul#toggleUl li {
+	float: left;
+	margin-left: 10px;
+	border: 2px solid #CCC;
+	font-weight: bold;
+	padding: 2px 5px;
+	background: white;
+	border-bottom: 0;
+}
+
+ul#toggleUl li.active {
+	background: #CCC;
+}
+
+div.toggle table { 
+	width: 100%;
+}
+
+div.toggle table td {
+	padding: 2px 5px;
+}
+
+div.toggle table td.actions { 
+	text-align: right;
+	width: 180px;
+}
+
+div.toggle table tr.moduloRow td {
+	background: #BBB;
+}
