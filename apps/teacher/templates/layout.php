@@ -5,10 +5,11 @@
     <?php include_metas() ?>
     <?php include_title() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=360, initial-scale=1, minimum-scale=0.45"/>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
-  <body>
+  <body style="width:360px;">
     <?php include_partial('global/menu')?>
 
     <div id="content">
