@@ -3,7 +3,7 @@
   <li id="teachers" class="active">Teachers</li>
 </ul>
 <div style="clear: both"></div>
-<div id="teachers-div" class=" toggle">
+<div id="teachers-div" class="toggle">
     <div class="beforeTableActions">
   <form method="post" action="<?php echo url_for('formationSession/createTeacherRegistration?id='.$formationSession->getId()); ?>">
   <?php echo $form; ?> <input type="submit" value="add" class="smallAdd"/>
