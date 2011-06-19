@@ -30,48 +30,59 @@ AgencyRoom:
     id:         1
     name:       Room 1
     agency_id:  1
+    capacity:   20
 
   ar02:
     id:         2
     name:       Room 2
     agency_id:  1
-
+    capacity:   15
+    
   ar03:
     id:         3
     name:       Room 3
     agency_id:  1
+    capacity:   12
 
   ar04:
     id:         4
     name:       Room 1
     agency_id:  2
+    capacity:   20
 
   ar05:
     id:         5
     name:       Room 2
     agency_id:  2
+    capacity:   25
 
   ar06:
     id:         6
     name:       Room 3
     agency_id:  2
+    capacity:   8
 
   ar07:
     id:         7
     name:       Room 1
     agency_id:  3
+    capacity:   20
 
   ar08:
     id:         8
     name:       Room 1
     agency_id:  4
+    capacity:   20
 
   ar09:
     id:         9
     name:       Room 1
     agency_id:  5
+    capacity:   20
 
   ar10:
     id:         10
     name:       Room 2
     agency_id:  5
+    capacity:   20
+    

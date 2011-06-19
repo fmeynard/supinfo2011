@@ -118,12 +118,16 @@ FormationSession:
     name:               { type: string(64) }
     formation_type_id:  { type: integer }
     agency_id:          { type: integer }
+    formation_center_id: { type: integer }
+    agency_room_id:     { type: integer }
     capacity:           { type: integer }
     date_start:         { type: timestamp }
     date_end:           { type: timestamp }
   relations:
     FormationType:      { class: FormationType, foreign: id, local: formation_type_id,  onDelete: SET NULL }
     Agency:             { class: Agency,        foreign: id, local: agency_id,          onDelete: SET NULL }
+    FormationCenter:    { class: FormationCenter,foreign: id, local: formation_center_id,onDelete: SET NULL }
+    AgencyRoom:         { class: AgencyRoom,     foreign: id, local: agency_room_id,    onDelete: SET NULL }
     
 FormationHasTeacher:
   tableName:            formation_has_teacher
@@ -156,6 +160,29 @@ FormationHasVehicle:
   relations:
     Vehicle:            { class: Vehicle, local: vehicle_id, foreign: id }
     FormationSession:   { class: FormationSession, local: formation_session_id, foreign: id }
+    
+Exam:
+  tableName:            exam
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    formation_type_id:  { type: integer }
+    capacity:           { type: integer }
+    agency_id:          { type: integer }
+    date:               { type: timestamp }
+  relations:
+    FormationType:      { class: FormationType, foreign: id, local: formation_type_id }
+    Agency:             { class: Agency, foreign: id, local: agency_id }
+    
+ExamHasUser:
+  tableName:            exam_has_user
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true }
+    exam_id:            { type: integer }
+    customer_id:        { type: integer } 
+  relations:
+    Exam:               { class: Exam, foreign: id, local: exam_id }
+    Customer:           { class: sfGuardUser, foreign: id, local: customer_id }
+    
 
 VehicleType:
   tableName:            vehicle_type

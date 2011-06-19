@@ -4,11 +4,13 @@ CREATE TABLE category (id BIGINT AUTO_INCREMENT, name VARCHAR(64) NOT NULL, shor
 CREATE TABLE community_category (id BIGINT AUTO_INCREMENT, name VARCHAR(64) NOT NULL, description VARCHAR(255), is_active TINYINT(1), slug VARCHAR(255), UNIQUE INDEX community_category_sluggable_idx (slug), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE community_comment (id BIGINT AUTO_INCREMENT, user_id BIGINT NOT NULL, post_id BIGINT NOT NULL, content LONGTEXT NOT NULL, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX post_id_idx (post_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE community_post (id BIGINT AUTO_INCREMENT, title VARCHAR(64) NOT NULL, content LONGTEXT NOT NULL, category_id BIGINT, is_active TINYINT(1), user_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255), UNIQUE INDEX community_post_sluggable_idx (slug), INDEX category_id_idx (category_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = MySIAM;
+CREATE TABLE exam (id BIGINT AUTO_INCREMENT, formation_type_id BIGINT, capacity BIGINT, agency_id BIGINT, date DATETIME, INDEX formation_type_id_idx (formation_type_id), INDEX agency_id_idx (agency_id), PRIMARY KEY(id)) ENGINE = MySIAM;
+CREATE TABLE exam_has_user (id BIGINT AUTO_INCREMENT, exam_id BIGINT, customer_id BIGINT, INDEX exam_id_idx (exam_id), INDEX customer_id_idx (customer_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE formation_center (id BIGINT AUTO_INCREMENT, name VARCHAR(64) NOT NULL, agency_id BIGINT, image VARCHAR(255), address VARCHAR(255), address_bis VARCHAR(255), capacity BIGINT, slug VARCHAR(255), UNIQUE INDEX formation_center_sluggable_idx (slug), INDEX agency_id_idx (agency_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE formation_has_teacher (id BIGINT AUTO_INCREMENT, formation_session_id BIGINT, teacher_id BIGINT, INDEX formation_session_id_idx (formation_session_id), INDEX teacher_id_idx (teacher_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE formation_has_user (id BIGINT AUTO_INCREMENT, formation_session_id BIGINT, user_id BIGINT, is_valid TINYINT(1), grade BIGINT, INDEX formation_session_id_idx (formation_session_id), INDEX user_id_idx (user_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE formation_has_vehicle (id BIGINT AUTO_INCREMENT, formation_session_id BIGINT, vehicle_id BIGINT, INDEX vehicle_id_idx (vehicle_id), INDEX formation_session_id_idx (formation_session_id), PRIMARY KEY(id)) ENGINE = MySIAM;
-CREATE TABLE formation_session (id BIGINT AUTO_INCREMENT, name VARCHAR(64), formation_type_id BIGINT, agency_id BIGINT, capacity BIGINT, date_start DATETIME, date_end DATETIME, INDEX formation_type_id_idx (formation_type_id), INDEX agency_id_idx (agency_id), PRIMARY KEY(id)) ENGINE = MySIAM;
+CREATE TABLE formation_session (id BIGINT AUTO_INCREMENT, name VARCHAR(64), formation_type_id BIGINT, agency_id BIGINT, formation_center_id BIGINT, agency_room_id BIGINT, capacity BIGINT, date_start DATETIME, date_end DATETIME, INDEX formation_type_id_idx (formation_type_id), INDEX agency_id_idx (agency_id), INDEX formation_center_id_idx (formation_center_id), INDEX agency_room_id_idx (agency_room_id), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE formation_type (id BIGINT AUTO_INCREMENT, name VARCHAR(64) NOT NULL, PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE frm_Category (id BIGINT AUTO_INCREMENT, name VARCHAR(255), description LONGTEXT, rank BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255), UNIQUE INDEX frm_Category_sluggable_idx (slug), PRIMARY KEY(id)) ENGINE = MySIAM;
 CREATE TABLE frm_Forum (id BIGINT AUTO_INCREMENT, name VARCHAR(255), description LONGTEXT, rank BIGINT, category_id BIGINT, latest_post_id BIGINT, nb_posts BIGINT, nb_topics BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, slug VARCHAR(255), UNIQUE INDEX frm_Forum_sluggable_idx (slug), INDEX category_id_idx (category_id), INDEX latest_post_id_idx (latest_post_id), PRIMARY KEY(id)) ENGINE = MySIAM;
@@ -34,6 +36,10 @@ ALTER TABLE community_comment ADD CONSTRAINT community_comment_user_id_sf_guard_
 ALTER TABLE community_comment ADD CONSTRAINT community_comment_post_id_community_post_id FOREIGN KEY (post_id) REFERENCES community_post(id);
 ALTER TABLE community_post ADD CONSTRAINT community_post_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE community_post ADD CONSTRAINT community_post_category_id_community_category_id FOREIGN KEY (category_id) REFERENCES community_category(id);
+ALTER TABLE exam ADD CONSTRAINT exam_formation_type_id_formation_type_id FOREIGN KEY (formation_type_id) REFERENCES formation_type(id);
+ALTER TABLE exam ADD CONSTRAINT exam_agency_id_agency_id FOREIGN KEY (agency_id) REFERENCES agency(id);
+ALTER TABLE exam_has_user ADD CONSTRAINT exam_has_user_exam_id_exam_id FOREIGN KEY (exam_id) REFERENCES exam(id);
+ALTER TABLE exam_has_user ADD CONSTRAINT exam_has_user_customer_id_sf_guard_user_id FOREIGN KEY (customer_id) REFERENCES sf_guard_user(id);
 ALTER TABLE formation_center ADD CONSTRAINT formation_center_agency_id_agency_id FOREIGN KEY (agency_id) REFERENCES agency(id) ON DELETE SET NULL;
 ALTER TABLE formation_has_teacher ADD CONSTRAINT formation_has_teacher_teacher_id_sf_guard_user_id FOREIGN KEY (teacher_id) REFERENCES sf_guard_user(id);
 ALTER TABLE formation_has_teacher ADD CONSTRAINT formation_has_teacher_formation_session_id_formation_session_id FOREIGN KEY (formation_session_id) REFERENCES formation_session(id);
@@ -42,6 +48,8 @@ ALTER TABLE formation_has_user ADD CONSTRAINT formation_has_user_formation_sessi
 ALTER TABLE formation_has_vehicle ADD CONSTRAINT formation_has_vehicle_vehicle_id_vehicle_id FOREIGN KEY (vehicle_id) REFERENCES vehicle(id);
 ALTER TABLE formation_has_vehicle ADD CONSTRAINT formation_has_vehicle_formation_session_id_formation_session_id FOREIGN KEY (formation_session_id) REFERENCES formation_session(id);
 ALTER TABLE formation_session ADD CONSTRAINT formation_session_formation_type_id_formation_type_id FOREIGN KEY (formation_type_id) REFERENCES formation_type(id) ON DELETE SET NULL;
+ALTER TABLE formation_session ADD CONSTRAINT formation_session_formation_center_id_formation_center_id FOREIGN KEY (formation_center_id) REFERENCES formation_center(id) ON DELETE SET NULL;
+ALTER TABLE formation_session ADD CONSTRAINT formation_session_agency_room_id_agency_room_id FOREIGN KEY (agency_room_id) REFERENCES agency_room(id) ON DELETE SET NULL;
 ALTER TABLE formation_session ADD CONSTRAINT formation_session_agency_id_agency_id FOREIGN KEY (agency_id) REFERENCES agency(id) ON DELETE SET NULL;
 ALTER TABLE frm_Forum ADD CONSTRAINT frm_Forum_latest_post_id_frm_Post_id FOREIGN KEY (latest_post_id) REFERENCES frm_Post(id) ON DELETE SET NULL;
 ALTER TABLE frm_Forum ADD CONSTRAINT frm_Forum_category_id_frm_Category_id FOREIGN KEY (category_id) REFERENCES frm_Category(id) ON DELETE CASCADE;

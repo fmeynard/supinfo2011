@@ -13,23 +13,26 @@
  * @property string $address_bis
  * @property integer $capacity
  * @property Agency $Agency
+ * @property Doctrine_Collection $FormationSession
  * 
- * @method integer         getId()          Returns the current record's "id" value
- * @method string          getName()        Returns the current record's "name" value
- * @method integer         getAgencyId()    Returns the current record's "agency_id" value
- * @method string          getImage()       Returns the current record's "image" value
- * @method string          getAddress()     Returns the current record's "address" value
- * @method string          getAddressBis()  Returns the current record's "address_bis" value
- * @method integer         getCapacity()    Returns the current record's "capacity" value
- * @method Agency          getAgency()      Returns the current record's "Agency" value
- * @method FormationCenter setId()          Sets the current record's "id" value
- * @method FormationCenter setName()        Sets the current record's "name" value
- * @method FormationCenter setAgencyId()    Sets the current record's "agency_id" value
- * @method FormationCenter setImage()       Sets the current record's "image" value
- * @method FormationCenter setAddress()     Sets the current record's "address" value
- * @method FormationCenter setAddressBis()  Sets the current record's "address_bis" value
- * @method FormationCenter setCapacity()    Sets the current record's "capacity" value
- * @method FormationCenter setAgency()      Sets the current record's "Agency" value
+ * @method integer             getId()               Returns the current record's "id" value
+ * @method string              getName()             Returns the current record's "name" value
+ * @method integer             getAgencyId()         Returns the current record's "agency_id" value
+ * @method string              getImage()            Returns the current record's "image" value
+ * @method string              getAddress()          Returns the current record's "address" value
+ * @method string              getAddressBis()       Returns the current record's "address_bis" value
+ * @method integer             getCapacity()         Returns the current record's "capacity" value
+ * @method Agency              getAgency()           Returns the current record's "Agency" value
+ * @method Doctrine_Collection getFormationSession() Returns the current record's "FormationSession" collection
+ * @method FormationCenter     setId()               Sets the current record's "id" value
+ * @method FormationCenter     setName()             Sets the current record's "name" value
+ * @method FormationCenter     setAgencyId()         Sets the current record's "agency_id" value
+ * @method FormationCenter     setImage()            Sets the current record's "image" value
+ * @method FormationCenter     setAddress()          Sets the current record's "address" value
+ * @method FormationCenter     setAddressBis()       Sets the current record's "address_bis" value
+ * @method FormationCenter     setCapacity()         Sets the current record's "capacity" value
+ * @method FormationCenter     setAgency()           Sets the current record's "Agency" value
+ * @method FormationCenter     setFormationSession() Sets the current record's "FormationSession" collection
  * 
  * @package    d
  * @subpackage model
@@ -80,6 +83,10 @@ abstract class BaseFormationCenter extends sfDoctrineRecord
              'local' => 'agency_id',
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
+
+        $this->hasMany('FormationSession', array(
+             'local' => 'id',
+             'foreign' => 'formation_center_id'));
 
         $sluggable0 = new Doctrine_Template_Sluggable(array(
              'fields' => 

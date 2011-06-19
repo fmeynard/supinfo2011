@@ -8,13 +8,16 @@
  * @property integer $id
  * @property string $name
  * @property Doctrine_Collection $FormationSession
+ * @property Doctrine_Collection $Exam
  * 
  * @method integer             getId()               Returns the current record's "id" value
  * @method string              getName()             Returns the current record's "name" value
  * @method Doctrine_Collection getFormationSession() Returns the current record's "FormationSession" collection
+ * @method Doctrine_Collection getExam()             Returns the current record's "Exam" collection
  * @method FormationType       setId()               Sets the current record's "id" value
  * @method FormationType       setName()             Sets the current record's "name" value
  * @method FormationType       setFormationSession() Sets the current record's "FormationSession" collection
+ * @method FormationType       setExam()             Sets the current record's "Exam" collection
  * 
  * @package    d
  * @subpackage model
@@ -44,6 +47,10 @@ abstract class BaseFormationType extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('FormationSession', array(
+             'local' => 'id',
+             'foreign' => 'formation_type_id'));
+
+        $this->hasMany('Exam', array(
              'local' => 'id',
              'foreign' => 'formation_type_id'));
     }

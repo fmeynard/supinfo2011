@@ -18,8 +18,9 @@ Vehicle:
     year:             '2011-02-15'
     purchase_date:    '2011-02-15'
     next_verif_start: '2011-06-15'
-    next_verif_end:   '2011-07-15'
+    next_verif_end:   '2011-06-21'
     agency_id:        1
+    vehicle_type_id:  1
   v2:
     id:               2
     name:             6925 YW 33
@@ -27,9 +28,10 @@ Vehicle:
     model:            206
     year:             '2009-03-15'
     purchase_date:    '2010-02-15'
-    next_verif_start: '2010-06-08'
-    next_verif_end:   '2010-07-08'
+    next_verif_start: '2010-06-21'
+    next_verif_end:   '2010-06-28'
     agency_id:        1
+    vehicle_type_id:  1
   v3:
     id:               3
     name:             3851 DJ 01
@@ -37,9 +39,10 @@ Vehicle:
     model:            Megane
     year:             '2010-07-15'
     purchase_date:    '2010-08-27'
-    next_verif_start: '2010-06-26'
+    next_verif_start: '2010-07-07'
     next_verif_end:   '2010-07-15'
     agency_id:        1
+    vehicle_type_id:  1
   v4:
     id:               4
     name:             6251 PL 78
@@ -48,8 +51,9 @@ Vehicle:
     year:             '2010-05-15'
     purchase_date:    '2011-02-15'
     next_verif_start: '2011-09-01'
-    next_verif_end:   '2011-10-01'
+    next_verif_end:   '2011-09-08'
     agency_id:        2
+    vehicle_type_id:  1
 
   v5:
     id:               5
@@ -58,10 +62,10 @@ Vehicle:
     model:            207
     year:             '2010-08-15'
     purchase_date:    '2010-09-15'
-    next_verif_start: '2011-10-15'
+    next_verif_start: '2011-11-07'
     next_verif_end:   '2010-11-15'
     agency_id:        1
-
+    vehicle_type_id:  1
   v6:
     id:               6
     name:             8785 MR 85
@@ -69,10 +73,10 @@ Vehicle:
     model:            Modus
     year:             '2011-05-15'
     purchase_date:    '2011-05-15'
-    next_verif_start: '2011-05-15'
+    next_verif_start: '2011-06-07'
     next_verif_end:   '2011-06-15'
     agency_id:        2
-
+    vehicle_type_id:  1
 
   v7:
     id:               7
@@ -81,9 +85,10 @@ Vehicle:
     model:            Fiesta
     year:             '2010-02-15'
     purchase_date:    '2010-02-15'
-    next_verif_start: '2010-02-15'
+    next_verif_start: '2010-02-07'
     next_verif_end:   '2010-02-15'
     agency_id:        2
+    vehicle_type_id:  1
 
   v8:
     id:               8
@@ -92,9 +97,10 @@ Vehicle:
     model:            Fiesta
     year:             '2009-05-18'
     purchase_date:    '2009-02-15'
-    next_verif_start: '2011-07-15'
+    next_verif_start: '2011-08-07'
     next_verif_end:   '2011-08-15'
     agency_id:        3
+    vehicle_type_id:  1
 
   v9:
     id:               9
@@ -103,9 +109,10 @@ Vehicle:
     model:            Megane
     year:             '2011-02-15'
     purchase_date:    '2010-02-15'
-    next_verif_start: '2012-02-15'
+    next_verif_start: '2012-02-07'
     next_verif_end:   '2012-02-15'
     agency_id:        4
+    vehicle_type_id:  1
 
   v10:
     id:               10
@@ -114,6 +121,67 @@ Vehicle:
     model:            Fiesta
     year:             '2011-02-15'
     purchase_date:    '2011-02-15'
-    next_verif_start: '2011-06-18'
-    next_verif_end:   '2011-07-01'
+    next_verif_start: '2011-07-18'
+    next_verif_end:   '2011-07-25'
     agency_id:        5
+    vehicle_type_id:  1
+
+  v11:
+    id:               11
+    name:             5582 AK 10
+    brand:            Kawasaki
+    model:            Ninja
+    year:             '2011-02-15'
+    purchase_date:    '2011-02-15'
+    next_verif_start: '2011-06-21'
+    next_verif_end:   '2011-06-30'
+    agency_id:        1
+    vehicle_type_id:  2
+
+  v12:
+    id:               12
+    name:             5555 OP 18
+    brand:            Kawasaki
+    model:            Ninja
+    year:             '2011-02-15'
+    purchase_date:    '2011-04-15'
+    next_verif_start: '2011-07-11'
+    next_verif_end:   '2011-07-18'
+    agency_id:        1
+    vehicle_type_id:  2
+
+  v13:
+    id:               13
+    name:             5868 OP 89
+    brand:            Yamaha
+    model:            Fazer
+    year:             '2011-05-15'
+    purchase_date:    '2011-06-15'
+    next_verif_start: '2011-07-30'
+    next_verif_end:   '2011-08-07'
+    agency_id:        1
+    vehicle_type_id:  2
+
+  v14:
+    id:               14
+    name:             6896 OP 59
+    brand:            Yamaha
+    model:            Fazer
+    year:             '2010-05-15'
+    purchase_date:    '2010-06-15'
+    next_verif_start: '2011-07-30'
+    next_verif_end:   '2011-08-07'
+    agency_id:        2
+    vehicle_type_id:  2
+
+  v15:
+    id:               15
+    name:             8996 OP 59
+    brand:            Yamaha
+    model:            Fazer
+    year:             '2011-05-15'
+    purchase_date:    '2011-06-15'
+    next_verif_start: '2011-06-25'
+    next_verif_end:   '2011-07-07'
+    agency_id:        2
+    vehicle_type_id:  2
