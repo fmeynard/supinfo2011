@@ -286,4 +286,11 @@ PackageHasOffer:
         package_id:     3
         offer_id:       21
 
+UserHasOffer:
+  uo01:
+    id:                 1
+    user_id:            5
+    offer_id:           24
+
+ 
  
