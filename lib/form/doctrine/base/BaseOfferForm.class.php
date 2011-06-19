@@ -23,6 +23,7 @@ abstract class BaseOfferForm extends BaseFormDoctrine
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => false)),
       'is_active'         => new sfWidgetFormInputCheckbox(),
       'is_package_only'   => new sfWidgetFormInputCheckbox(),
+      'formation_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FormationType'), 'add_empty' => true)),
       'slug'              => new sfWidgetFormInputText(),
       'packages_list'     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Package')),
     ));
@@ -36,6 +37,7 @@ abstract class BaseOfferForm extends BaseFormDoctrine
       'category_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Category'))),
       'is_active'         => new sfValidatorBoolean(array('required' => false)),
       'is_package_only'   => new sfValidatorBoolean(array('required' => false)),
+      'formation_type_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('FormationType'), 'required' => false)),
       'slug'              => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'packages_list'     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Package', 'required' => false)),
     ));

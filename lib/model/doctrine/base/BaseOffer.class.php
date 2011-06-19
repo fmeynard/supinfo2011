@@ -13,9 +13,12 @@
  * @property integer $category_id
  * @property boolean $is_active
  * @property boolean $is_package_only
+ * @property integer $formation_type_id
  * @property Category $Category
+ * @property FormationType $FormationType
  * @property Doctrine_Collection $Packages
  * @property Doctrine_Collection $PackagesOffers
+ * @property Doctrine_Collection $UserHasOffer
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getName()              Returns the current record's "name" value
@@ -25,9 +28,12 @@
  * @method integer             getCategoryId()        Returns the current record's "category_id" value
  * @method boolean             getIsActive()          Returns the current record's "is_active" value
  * @method boolean             getIsPackageOnly()     Returns the current record's "is_package_only" value
+ * @method integer             getFormationTypeId()   Returns the current record's "formation_type_id" value
  * @method Category            getCategory()          Returns the current record's "Category" value
+ * @method FormationType       getFormationType()     Returns the current record's "FormationType" value
  * @method Doctrine_Collection getPackages()          Returns the current record's "Packages" collection
  * @method Doctrine_Collection getPackagesOffers()    Returns the current record's "PackagesOffers" collection
+ * @method Doctrine_Collection getUserHasOffer()      Returns the current record's "UserHasOffer" collection
  * @method Offer               setId()                Sets the current record's "id" value
  * @method Offer               setName()              Sets the current record's "name" value
  * @method Offer               setShortDescription()  Sets the current record's "short_description" value
@@ -36,9 +42,12 @@
  * @method Offer               setCategoryId()        Sets the current record's "category_id" value
  * @method Offer               setIsActive()          Sets the current record's "is_active" value
  * @method Offer               setIsPackageOnly()     Sets the current record's "is_package_only" value
+ * @method Offer               setFormationTypeId()   Sets the current record's "formation_type_id" value
  * @method Offer               setCategory()          Sets the current record's "Category" value
+ * @method Offer               setFormationType()     Sets the current record's "FormationType" value
  * @method Offer               setPackages()          Sets the current record's "Packages" collection
  * @method Offer               setPackagesOffers()    Sets the current record's "PackagesOffers" collection
+ * @method Offer               setUserHasOffer()      Sets the current record's "UserHasOffer" collection
  * 
  * @package    d
  * @subpackage model
@@ -82,6 +91,9 @@ abstract class BaseOffer extends sfDoctrineRecord
         $this->hasColumn('is_package_only', 'boolean', null, array(
              'type' => 'boolean',
              ));
+        $this->hasColumn('formation_type_id', 'integer', null, array(
+             'type' => 'integer',
+             ));
 
         $this->option('type', 'MySIAM');
     }
@@ -94,12 +106,21 @@ abstract class BaseOffer extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'SET NULL'));
 
+        $this->hasOne('FormationType', array(
+             'local' => 'formation_type_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
         $this->hasMany('Package as Packages', array(
              'refClass' => 'PackageHasOffer',
              'local' => 'offer_id',
              'foreign' => 'package_id'));
 
         $this->hasMany('PackageHasOffer as PackagesOffers', array(
+             'local' => 'id',
+             'foreign' => 'offer_id'));
+
+        $this->hasMany('UserHasOffer', array(
              'local' => 'id',
              'foreign' => 'offer_id'));
 

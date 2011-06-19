@@ -20,6 +20,7 @@ abstract class BaseOfferFormFilter extends BaseFormFilterDoctrine
       'category_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Category'), 'add_empty' => true)),
       'is_active'         => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'is_package_only'   => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'formation_type_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('FormationType'), 'add_empty' => true)),
       'slug'              => new sfWidgetFormFilterInput(),
       'packages_list'     => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Package')),
     ));
@@ -32,6 +33,7 @@ abstract class BaseOfferFormFilter extends BaseFormFilterDoctrine
       'category_id'       => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Category'), 'column' => 'id')),
       'is_active'         => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'is_package_only'   => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'formation_type_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('FormationType'), 'column' => 'id')),
       'slug'              => new sfValidatorPass(array('required' => false)),
       'packages_list'     => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Package', 'required' => false)),
     ));
@@ -79,6 +81,7 @@ abstract class BaseOfferFormFilter extends BaseFormFilterDoctrine
       'category_id'       => 'ForeignKey',
       'is_active'         => 'Boolean',
       'is_package_only'   => 'Boolean',
+      'formation_type_id' => 'ForeignKey',
       'slug'              => 'Text',
       'packages_list'     => 'ManyKey',
     );

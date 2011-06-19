@@ -18,6 +18,8 @@
  * @property Doctrine_Collection $sfGuardUserPermission
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
+ * @property Doctrine_Collection $UserHasPackage
+ * @property Doctrine_Collection $UserHasOffer
  * @property Doctrine_Collection $FormationHasTeacher
  * @property Doctrine_Collection $FormationHasUser
  * @property Doctrine_Collection $ExamHasUser
@@ -40,6 +42,8 @@
  * @method Doctrine_Collection getSfGuardUserPermission() Returns the current record's "sfGuardUserPermission" collection
  * @method Doctrine_Collection getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey  getRememberKeys()          Returns the current record's "RememberKeys" value
+ * @method Doctrine_Collection getUserHasPackage()        Returns the current record's "UserHasPackage" collection
+ * @method Doctrine_Collection getUserHasOffer()          Returns the current record's "UserHasOffer" collection
  * @method Doctrine_Collection getFormationHasTeacher()   Returns the current record's "FormationHasTeacher" collection
  * @method Doctrine_Collection getFormationHasUser()      Returns the current record's "FormationHasUser" collection
  * @method Doctrine_Collection getExamHasUser()           Returns the current record's "ExamHasUser" collection
@@ -61,6 +65,8 @@
  * @method sfGuardUser         setSfGuardUserPermission() Sets the current record's "sfGuardUserPermission" collection
  * @method sfGuardUser         setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser         setRememberKeys()          Sets the current record's "RememberKeys" value
+ * @method sfGuardUser         setUserHasPackage()        Sets the current record's "UserHasPackage" collection
+ * @method sfGuardUser         setUserHasOffer()          Sets the current record's "UserHasOffer" collection
  * @method sfGuardUser         setFormationHasTeacher()   Sets the current record's "FormationHasTeacher" collection
  * @method sfGuardUser         setFormationHasUser()      Sets the current record's "FormationHasUser" collection
  * @method sfGuardUser         setExamHasUser()           Sets the current record's "ExamHasUser" collection
@@ -149,6 +155,14 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'user_id'));
 
         $this->hasOne('sfGuardRememberKey as RememberKeys', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('UserHasPackage', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('UserHasOffer', array(
              'local' => 'id',
              'foreign' => 'user_id'));
 
