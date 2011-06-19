@@ -26,10 +26,11 @@ class sfGuardUser extends PluginsfGuardUser
   {
     if(!$this->marks)
     {
+      
       $datas = Doctrine_Query::create()
                 ->from('FormationHasUser fhu')
                 ->leftJoin('fhu.FormationSession fs')
-                ->where('fhu.is_valid = ? AND fhu.user_id = ? AND fs.formation_type_id = ?', array(true, $this->getId(), $type));
+                ->where('fhu.is_valid = ? AND fhu.user_id = ? AND fs.formation_type_id = ?', array(true, $this->getId(), $type))->execute();
                 
       $this->marks = array();
       foreach($datas as $data)
@@ -67,18 +68,28 @@ class sfGuardUser extends PluginsfGuardUser
    */
   public function getMarksAverage($type)
   {
-    $this->getOrRetrievedMarks($type);
+    $marks = $this->getMarks($type);
+    
+    $sum    = 0;
+    $count  = count($marks);
+    if($count == 0)
+    {
+      $count = 1;
+    }
     
     if(!$this->marksAverage)
     {
-      for($i=0; $i<$count; $i++)
+      if($marks) 
       {
-        $sum = $marks[$i];
+        for($i=0; $i<$count; $i++)
+        {
+          $sum += $marks[$i];
+        }
       }
       
       $this->marksAverage = $sum / $count;
     }
     
-    return $this->markAverage;
+    return $this->marksAverage;
   }
 }

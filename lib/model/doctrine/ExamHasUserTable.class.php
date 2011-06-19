@@ -16,4 +16,9 @@ class ExamHasUserTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('ExamHasUser');
     }
+    
+    static public function getByExamQuery(Exam $exam)
+    {
+      return Doctrine_Query::create()->from('ExamHasUser ehs')->leftJoin('ehs.Exam e')->where('e.id = ?',$exam->getId());
+    }
 }

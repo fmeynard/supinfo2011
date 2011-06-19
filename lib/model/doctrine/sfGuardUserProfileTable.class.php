@@ -104,6 +104,14 @@ class sfGuardUserProfileTable extends Doctrine_Table
               ->where('p.type = ? AND a.id = ?', array(sfGuardUserProfile::TYPE_EMPLOYEE, $agency->getId()));
     }
     
+    /**
+     * Get by slug
+     *
+     * @param string          $slug
+     * @param Doctrine_Query  $query
+     *
+     * @return sfGuardUserProfile
+     */
     static public function getBySlug($slug, Doctrine_Query $q = NULL)
     {
       if(!$q)

@@ -16,6 +16,7 @@
  * @property Category $Category
  * @property Doctrine_Collection $Offers
  * @property Doctrine_Collection $PackagesOffers
+ * @property Doctrine_Collection $UserHasPackage
  * 
  * @method integer             getId()                Returns the current record's "id" value
  * @method string              getName()              Returns the current record's "name" value
@@ -28,6 +29,7 @@
  * @method Category            getCategory()          Returns the current record's "Category" value
  * @method Doctrine_Collection getOffers()            Returns the current record's "Offers" collection
  * @method Doctrine_Collection getPackagesOffers()    Returns the current record's "PackagesOffers" collection
+ * @method Doctrine_Collection getUserHasPackage()    Returns the current record's "UserHasPackage" collection
  * @method Package             setId()                Sets the current record's "id" value
  * @method Package             setName()              Sets the current record's "name" value
  * @method Package             setShortDescription()  Sets the current record's "short_description" value
@@ -39,6 +41,7 @@
  * @method Package             setCategory()          Sets the current record's "Category" value
  * @method Package             setOffers()            Sets the current record's "Offers" collection
  * @method Package             setPackagesOffers()    Sets the current record's "PackagesOffers" collection
+ * @method Package             setUserHasPackage()    Sets the current record's "UserHasPackage" collection
  * 
  * @package    d
  * @subpackage model
@@ -103,6 +106,10 @@ abstract class BasePackage extends sfDoctrineRecord
              'foreign' => 'offer_id'));
 
         $this->hasMany('PackageHasOffer as PackagesOffers', array(
+             'local' => 'id',
+             'foreign' => 'package_id'));
+
+        $this->hasMany('UserHasPackage', array(
              'local' => 'id',
              'foreign' => 'package_id'));
 
