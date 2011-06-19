@@ -42,6 +42,15 @@ vehicle:
     prefix_path:          /vehicle
     column:               id
     with_wildcard_routes: true
+    
+employee:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                User
+    module:               User
+    prefix_path:          /users
+    column:               id
+    with_wildcard_routes: true
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing

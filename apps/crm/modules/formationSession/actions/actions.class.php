@@ -63,6 +63,38 @@ class formationSessionActions extends sfActions
   }
   
   /**
+   * Executes load formation session action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeLoadTeacherFormationSession(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->teacher = sfGuardUserTable::getInstance()->find($request->getParameter('id')));
+     
+     $pager     = new FlexigridPager($request, FormationSessionTable::getByTeacherQuery($this->teacher));
+     $response  = $pager->getDefaultStd();
+     $pager     = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item)
+     {
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getDateStart(),
+                $item->getDateEnd(),
+                $item->getCapacity(),
+                $item->getFormationType()->getName(),
+                $this->getPartial('rowFormationSessionActions',array('item'=>$item,'fullActions'=>false)),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
+  
+  /**
    * Executes new formation session
    *
    * @param sfWebRequest $request

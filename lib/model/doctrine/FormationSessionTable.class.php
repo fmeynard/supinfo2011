@@ -30,6 +30,22 @@ class FormationSessionTable extends Doctrine_Table
     }
     
     /**
+     * Get by Teacher Query
+     *
+     * @param sfGuardUser $Teacher
+     *
+     * @return Doctrine_Collection
+     */
+    static public function getByTeacherQuery(sfGuardUser $Teacher)
+    {
+      //$datas = Doctrine_Query::create()->from('FormationHasTeacher fht')->where('fht.id',$Teacher->getId());
+      
+      return Doctrine_Query::create()
+              ->from('FormationSession f')
+              ->where('f.id IN ( SELECT fhd.formation_session_id FROM FormationHasTeacher fhd WHERE fhd.teacher_id = ? )', $Teacher->getId());
+    }
+    
+    /**
      * get participations
      *
      * @param FormationSession  $formationSession

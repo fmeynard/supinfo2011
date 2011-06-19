@@ -12,3 +12,7 @@ listEmployeesSuccess:
 listTeachersSuccess:
     javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
     stylesheets: [flexigrid.pack.css]
+    
+viewTeacherSuccess:
+    javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
+    stylesheets: [flexigrid.pack.css]
