@@ -25,7 +25,7 @@
                     <div class="topbar-left-cap"></div>
                     <ul class="topmenuleft">
                         <li class="home"> <a href="<?php echo url_for('forum/index') ?>">Home</a></li>
-                        <li> <a href="mailto:gerard.durand@SafeDriving.com">Contact</a></li>
+                        <li> <a href="mailto:contact@SafeDriving.com">Contact</a></li>
                     </ul>
                     <div class="topbar-right-cap"></div>
                 </div>
@@ -39,7 +39,7 @@
                             <li>  <?php echo link_to("Log out", "sfGuardAuth/signout", array("class" => "user_area")) ?></li>
                         <?php else: ?>
                                 <li class="home">   <?php echo link_to("Log In", "sfGuardAuth/signin", array("class" => "user_area")) ?> </li>
-                                <li>   <?php echo link_to("Register", "forum/register", array("class" => "user_area")) ?> </li>
+                                <li>   <?php echo link_to("Register", "user/newCustomer", array("class" => "user_area")) ?> </li>
                         <?php endif; ?>
 
                             </ul>
@@ -67,31 +67,33 @@
                                         <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
                                             <tbody><tr>
                                                     <td class="row1">
-                                                        <p class="breadcrumbs">
-                                                    <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?><a href="<?php echo url_for('forum/new') ?>"> Add Category </a>  <?php endif; ?> |
-                                                    <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?><a href="<?php echo url_for('forumEdit/new') ?>"> Add Forum </a>  <?php endif; ?> |
-                                                    <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?> <a href="<?php echo url_for('forum/listedit') ?>">Edit Categories </a><?php endif; ?>   |
-                                                    <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?> <a href="<?php echo url_for('forumEdit/index') ?>">Edit Forums </a><?php endif; ?>
-                                                                </p>
-                                                                <p class="datetime">  </p>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody></table>
-                                            </div>
+                                                <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?>
+                                                    <p class="breadcrumbs">
+                                                        <a href="<?php echo url_for('forum/new') ?>"> Add Category </a> |
+                                                        <a href="<?php echo url_for('forumEdit/new') ?>"> Add Forum </a> |
+                                                        <a href="<?php echo url_for('forum/listedit') ?>">Edit Categories </a>   |
+                                                        <a href="<?php echo url_for('forumEdit/index') ?>">Edit Forums </a>
+                                                    </p>
+                                                <?php endif; ?>
+                                                    <p class="datetime">  </p>
+                                                </td>
+                                            </tr>
+                                        </tbody></table>
+                                </div>
                             <?php endif; ?>
-                                                                    <br/>
+                                                    <br/>
 
                             <?php echo $sf_content ?>
-                                                                    <br />
-                                                                    <div class="genspace">
-                                                                    </div>
-                                                                    <br clear="all" />
+                                                    <br />
+                                                    <div class="genspace">
+                                                    </div>
+                                                    <br clear="all" />
 
-                                                                    <div class="bc">
-                                                                        <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
-                                                                            <tr>
-                                                                                <td class="row1">
-                                                                                    <p class="breadcrumbs"><a href="<?php echo url_for('forum/index') ?>">Board Index</a></p>
+                                                    <div class="bc">
+                                                        <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+                                                            <tr>
+                                                                <td class="row1">
+                                                                    <p class="breadcrumbs"><a href="<?php echo url_for('forum/index') ?>">Board Index</a></p>
                                             <p class="datetime">All members of our team are here to helps you!</p>
                                         </td>
                                     </tr>

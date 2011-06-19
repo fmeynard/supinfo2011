@@ -30,10 +30,8 @@
                     <!-- _________________________ Start Navigation _________________________ -->
                     <ul id="navigation" class="sf-js-enabled">
                         <li class=""><?php echo link_to("Home",'homepage') ?></li>
-                        <li class=""><a href="#">Pages</a></li>
                         <li class=""><a href="<?php echo url_for("category/index") ?>">Categories &gt;&gt;</a></li>
-                        <li class=""><a href="#">Blog</a></li>
-                        <li><a href="#">Contacts</a></li>
+                        <li><a href="mailto:contact@SafeDriving.com">Contact</a></li>
                     </ul>
                     <!-- _________________________ Finish Navigation _________________________ -->
 

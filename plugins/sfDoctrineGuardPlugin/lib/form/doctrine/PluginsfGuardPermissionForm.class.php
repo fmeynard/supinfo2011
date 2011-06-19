@@ -6,14 +6,14 @@
  * @package    sfDoctrineGuardPlugin
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: PluginsfGuardPermissionForm.class.php 31270 2010-10-28 14:54:48Z Kris.Wallsmith $
+ * @version    SVN: $Id: PluginsfGuardPermissionForm.class.php 24629 2009-12-01 00:34:36Z Jonathan.Wage $
  */
 abstract class PluginsfGuardPermissionForm extends BasesfGuardPermissionForm
 {
   /**
    * @see sfForm
    */
-  protected function setupInheritance()
+  public function setupInheritance()
   {
     parent::setupInheritance();
 
