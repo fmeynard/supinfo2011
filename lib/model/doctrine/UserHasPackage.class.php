@@ -12,5 +12,27 @@
  */
 class UserHasPackage extends BaseUserHasPackage
 {
-
+  /**
+   * Disable current package
+   *
+   * @return UserHasPackage
+   */
+  public function disable()
+  {
+    $this->setIsActive(false);
+    
+    return $this;
+  }
+  
+  /**
+   * Enable current package
+   *
+   * @return UserHasPackage
+   */
+  public function enable()
+  {
+    $this->setIsActive(true);
+    
+    return $this;
+  }
 }

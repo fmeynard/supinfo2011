@@ -211,5 +211,162 @@ class userActions extends sfActions
   public function executeViewCustomer(sfWebRequest $request)
   {
     $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+    
+    $this->userHasPackageForm = new UserHasPackageForm();
+    $this->userHasOfferForm = new UserHasOfferForm();
+  }
+  
+  /**
+   * Executes add offer
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeAddOffer(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->user   = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+    
+    $form = new UserHasOfferForm(NULL, array('user'=>$this->user));
+    $form->bind($request->getParameter($form->getName()));
+    if($form->isValid())
+    {
+      $form->save();
+    }
+    
+    $this->redirect('user/viewCustomer?slug='.$this->user->getSlug());
+  }
+  
+  /**
+   * Executes add package 
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeAddPackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+    
+    $form = new UserHasPackageForm(NULL, array('user'=>$this->user));
+    $form->bind($request->getParameter($form->getName()));
+    if($form->isValid())
+    {
+      $form->save();
+    }
+    
+    $this->redirect('user/viewCustomer?slug='.$this->user->getSlug());
+  }
+  
+  /**
+   * Executes payed offer
+   *
+   * @param sfWebRequest $request
+   */
+  public function executePayedOffer(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasOffer = UserHasOfferTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasOffer->setIsPaid(true)->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasOffer->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes unpayed offer action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeUnpayedOffer(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasOffer = UserHasOfferTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasOffer->setIsPaid(false)->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasOffer->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes payed package
+   *
+   * @param sfWebRequest $request
+   */
+  public function executePayedPackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasPackage = UserHasPackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasPackage->setIsPaid(true)->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasPackage->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes unpayed package action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeUnpayedPackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasPackage = UserHasPackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasPackage->setIsPaid(false)->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasPackage->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes disable offer action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeDisableOffer(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasOffer = UserHasOfferTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasOffer->disable();
+    $userHasOffer->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasOffer->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes enable offer action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeEnableOffer(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasOffer = UserHasOfferTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasOffer->enable();
+    $userHasOffer->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasOffer->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes disable package action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeDisablePackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasPackage = UserHasPackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasPackage->disable();
+    $userHasPackage->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasPackage->getSfGuardUser()->getProfile()->getSlug());
+  }
+  
+  /**
+   * Executes disable package action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeEnablePackage(sfWebRequest $request)
+  {
+    $this->forward404Unless($userHasPackage = UserHasPackageTable::getInstance()->find($request->getParameter('id')));
+    
+    $userHasPackage->enable();
+    $userHasPackage->save();
+    
+    $this->redirect('user/viewCustomer?slug='.$userHasPackage->getSfGuardUser()->getProfile()->getSlug());
   }
 }
