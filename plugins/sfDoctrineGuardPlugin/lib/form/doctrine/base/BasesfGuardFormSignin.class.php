@@ -6,8 +6,7 @@
  * @package    sfDoctrineGuardPlugin
  * @subpackage form
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @author     Jonathan H. Wage <jonwage@gmail.com>
- * @version    SVN: $Id: BasesfGuardFormSignin.class.php 25546 2009-12-17 23:27:55Z Jonathan.Wage $
+ * @version    SVN: $Id: BasesfGuardFormSignin.class.php 23536 2009-11-02 21:41:21Z Kris.Wallsmith $
  */
 class BasesfGuardFormSignin extends BaseForm
 {
@@ -27,11 +26,6 @@ class BasesfGuardFormSignin extends BaseForm
       'password' => new sfValidatorString(),
       'remember' => new sfValidatorBoolean(),
     ));
-
-    if (sfConfig::get('app_sf_guard_plugin_allow_login_with_email', true))
-    {
-      $this->widgetSchema['username']->setLabel('Username or E-Mail');
-    }
 
     $this->validatorSchema->setPostValidator(new sfGuardValidatorUser());
 

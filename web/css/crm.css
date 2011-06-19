@@ -411,6 +411,10 @@ div.toggle table td {
 	padding: 2px 5px;
 }
 
+div.toggle table td.title {
+	width:20%;
+}
+
 div.toggle table td.actions { 
 	text-align: right;
 	width: 180px;

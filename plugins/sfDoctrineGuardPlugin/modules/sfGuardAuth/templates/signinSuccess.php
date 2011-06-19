@@ -1,5 +1,10 @@
 <?php use_helper('I18N') ?>
 
-<h1><?php echo __('Signin', null, 'sf_guard') ?></h1>
+<form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
+  <table>
+    <?php echo $form ?>
+  </table>
 
-<?php echo get_partial('sfGuardAuth/signin_form', array('form' => $form)) ?>
+  <input type="submit" value="<?php echo __('sign in') ?>" />
+  <a href="<?php echo url_for('@sf_guard_password') ?>"><?php echo __('Forgot your password?') ?></a>
+</form>

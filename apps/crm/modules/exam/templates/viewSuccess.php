@@ -9,56 +9,65 @@
 <br /><br />
 
 <h2><?php echo __('Exam')?> : <?php echo $exam; ?></h2>
-
+<ul id="toggleUl">
+  <li id="examView" class="active"><?php echo link_to('Edit', 'exam/editExam?id='.$exam->getId())?></li>
+</ul>
+<div style="clear: both"></div>
+<div id="customersPackages-div" class="toggle">
 <table>
-  <thead>
     <tr>
-      <th><?php echo link_to('Edit', 'exam/editExam?id='.$exam->getId())?></th>
-    </tr>
-  <tbody>
-    <tr>
-      <td>Date :</td>
+      <td class="title">Date :</td>
       <td><?php echo $exam->getDate()?></td>
     </tr>
     <tr>
-      <td>Formation Type : </td>
+      <td class="title">Formation Type : </td>
       <td><?php echo $exam->getFormationType(); ?></td>
     </tr>
     <tr>
-      <td>Capacity :</td>
+      <td class="title">Capacity :</td>
       <td><?php echo $exam->getCapacity()?></td>
     </tr>
-  </tbody>
 </table>
+</div>
 
-<div class="registrationAvailableUsers">
+<ul id="toggleUl">
+  <li id="examGrades" class="active">Grades</li>
+</ul>
+<div style="clear: both"></div>
+<div id="examGrades-div" class="toggle">
+    <div class="registrationAvailableUsers">
 <?php $avgUsers = $exam->getAvailableUsers(); ?>
-
+    <?php echo link_to('Registration process','exam/registrationProcess?id='.$exam->getId())?>
 <table>
   <thead>
     <tr>
       <th>Customer</th>
       <th>AVG</th>
-    </tr>
-    <tr>
-      <th><?php echo link_to('Registration process','exam/registrationProcess?id='.$exam->getId())?></th>
+      <th>Actions</th>
     </tr>
   </thead>  
   <tbody>
+      <?php $x=0; ?>
     <?php foreach($avgUsers['averages'] as $id => $current) : ?>
       <?php if(!$exam->isRegistered($id)) : ?>
-    <tr>
+    <tr <?php if($x % 2 == 0) :?>class="moduloRow"<?php endif; ?>>
       <td><?php echo $avgUsers['users'][$id]?></td>
       <td><?php echo $current; ?></td>
-      <td><?php echo link_to('Add', 'exam/addExamToUser?user='.$id.'&exam='.$exam->getId())?>
+      <td class="actions"><?php echo link_to('Add', 'exam/addExamToUser?user='.$id.'&exam='.$exam->getId())?>
     </tr>
     <?php endif; ?>
+    <?php $x++; ?>
       <?php endforeach; ?>
   </tbody>
 </table>
 </div>
+</div>
 
-<div class="registrationParticipationUsers">
+<ul id="toggleUl">
+  <li id="examGrades" class="active">Participation</li>
+</ul>
+<div style="clear: both"></div>
+<div id="registrationParticipationUsers-div" class="toggle">
   <table>
     <thead>
       <tr>
@@ -67,11 +76,13 @@
       </tr>
     </thead>
     <tbody>
+        <?php $x = 0; ?>
       <?php foreach($exam->getParticipations() as $participation) :?>
-        <tr>
+        <tr <?php if($x % 2 == 0) :?>class="moduloRow"<?php endif; ?>>
           <td><?php echo $participation->getCustomer()->getProfile()->getFullname(); ?></td>
-          <td><?php echo link_to('Delete', 'exam/deleteExamUser?id='.$participation->getId())?></td>
-      <?php endforeach; ?>
+          <td class="actions"><?php echo link_to('Delete', 'exam/deleteExamUser?id='.$participation->getId())?></td>
+      <?php $x++; ?>
+                  <?php endforeach; ?>
     </tbody>
   </table>
 </div>

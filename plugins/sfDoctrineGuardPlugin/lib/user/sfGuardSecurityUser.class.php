@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardSecurityUser.class.php 30264 2010-07-16 16:59:21Z Jonathan.Wage $
+ * @version    SVN: $Id: sfGuardSecurityUser.class.php 30301 2010-07-19 14:47:01Z Jonathan.Wage $
  */
 class sfGuardSecurityUser extends sfBasicSecurityUser
 {
@@ -137,13 +137,13 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
       $expiration_age = sfConfig::get('app_sf_guard_plugin_remember_key_expiration_age', 15 * 24 * 3600);
 
       // remove old keys
-      Doctrine_Core::getTable('sfGuardRememberKey')->createQuery()
+      Doctrine::getTable('sfGuardRememberKey')->createQuery()
         ->delete()
         ->where('created_at < ?', date('Y-m-d H:i:s', time() - $expiration_age))
         ->execute();
 
       // remove other keys from this user
-      Doctrine_Core::getTable('sfGuardRememberKey')->createQuery()
+      Doctrine::getTable('sfGuardRememberKey')->createQuery()
         ->delete()
         ->where('user_id = ?', $user->getId())
         ->execute();
@@ -154,7 +154,7 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
       // save key
       $rk = new sfGuardRememberKey();
       $rk->setRememberKey($key);
-      $rk->setUser($user);
+      $rk->setsfGuardUser($user);
       $rk->setIpAddress($_SERVER['REMOTE_ADDR']);
       $rk->save($con);
 
@@ -199,7 +199,7 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
   {
     if (!$this->user && $id = $this->getAttribute('user_id', null, 'sfGuardSecurityUser'))
     {
-      $this->user = Doctrine_Core::getTable('sfGuardUser')->find($id);
+      $this->user = Doctrine::getTable('sfGuardUser')->find($id);
 
       if (!$this->user)
       {
@@ -231,16 +231,6 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
   public function getUsername()
   {
     return $this->getGuardUser()->getUsername();
-  }
-
-  /**
-   * Returns the name(first and last) of the user
-   *
-   * @return string
-   */
-  public function getName()
-  {
-    return $this->getGuardUser()->getName();
   }
 
   /**

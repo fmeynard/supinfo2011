@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardRouting.class.php 25546 2009-12-17 23:27:55Z Jonathan.Wage $
+ * @version    SVN: $Id: sfGuardRouting.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
 class sfGuardRouting
 {
@@ -28,24 +28,9 @@ class sfGuardRouting
     $r = $event->getSubject();
 
     // preprend our routes
-    $r->prependRoute('sf_guard_signin', new sfRoute('/guard/login', array('module' => 'sfGuardAuth', 'action' => 'signin'))); 
-   	$r->prependRoute('sf_guard_signout', new sfRoute('/guard/logout', array('module' => 'sfGuardAuth', 'action' => 'signout'))); 
-  }
-
-  static public function addRouteForForgotPassword(sfEvent $event)
-  {
-    $r = $event->getSubject();
-
-    $r->prependRoute('sf_guard_forgot_password', new sfRoute('/guard/forgot_password', array('module' => 'sfGuardForgotPassword', 'action' => 'index')));
-    $r->prependRoute('sf_guard_forgot_password_change', new sfDoctrineRoute('/guard/forgot_password/:unique_key', array(
-      'module' => 'sfGuardForgotPassword',
-      'action' => 'change'
-    ), array(
-      'sf_method' => array('get', 'post')
-    ), array(
-      'model' => 'sfGuardForgotPassword',
-      'type' => 'object'
-    )));
+    $r->prependRoute('sf_guard_signin', new sfRoute('/login', array('module' => 'sfGuardAuth', 'action' => 'signin'))); 
+   	$r->prependRoute('sf_guard_signout', new sfRoute('/logout', array('module' => 'sfGuardAuth', 'action' => 'signout'))); 
+   	$r->prependRoute('sf_guard_password', new sfRoute('/request_password', array('module' => 'sfGuardAuth', 'action' => 'password')));
   }
 
   /**
@@ -54,13 +39,13 @@ class sfGuardRouting
    * @param sfEvent $event
    * @static
    */
-  static public function addRouteForUser(sfEvent $event)
+  static public function addRouteForAdminUser(sfEvent $event)
   {
     $event->getSubject()->prependRoute('sf_guard_user', new sfDoctrineRouteCollection(array(
       'name'                => 'sf_guard_user',
       'model'               => 'sfGuardUser',
       'module'              => 'sfGuardUser',
-      'prefix_path'         => 'guard/users',
+      'prefix_path'         => 'sf_guard_user',
       'with_wildcard_routes' => true,
       'collection_actions'  => array('filter' => 'post', 'batch' => 'post'),
       'requirements'        => array(),
@@ -73,13 +58,13 @@ class sfGuardRouting
    * @param sfEvent $event
    * @static
    */
-  static public function addRouteForGroup(sfEvent $event)
+  static public function addRouteForAdminGroup(sfEvent $event)
   {
     $event->getSubject()->prependRoute('sf_guard_group', new sfDoctrineRouteCollection(array(
       'name'                => 'sf_guard_group',
       'model'               => 'sfGuardGroup',
       'module'              => 'sfGuardGroup',
-      'prefix_path'         => 'guard/groups',
+      'prefix_path'         => 'sf_guard_group',
       'with_wildcard_routes' => true,
       'collection_actions'  => array('filter' => 'post', 'batch' => 'post'),
       'requirements'        => array(),
@@ -92,27 +77,16 @@ class sfGuardRouting
    * @param sfEvent $event
    * @static
    */
-  static public function addRouteForPermission(sfEvent $event)
+  static public function addRouteForAdminPermission(sfEvent $event)
   {
     $event->getSubject()->prependRoute('sf_guard_permission', new sfDoctrineRouteCollection(array(
       'name'                => 'sf_guard_permission',
       'model'               => 'sfGuardPermission',
       'module'              => 'sfGuardPermission',
-      'prefix_path'         => 'guard/permissions',
+      'prefix_path'         => 'sf_guard_permission',
       'with_wildcard_routes' => true,
       'collection_actions'  => array('filter' => 'post', 'batch' => 'post'),
       'requirements'        => array(),
     )));
-  }
-
-  /**
-   * Adds an sfRoute for registration.
-   *
-   * @param sfEvent $event
-   * @static
-   */
-  static public function addRouteForRegister(sfEvent $event)
-  {
-    $event->getSubject()->prependRoute('sf_guard_register', new sfRoute('/guard/register', array('module' => 'sfGuardRegister', 'action' => 'index'))); 
   }
 }

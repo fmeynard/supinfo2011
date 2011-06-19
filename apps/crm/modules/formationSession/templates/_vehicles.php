@@ -1,4 +1,9 @@
 <div id="formationSessionVehicles">
+    <ul id="toggleUl">
+  <li id="vehicles" class="active">Vehicles</li>
+</ul>
+<div style="clear: both"></div>
+<div id="vehicles-div" class=" toggle">
 <div class="beforeTableActions">
   <form method="post" action="<?php echo url_for('formationSession/createVehicleRegistration?id='.$formationSession->getId()); ?>">
   <?php echo $form; ?> <input type="submit" value="add" class="smallAdd"/>
@@ -28,4 +33,5 @@
 <?php else: ?>
   No vehicles registered
 <?php endif; ?>
+</div>
 </div>

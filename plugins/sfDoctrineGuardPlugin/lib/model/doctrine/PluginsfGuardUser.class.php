@@ -6,7 +6,7 @@
  * @package    sfDoctrineGuardPlugin
  * @subpackage model
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: PluginsfGuardUser.class.php 25605 2009-12-18 18:55:55Z Jonathan.Wage $
+ * @version    SVN: $Id: PluginsfGuardUser.class.php 24633 2009-12-01 01:34:47Z Jonathan.Wage $
  */
 abstract class PluginsfGuardUser extends BasesfGuardUser
 {
@@ -16,23 +16,13 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
     $_allPermissions = null;
 
   /**
-   * Returns the string representation of the object: "Full Name (username)"
+   * Returns the string representation of the object.
    *
    * @return string
    */
   public function __toString()
   {
-    return (string) $this->getName().' ('.$this->getUsername().')';
-  }
-
-  /**
-   * Returns the first and last name of the user concatenated together
-   *
-   * @return string $name
-   */
-  public function getName()
-  {
-    return trim($this->getFirstName().' '.$this->getLastName());
+    return (string) $this->getUsername();
   }
 
   /**
@@ -64,7 +54,16 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
     }
     $this->setAlgorithm($algorithmAsStr);
 
-    $this->_set('password', call_user_func_array($algorithm, array($salt.$password)));
+    parent::_set('password', call_user_func_array($algorithm, array($salt.$password)));
+  }
+
+  /**
+   * Sets the second password.
+   *
+   * @param string $password
+   */
+  public function setPasswordBis($password)
+  {
   }
 
   /**
@@ -116,15 +115,15 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
    */
   public function addGroupByName($name, $con = null)
   {
-    $group = Doctrine_Core::getTable('sfGuardGroup')->findOneByName($name);
+    $group = Doctrine::getTable('sfGuardGroup')->findOneByName($name);
     if (!$group)
     {
       throw new sfException(sprintf('The group "%s" does not exist.', $name));
     }
 
     $ug = new sfGuardUserGroup();
-    $ug->setUser($this);
-    $ug->setGroup($group);
+    $ug->setsfGuardUser($this);
+    $ug->setsfGuardGroup($group);
 
     $ug->save($con);
   }
@@ -138,15 +137,15 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
    */
   public function addPermissionByName($name, $con = null)
   {
-    $permission = Doctrine_Core::getTable('sfGuardPermission')->findOneByName($name);
+    $permission = Doctrine::getTable('sfGuardPermission')->findOneByName($name);
     if (!$permission)
     {
       throw new sfException(sprintf('The permission "%s" does not exist.', $name));
     }
 
     $up = new sfGuardUserPermission();
-    $up->setUser($this);
-    $up->setPermission($permission);
+    $up->setsfGuardUser($this);
+    $up->setsfGuardPermission($permission);
 
     $up->save($con);
   }
