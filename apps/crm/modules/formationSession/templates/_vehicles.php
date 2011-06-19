@@ -1,6 +1,6 @@
 <div id="formationSessionVehicles">
     <ul id="toggleUl">
-  <li id="vehicles" class="active">Vehicles</li>
+  <li id="vehicles" class="active">Vehicles Reservation</li>
 </ul>
 <div style="clear: both"></div>
 <div id="vehicles-div" class=" toggle">
@@ -14,19 +14,18 @@
   <table>
     <thead>
       <tr>
-        <th>Vehicles Reservations</th>
-      </tr>
-      <tr>
         <th>Name</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
+        <?php $x=0; ?>
       <?php foreach($formationSession->getVehiclesReservations() as $reservation) : ?>
-        <tr>
+        <tr <?php if($x % 2 == 0) :?>class="moduloRow"<?php endif; ?>>
           <td><?php echo $reservation->getVehicle(); ?></td>
-          <td><?php echo link_to('Delete','formationSession/deleteVehicleReservation?id='.$reservation->getId())?></td>
+          <td class="actions"><?php echo link_to('Delete','formationSession/deleteVehicleReservation?id='.$reservation->getId())?></td>
         </tr>
+        <?php $x++; ?>
       <?php endforeach; ?>
     </tbody>
   </table>

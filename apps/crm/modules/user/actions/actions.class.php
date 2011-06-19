@@ -464,4 +464,34 @@ class userActions extends sfActions
     
     $this->redirect('user/viewCustomer?slug='.$userHasPackage->getSfGuardUser()->getProfile()->getSlug());
   }
+  
+  /**
+   * Executes new teacher availibility 
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeNewTeacherAvailibility(sfWebRequest $request)
+  {
+    
+  }
+  
+  /**
+   * Executes create teacher availiblity 
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeCreateTeacherAvailibility(sfWebRequest $request)
+  {
+    
+  }
+  
+  /**
+   * Executes delete teacher availibility
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeDeleteTeacherAvailibility(sfWebRequest $request)
+  {
+    
+  }
 }

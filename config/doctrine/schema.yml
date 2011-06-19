@@ -265,3 +265,14 @@ sfGuardUserProfile:
   relations:
     sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id, type: one , foreignType: one, foreignAlias: Profile }
     Agency:             { class: Agency, local: agency_id, foreign: id }
+    
+TeacherUnavailability:
+  tableName:            teacher_unavailability
+  columns:
+    id:                 { type: integer, notnull: true, primary: true, autoincrement: true}
+    sf_guard_user_id:   { type: integer, notnull: true }
+    date_start:         { type: timestamp }
+    date_end:           { type: timestamp }
+  relations:
+    sfGuardUser:        { class: sfGuardUser, local: sf_guard_user_id, foreign: id }
+    

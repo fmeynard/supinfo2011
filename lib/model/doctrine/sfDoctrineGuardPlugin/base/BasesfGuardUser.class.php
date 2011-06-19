@@ -24,6 +24,7 @@
  * @property Doctrine_Collection $FormationHasUser
  * @property Doctrine_Collection $ExamHasUser
  * @property sfGuardUserProfile $Profile
+ * @property Doctrine_Collection $TeacherUnavailability
  * @property Doctrine_Collection $CommunityPost
  * @property Doctrine_Collection $CommunityComment
  * @property Doctrine_Collection $FrmTopic
@@ -48,6 +49,7 @@
  * @method Doctrine_Collection getFormationHasUser()      Returns the current record's "FormationHasUser" collection
  * @method Doctrine_Collection getExamHasUser()           Returns the current record's "ExamHasUser" collection
  * @method sfGuardUserProfile  getProfile()               Returns the current record's "Profile" value
+ * @method Doctrine_Collection getTeacherUnavailability() Returns the current record's "TeacherUnavailability" collection
  * @method Doctrine_Collection getCommunityPost()         Returns the current record's "CommunityPost" collection
  * @method Doctrine_Collection getCommunityComment()      Returns the current record's "CommunityComment" collection
  * @method Doctrine_Collection getFrmTopic()              Returns the current record's "FrmTopic" collection
@@ -71,6 +73,7 @@
  * @method sfGuardUser         setFormationHasUser()      Sets the current record's "FormationHasUser" collection
  * @method sfGuardUser         setExamHasUser()           Sets the current record's "ExamHasUser" collection
  * @method sfGuardUser         setProfile()               Sets the current record's "Profile" value
+ * @method sfGuardUser         setTeacherUnavailability() Sets the current record's "TeacherUnavailability" collection
  * @method sfGuardUser         setCommunityPost()         Sets the current record's "CommunityPost" collection
  * @method sfGuardUser         setCommunityComment()      Sets the current record's "CommunityComment" collection
  * @method sfGuardUser         setFrmTopic()              Sets the current record's "FrmTopic" collection
@@ -179,6 +182,10 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
              'foreign' => 'customer_id'));
 
         $this->hasOne('sfGuardUserProfile as Profile', array(
+             'local' => 'id',
+             'foreign' => 'sf_guard_user_id'));
+
+        $this->hasMany('TeacherUnavailability', array(
              'local' => 'id',
              'foreign' => 'sf_guard_user_id'));
 
