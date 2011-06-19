@@ -12,5 +12,10 @@
  */
 class FrmTopic extends BaseFrmTopic
 {
+    public function getTopicsByDate() {
+        $q = Doctrine_Query::create()
+                        ->from('FrmTopic f');
 
+        return Doctrine_Core::getTable('FrmTopic')->getTopicsByDate($q);
+    }
 }

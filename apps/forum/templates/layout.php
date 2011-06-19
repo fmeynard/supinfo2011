@@ -62,38 +62,38 @@
 
                                     <br style="clear: both;"/>
 
-                            <?php if ($sf_user->isAuthenticated()): ?>
+                            <?php if ($sf_user->isAuthenticated() && $sf_user->getGuardUser()->getIsSuperAdmin()): ?>
                                     <div class="bc">
                                         <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
                                             <tbody><tr>
-                                                    <td class="row1">
-                                                <?php if ($sf_user->getGuardUser()->getIsSuperAdmin()): ?>
+                                                <td class="row1">
+
                                                     <p class="breadcrumbs">
                                                         <a href="<?php echo url_for('forum/new') ?>"> Add Category </a> |
                                                         <a href="<?php echo url_for('forumEdit/new') ?>"> Add Forum </a> |
-                                                        <a href="<?php echo url_for('forum/listedit') ?>">Edit Categories </a>   |
+                                                        <a href="<?php echo url_for('forum/listedit') ?>">Edit Categories </a> |
                                                         <a href="<?php echo url_for('forumEdit/index') ?>">Edit Forums </a>
                                                     </p>
-                                                <?php endif; ?>
+
                                                     <p class="datetime">  </p>
                                                 </td>
                                             </tr>
                                         </tbody></table>
                                 </div>
                             <?php endif; ?>
-                                                    <br/>
+                                                <br/>
 
                             <?php echo $sf_content ?>
-                                                    <br />
-                                                    <div class="genspace">
-                                                    </div>
-                                                    <br clear="all" />
+                                                <br />
+                                                <div class="genspace">
+                                                </div>
+                                                <br clear="all" />
 
-                                                    <div class="bc">
-                                                        <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
-                                                            <tr>
-                                                                <td class="row1">
-                                                                    <p class="breadcrumbs"><a href="<?php echo url_for('forum/index') ?>">Board Index</a></p>
+                                                <div class="bc">
+                                                    <table class="bcbg" width="100%" cellspacing="1" cellpadding="0" style="margin-top: 5px;">
+                                                        <tr>
+                                                            <td class="row1">
+                                                                <p class="breadcrumbs"><a href="<?php echo url_for('forum/index') ?>">Board Index</a></p>
                                             <p class="datetime">All members of our team are here to helps you!</p>
                                         </td>
                                     </tr>
