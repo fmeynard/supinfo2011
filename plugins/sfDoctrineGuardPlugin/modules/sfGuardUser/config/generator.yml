@@ -26,6 +26,9 @@ generator:
 
       edit:
         title: Editing User "%%username%%"
+        
+      filter:
+        display: [username]
 
       new:
         title: New User

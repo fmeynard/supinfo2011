@@ -472,7 +472,9 @@ class userActions extends sfActions
    */
   public function executeNewTeacherAvailibility(sfWebRequest $request)
   {
+    $this->forward404Unless($user = sfGuardUserTable::getInstance()->find($request->getParameter('id')));
     
+    $this->form = new TeacherUnavailabilityForm(null, array('user'=>$user));
   }
   
   /**
@@ -482,7 +484,18 @@ class userActions extends sfActions
    */
   public function executeCreateTeacherAvailibility(sfWebRequest $request)
   {
+    $this->forward404Unless($user = sfGuardUserTable::getInstance()->find($request->getParameter('id')));
     
+    $this->form = new TeacherUnavailabilityForm(null, array('user'=>$user));
+    $this->form->bind($request->getParameter($this->form->getName()));
+    if($this->form->isValid())
+    {
+      $this->form->save();
+      
+      $this->redirect('user/viewTeacher?slug='.$user->getProfile()->getSlug());
+    }
+    
+    $this->setTemplate('newTeacherAvailibility');
   }
   
   /**
@@ -492,6 +505,40 @@ class userActions extends sfActions
    */
   public function executeDeleteTeacherAvailibility(sfWebRequest $request)
   {
+    $this->forward404Unless($TeacherAvailibility = TeacherUnavailabilityTable::getInstance()->find($request->getParameter('id')));
     
+    $teacherId = $TeacherAvailibility->getSfGuardUser()->getProfile()->getSlug();
+    $TeacherAvailibility->delete();
+    
+    $this->redirect('user/viewTeacher?slug='.$teacherId);
+  }
+  
+  /**
+   * Executes load employees action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeLoadTeacherAvailibility(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->user = sfGuardUserTable::getInstance()->find($request->getParameter('id')));
+     
+     $pager     = new FlexigridPager($request, sfGuardUserTable::getTeacherAvailibiltiesQuery($this->user));
+     $response  = $pager->getDefaultStd();
+     $pager     = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item){
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getDateStart(),
+                $item->getDateEnd(),
+                $this->getPartial('rowAvailibilityActions',array('item'=>$item)),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
   }
 }

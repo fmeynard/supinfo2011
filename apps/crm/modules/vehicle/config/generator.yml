@@ -14,8 +14,10 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
-      filter:  ~
+      list:    
+        display: [fullname, _agency]
+      filter:  
+        display: [brand, model, next_verif_start]
       form:    ~
       edit:    ~
       new:     ~

@@ -14,6 +14,11 @@ class Vehicle extends BaseVehicle
 {
   public function __toString()
   {
+    return $this->getFullname();
+  }
+  
+  public function getFullname()
+  {
     return $this->getBrand() . ' - ' .$this->getModel() . ' ( '.date('Y',$this->getDateTimeObject('year')->format('Y')).' ) ';
   }
 }
