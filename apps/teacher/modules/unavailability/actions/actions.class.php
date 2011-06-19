@@ -18,18 +18,15 @@ class unavailabilityActions extends sfActions
   }
 
   public function executeNew(sfWebRequest $request)
-  {
-    $tu = new TeacherUnavailability();
-    $tu->setSfGuardUserId(sfContext::getInstance()->getUser()->getGuardUser()->getId());
-    
-    $this->form = new TeacherUnavailabilityForm($tu);
+  { 
+    $this->form = new TeacherUnavailabilityForm();
   }
 
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new TeacherUnavailabilityForm();
+    $this->form = new TeacherUnavailabilityForm(null, array('user'=>sfContext::getInstance()->getUser()->getGuardUser()));
 
     $this->processForm($request, $this->form);
 
@@ -68,9 +65,9 @@ class unavailabilityActions extends sfActions
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
-      $teacher_unavailability = $form->save();
+      $form->save();
 
-      $this->redirect('unavailability/edit?id='.$teacher_unavailability->getId());
+      $this->redirect('unavailability/edit?id='.$form->getObject()->getId());
     }
   }
 }
