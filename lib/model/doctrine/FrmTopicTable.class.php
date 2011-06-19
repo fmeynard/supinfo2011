@@ -16,4 +16,17 @@ class FrmTopicTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('FrmTopic');
     }
+
+    public function getTopicsByDate(Doctrine_Query $q = null) {
+        if (is_null($q)) {
+            $q = Doctrine_Query::create()
+                            ->from('FrmTopic f');
+        }
+
+        $alias = $q->getRootAlias();
+
+        $q->addOrderBy($alias . '.created_at DESC');
+
+        return $q;
+    }
 }

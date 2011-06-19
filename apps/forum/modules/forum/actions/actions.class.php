@@ -18,6 +18,7 @@ class forumActions extends sfActions {
 
     public function executeShow(sfWebRequest $request) {
         $this->frm_forum = Doctrine_Core::getTable('FrmForum')->find(array($request->getParameter('id')));
+        $this->frm_topics = Doctrine_Core::getTable('FrmTopic');
     }
 
 

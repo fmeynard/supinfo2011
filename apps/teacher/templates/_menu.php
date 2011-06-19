@@ -4,7 +4,7 @@
       <span><?php echo link_to(__('Grade'),'marks/index')?></span>
     </li>
     <li style="width:50%;float:left">
-      <span><?php echo link_to(__('Teacher disponibility'),'marks/index')?></span>
+      <span><?php echo link_to(__('Teacher unavailability'),'unavailability/index')?></span>
     </li>
   </ul>
 </div>

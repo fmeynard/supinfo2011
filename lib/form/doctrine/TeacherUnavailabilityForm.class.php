@@ -12,5 +12,6 @@ class TeacherUnavailabilityForm extends BaseTeacherUnavailabilityForm
 {
   public function configure()
   {
+      unset($this['user_id']);
   }
 }
