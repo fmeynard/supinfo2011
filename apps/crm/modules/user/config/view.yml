@@ -5,3 +5,7 @@ listCustomersSuccess:
 listEmployeesSuccess:
     javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
     stylesheets: [flexigrid.pack.css]
+    
+listTeachersSuccess:
+    javascripts: [jquery/jquery.js, jquery/jquery.flexigrid.js]
+    stylesheets: [flexigrid.pack.css]

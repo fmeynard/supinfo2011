@@ -158,6 +158,101 @@ class userActions extends sfActions
   }
   
   /**
+   * Executes list employees action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeListTeachers(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+  }
+  
+  /**
+   * Executes load employees action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeLoadTeachers(sfWebRequest $request)
+  {
+     $this->forward404Unless($this->agency = Doctrine::getTable('Agency')->find($request->getParameter('id')));
+     $pager = new FlexigridPager($request, sfGuardUserProfileTable::getAgencyTeachersQuery($this->agency));
+     $response = $pager->getDefaultStd();
+     $pager = $pager->init();
+
+     $i=0;
+
+     foreach($pager->getResults() as $item){
+            $response->rows[$i]['id'] = $item->getId();
+            $response->rows[$i]['cell'] = array(
+                $item->getId(),
+                $item->getFullname(),
+                $item->getMail(),
+                $item->getMobile(),
+                $item->getPhone(),
+                $this->getPartial('rowTeacherActions',array('item'=>$item)),
+            );
+            $i++;
+     }
+     
+     return $this->renderText(json_encode($response));
+  }
+  
+  /**
+   * Executes new teacher action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeNewTeacher(sfWebRequest $request)
+  { 
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    $this->form = new TeacherForm(array(), array('agency'=>$this->agency));
+  }
+  
+  /**
+   * Executes create teacher action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeCreateTeacher(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->agency = AgencyTable::getBySlug($request->getParameter('slug')));
+    $this->form = new TeacherForm(array(), array('agency'=>$this->agency));
+    $this->processTeacherForm($request, $this->form);
+    
+    $this->setTemplate('newEmployee');
+  }
+  
+  /**
+   * Process teacher form
+   *
+   * @param sfWebRequest $request
+   * @param sfForm $form
+   */
+  protected function processTeacherForm(sfWebRequest $request, sfForm $form)
+  {
+    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+    if ($form->isValid())
+    {
+      $form->save();
+      $this->redirect('user/viewTeacher?slug='.$form->getObject()->getProfile()->getSlug());
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.', false);
+    }
+  }
+  
+  /**
+   * Executes view employee action
+   *
+   * @param sfWebRequest $request
+   */
+  public function executeViewTeacher(sfWebRequest $request)
+  {
+    $this->forward404Unless($this->user = sfGuardUserProfileTable::getBySlug($request->getParameter('slug')));
+  }
+  
+  /**
    * Executes new customer 
    *
    * @param sfWebRequest $request
