@@ -83,23 +83,27 @@ sfGuardUserProfile:
     mail:               admin.istrator@supinfo.com
 
 <?php for ($i = 5; $i <= 15; $i++): ?>
+<?php $firstname =  $fname[rand(0,15)]; ?>
+<?php $lastname = $lname[rand(0,14)]; ?>
   user<?php echo $i ?>Profile:
     id:                 <?php echo $i."\n"; ?>
     sf_guard_user_id:   <?php echo $i."\n"; ?>
     agency_id:          1
-    first_name:         <?php echo $fname[rand(0,15)]."\n"; ?>
-    last_name:          <?php echo $lname[rand(0,14)]."\n"; ?>
+    first_name:         <?php echo $firstname."\n"; ?>
+    last_name:          <?php echo $lastname."\n"; ?>
     type:               2
-    mail:               <?php echo $fname[rand(0,15)]; ?>.<?php echo $lname[rand(0,14)]; ?>@supinfo.com
+    mail:               <?php echo $firstname; ?>.<?php echo $lastname; ?>@supinfo.com
 <?php endfor ?>
 
 <?php for ($i = 16; $i <= 25; $i++): ?>
+<?php $firstname =  $fname[rand(0,15)]; ?>
+<?php $lastname = $lname[rand(0,14)]; ?>
   user<?php echo $i ?>Profile:
     id:                 <?php echo $i."\n"; ?>
     sf_guard_user_id:   <?php echo $i."\n"; ?>
     agency_id:          1
-    first_name:         <?php echo $fname[rand(0,15)]."\n"; ?>
-    last_name:          <?php echo $lname[rand(0,14)]."\n"; ?>
-    type:               3
-    mail:               <?php echo $fname[rand(0,15)]; ?>.<?php echo $lname[rand(0,14)]; ?>@supinfo.com
+    first_name:         <?php echo $firstname."\n"; ?>
+    last_name:          <?php echo $lastname."\n"; ?>
+    type:               2
+    mail:               <?php echo $firstname; ?>.<?php echo $lastname; ?>@supinfo.com
 <?php endfor ?>
