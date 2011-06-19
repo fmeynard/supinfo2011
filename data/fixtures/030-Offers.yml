@@ -1,71 +1,289 @@
 Category:
     c01:
         id: 1
-        name: Category01
-        short_description: testc01
+        name: Motorcycle Offers
+        short_description: All offers related to Motorcycle.
         is_active: 1
     c02:
         id: 2
-        name: Category02
-        short_description: testc02
+        name: Car Offers
+        short_description: All offers related to Car driving.
         is_active: 1
     c03:
         id: 3
-        name: Category03
-        short_description: testc03
+        name: Scooter Offers
+        short_description: All offers related to Scooter lesson
         is_active: 1
+
 Offer:
     offer01:
         id:                 1
-        name:               Offer01
-        short_description:  testDesc01
-        price:              100
-        category_id:        1
+        name:               3 Hours session on Scooter
+        short_description:  3 Hours session on Scooter / 125cc
+        price:              180
+        category_id:        3
         is_active:          1
-        is_package_only:    1
+        is_package_only:    0
     offer02:
         id:                 2
-        name:               Offer02
-        short_description:  testDesc02
-        price:              200
-        category_id:        2
+        name:               3 x 3 Hours session
+        short_description:  3 x 3 Hours session (includes one session on road)
+        price:              450
+        category_id:        3
         is_active:          1
-        is_package_only:    1
-    offer01:
+        is_package_only:    0
+    offer03:
         id:                 3
-        name:               Offer03
-        short_description:  testDesc03
-        price:              300
+        name:               One day session
+        short_description:  One day session (7 hours, on road and on track)
+        price:              325
+        category_id:        3
+        is_active:          1
+        is_package_only:    0
+    offer04:
+        id:                 4
+        name:               One hour session off-road
+        short_description:  One hour session off-road (moto)
+        price:              56
         category_id:        1
         is_active:          1
         is_package_only:    0
-        
+    offer05:
+        id:                 5
+        name:               One hour session on road
+        short_description:  One hour session on road (moto)
+        price:              42
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer06:
+        id:                 6
+        name:               Ten hour session
+        short_description:  Ten hour session (moto)
+        price:              460
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer07:
+        id:                 7
+        name:               One day session on track
+        short_description:  One day session (7 hours on track)
+        price:              290
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer08:
+        id:                 8
+        name:               3 hour session on track
+        short_description:  3 hour session on track
+        price:              150
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer09:
+        id:                 9
+        name:               One week session
+        short_description:  One week session (46 hours, on road and on track)
+        price:              1900
+        category_id:        1
+        is_active:          1
+        is_package_only:    1
+    offer10:
+        id:                 10
+        name:               Twenty hours session
+        short_description:  Twenty hours sessions
+        price:              990
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer11:
+        id:                 11
+        name:               Code Package
+        short_description:  Code preparation + Exam session
+        price:              110
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer12:
+        id:                 12
+        name:               Code Exam Session
+        short_description:  One time fees code exam.
+        price:              95
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer13:
+        id:                 13
+        name:               Driving Exam Session
+        short_description:  One time fee driving exam
+        price:              120
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer14:
+        id:                 14
+        name:               Subscription fee
+        short_description:  Subscription fee (one time)
+        price:              100
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer15:
+        id:                 15
+        name:               Code training Book
+        short_description:  The all-in-one book to prepare your code exam.
+        price:              17
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer16:
+        id:                 16
+        name:               Moto sheet book
+        short_description:  The all-in-one book to prepare your exam.
+        price:              17
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer17:
+        id:                 17
+        name:               One day session. level 1.
+        short_description:  After the track test
+        price:              250
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer18:
+        id:                 18
+        name:               One day session. level 2.
+        short_description:  After the track test
+        price:              260
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer19:
+        id:                 19
+        name:               One day session. level 3.
+        short_description:  After the track test.
+        price:              270
+        category_id:        1
+        is_active:          1
+        is_package_only:    0
+    offer20:
+        id:                 20
+        name:               BSR
+        short_description:  7 Hours courses. (2H track + 5H on road)
+        price:              280
+        category_id:        1
+        is_active:          1
+        is_package_only:    1
+    offer21:
+        id:                 21
+        name:               All in one offer.
+        short_description:  Inscription fee + code exam + 20 hours driving + exam presentation
+        price:              1150
+        category_id:        2
+        is_active:          1
+        is_package_only:    1
+    offer22:
+        id:                 22
+        name:               One hour session
+        short_description:  One hour session on road.
+        price:              47
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer23:
+        id:                 23
+        name:               One evaluation hour.
+        short_description:  Evalution
+        price:              47
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer24:
+        id:                 24
+        name:               10 hours session
+        short_description:  10 hours driving session
+        price:              450
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer25:
+        id:                 25
+        name:               Code package
+        short_description:  All-in-one package for code exam
+        price:              150
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer26:
+        id:                 26
+        name:               Code exam
+        short_description:  One time fee for code exam
+        price:              90
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer27:
+        id:                 27
+        name:               Driving test
+        short_description:  One time fee for driving test
+        price:              100
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer28:
+        id:                 28
+        name:               Subscription fee
+        short_description:  Subscription fee to our driving school
+        price:              100
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+    offer29:
+        id:                 29
+        name:               All-in-one book for code exam
+        short_description:  The best book to learn.
+        price:              17
+        category_id:        2
+        is_active:          1
+        is_package_only:    0
+  
 Package:
     p01:
         id:                 1
-        name:               Package01
-        short_description:  package01desc
-        price:              1000
+        name:               One week moto Package
+        short_description:  This pack includes 43 Hours of courses.
+        price:              1900
         is_active:          1
         category_id:        1
-    p01:
+    p02:
         id:                 2
-        name:               Package02
-        short_description:  package02desc
-        price:              2000
+        name:               BSR
+        short_description:  This pack includes all session in order to obtain the BSR
+        price:              280
         is_active:          1
-        category_id:        1
+        category_id:        2
+    p03:
+        id:                 3
+        name:               All in one package driving license.
+        short_description:  This pack includes all necessary session in order to obtain the driver license.
+        price:              1150
+        is_active:          1
+        category_id:        3
     
 PackageHasOffer:
     pho01:
         id:             1
         package_id:     1
-        offer_id:       1
+        offer_id:       9
     pho02:
         id:             2
-        package_id:     1
-        offer_id:       2
-    pho02:
-        id:             3
         package_id:     2
-        offer_id:       2
+        offer_id:       20
+    pho03:
+        id:             3
+        package_id:     3
+        offer_id:       21
+
+ 

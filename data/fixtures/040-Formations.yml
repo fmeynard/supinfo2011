@@ -57,8 +57,8 @@ FormationSession:
     id:                 1
     name:               Pratical Auto Session 1
     formation_type_id:  1
-    agency_id:          1
-    formation_center_id:  1
+    agency_id:          2
+    formation_center_id:  5
     capacity:           12
     date_start:         '2011-06-21 15:00:00'
     date_end:           '2011-06-21 17:00:00'
@@ -147,8 +147,8 @@ FormationSession:
     id:                 10
     name:               Pratical Moto Session 1
     formation_type_id:  3
-    agency_id:          1
-    formation_center_id:  6
+    agency_id:          2
+    formation_center_id:  5
     capacity:           12
     date_start:         '2011-06-15 15:00:00'
     date_end:           '2011-06-15 17:00:00'
@@ -222,3 +222,430 @@ FormationSession:
     capacity:           20
     date_start:         '2011-06-19 13:00:00'
     date_end:           '2011-06-19 15:00:00'
+
+FormationHasVehicle:
+  fv01:
+    id:                   1
+    formation_session_id: 1
+    vehicle_id:           1
+
+  fv02:
+    id:                   2
+    formation_session_id: 2
+    vehicle_id:           2
+
+  fv03:
+    id:                   3
+    formation_session_id: 3
+    vehicle_id:           3
+
+  fv04:
+    id:                   4
+    formation_session_id: 4
+    vehicle_id:           4
+
+  fv05:
+    id:                   5
+    formation_session_id: 10
+    vehicle_id:           11
+
+  fv06:
+    id:                   6
+    formation_session_id: 11
+    vehicle_id:           12
+
+  fv07:
+    id:                   7
+    formation_session_id: 12
+    vehicle_id:           13
+
+  fv08:
+    id:                   8
+    formation_session_id: 13
+    vehicle_id:           11
+
+  fv09:
+    id:                   9
+    formation_session_id: 14
+    vehicle_id:           12
+
+  
+FormationHasTeacher:
+  ft01:
+    id:                   1
+    formation_session_id: 1
+    teacher_id:           16
+
+  ft02:
+    id:                   2
+    formation_session_id: 2
+    teacher_id:           17
+
+  ft03:
+    id:                   3
+    formation_session_id: 3
+    teacher_id:           18
+
+  ft04:
+    id:                   4
+    formation_session_id: 4
+    teacher_id:           19
+
+  ft05:
+    id:                   5
+    formation_session_id: 5
+    teacher_id:           20
+
+  ft06:
+    id:                   6
+    formation_session_id: 6
+    teacher_id:           21
+
+  ft07:
+    id:                   7
+    formation_session_id: 7
+    teacher_id:           22
+
+  ft08:
+    id:                   8
+    formation_session_id: 8
+    teacher_id:           23
+
+  ft09:
+    id:                   9
+    formation_session_id: 9
+    teacher_id:           24
+
+  ft10:
+    id:                   10
+    formation_session_id: 10
+    teacher_id:           16
+
+  ft11:
+    id:                   11
+    formation_session_id: 11
+    teacher_id:           17
+
+  ft12:
+    id:                   12
+    formation_session_id: 12
+    teacher_id:           18
+
+  ft13:
+    id:                   13
+    formation_session_id: 13
+    teacher_id:           19
+
+  ft14:
+    id:                   14
+    formation_session_id: 14
+    teacher_id:           20
+
+  ft15:
+    id:                   15
+    formation_session_id: 15
+    teacher_id:           21
+
+  ft16:
+    id:                   16
+    formation_session_id: 16
+    teacher_id:           23
+
+  ft17:
+    id:                   17
+    formation_session_id: 17
+    teacher_id:           22
+
+
+FormationHasUser:
+  fu01:
+    id:                   1
+    formation_session_id: 14
+    user_id:              5
+    is_valid:             0
+
+  fu02:
+    id:                   2
+    formation_session_id: 14
+    user_id:              6
+    is_valid:             1
+
+  fu03:
+    id:                   3
+    formation_session_id: 1
+    user_id:              5
+    is_valid:             1
+    grade:                16
+
+  fu04:
+    id:                   4
+    formation_session_id: 1
+    user_id:              6
+    is_valid:             1
+    grade:                14
+
+  fu05:
+    id:                   5
+    formation_session_id: 1
+    user_id:              7
+    is_valid:             1
+    grade:                19
+
+  fu06:
+    id:                   6
+    formation_session_id: 1
+    user_id:              8
+    is_valid:             1
+    grade:                14
+
+  fu07:
+    id:                   7
+    formation_session_id: 2
+    user_id:              9
+    is_valid:             1
+    grade:                12
+
+  fu08:
+    id:                   8
+    formation_session_id: 2
+    user_id:              10
+    is_valid:             1
+    grade:                12
+
+  fu09:
+    id:                   9
+    formation_session_id: 2
+    user_id:              11
+    is_valid:             1
+    grade:                9
+
+  fu10:
+    id:                   10
+    formation_session_id: 3
+    user_id:              12
+    is_valid:             1
+    grade:                14
+
+  fu11:
+    id:                   11
+    formation_session_id: 3
+    user_id:              11
+    is_valid:             1
+    grade:                17
+
+  fu12:
+    id:                   12
+    formation_session_id: 4
+    user_id:              13
+    is_valid:             1
+    grade:                11
+
+  fu13:
+    id:                   13
+    formation_session_id: 5
+    user_id:              5
+    is_valid:             1
+    grade:                11
+
+  fu14:
+    id:                   14
+    formation_session_id: 5
+    user_id:              7
+    is_valid:             1
+    grade:                18
+
+  fu15:
+    id:                   15
+    formation_session_id: 6
+    user_id:              9
+    is_valid:             1
+    grade:                10
+
+  fu16:
+    id:                   16
+    formation_session_id: 6
+    user_id:              14
+    is_valid:             1
+    grade:                14
+
+  fu17:
+    id:                   17
+    formation_session_id: 7
+    user_id:              11
+    is_valid:             1
+    grade:                15
+
+  fu18:
+    id:                   18
+    formation_session_id: 7
+    user_id:              5
+    is_valid:             1
+    grade:                11
+
+  fu19:
+    id:                   19
+    formation_session_id: 7
+    user_id:              6
+    is_valid:             1
+    grade:                16
+
+  fu20:
+    id:                   20
+    formation_session_id: 8
+    user_id:              15
+    is_valid:             1
+    grade:                12
+
+  fu21:
+    id:                   21
+    formation_session_id: 8
+    user_id:              13
+    is_valid:             1
+    grade:                10
+
+  fu22:
+    id:                   22
+    formation_session_id: 9
+    user_id:              11
+    is_valid:             1
+    grade:                7
+
+  fu23:
+    id:                   23
+    formation_session_id: 9
+    user_id:              5
+    is_valid:             1
+    grade:                8
+
+  fu24:
+    id:                   24
+    formation_session_id: 10
+    user_id:              8
+    is_valid:             1
+    grade:                19
+
+  fu25:
+    id:                   25
+    formation_session_id: 10
+    user_id:              9
+    is_valid:             1
+    grade:                17
+
+  fu26:
+    id:                   26
+    formation_session_id: 10
+    user_id:              10
+    is_valid:             1
+    grade:                18
+
+  fu27:
+    id:                   27
+    formation_session_id: 11
+    user_id:              14
+    is_valid:             1
+    grade:                16
+
+  fu28:
+    id:                   28
+    formation_session_id: 11
+    user_id:              13
+    is_valid:             1
+    grade:                15
+
+  fu29:
+    id:                   29
+    formation_session_id: 12
+    user_id:              5
+    is_valid:             0
+    grade:                15
+
+  fu30:
+    id:                   30
+    formation_session_id: 12
+    user_id:              7
+    is_valid:             1
+    grade:                14
+
+  fu31:
+    id:                   31
+    formation_session_id: 13
+    user_id:              11
+    is_valid:             1
+    grade:                11
+
+  fu32:
+    id:                   32
+    formation_session_id: 13
+    user_id:              13
+    is_valid:             1
+    grade:                17
+
+  fu33:
+    id:                   33
+    formation_session_id: 14
+    user_id:              5
+    is_valid:             1
+    grade:                15
+
+  fu34:
+    id:                   34
+    formation_session_id: 15
+    user_id:              11
+    is_valid:             1
+    grade:                16
+
+  fu35:
+    id:                   35
+    formation_session_id: 16
+    user_id:              17
+    is_valid:             1
+    grade:                11
+
+  fu36:
+    id:                   36
+    formation_session_id: 16
+    user_id:              16
+    is_valid:             1
+    grade:                11
+
+  fu37:
+    id:                   37
+    formation_session_id: 17
+    user_id:              7
+    is_valid:             1
+    grade:                17
+
+  fu38:
+    id:                   38
+    formation_session_id: 17
+    user_id:              15
+    is_valid:             1
+    grade:                15
+
+  fu39:
+    id:                   39
+    formation_session_id: 15
+    user_id:              8
+    is_valid:             0
+    grade:                8
+
+  fu40:
+    id:                   40
+    formation_session_id: 14
+    user_id:              16
+    is_valid:             1
+    grade:                16
+    
+  fu41:
+    id:                   41
+    formation_session_id: 15
+    user_id:              6
+    is_valid:             1
+    grade:                15
+
+  fu42:
+    id:                   42
+    formation_session_id: 17
+    user_id:              8
+    is_valid:             1
+    grade:                15
